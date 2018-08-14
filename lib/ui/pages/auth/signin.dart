@@ -4,7 +4,7 @@ import 'package:find_tutors/utils/uidata.dart';
 import 'package:find_tutors/ui/pages/tutors/profile.dart';
 import 'package:find_tutors/ui/widgets/colors.dart';
 import 'signup.dart';
-
+import 'reset_password.dart';
 class Signin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class Signin extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: TextField(
                 maxLines: 1,
                 decoration: InputDecoration(
@@ -59,7 +59,7 @@ class Signin extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
               child: TextField(
                 maxLines: 1,
                 obscureText: true,
@@ -72,11 +72,13 @@ class Signin extends StatelessWidget {
               height: 30.0,
             ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
               width: double.infinity,
               child: RaisedButton(
                 padding: EdgeInsets.all(12.0),
-                shape: StadiumBorder(),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0))
+                ),
                 child: Text(
                   "SIGN IN",
                   style: TextStyle(color: Colors.white),
@@ -107,7 +109,13 @@ class Signin extends StatelessWidget {
                 SizedBox(height: 20.0),
                 new GestureDetector(
                   onTap: () {
-                    print("Hello world");
+                    Navigator.of(context, rootNavigator: true).push(
+                        new CupertinoPageRoute<bool>(
+                          fullscreenDialog: true,
+                          builder: (BuildContext context) =>
+                              new ResetPassword(),
+                        ),
+                  );
                   },
                   child: new Text(
                     "Forgot Password?",
@@ -117,10 +125,13 @@ class Signin extends StatelessWidget {
                 SizedBox(height: 10.0),
                 new GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => Signup()),
-                    // );
+                    Navigator.of(context, rootNavigator: true).push(
+                        new CupertinoPageRoute<bool>(
+                          fullscreenDialog: true,
+                          builder: (BuildContext context) =>
+                              new Signup(),
+                        ),
+                  );
                   },
                   child: new Text(
                     "Dont have account? Sign Up",

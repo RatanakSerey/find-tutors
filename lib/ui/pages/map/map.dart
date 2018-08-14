@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/cupertino.dart';
 // Widget
 import 'package:find_tutors/utils/uidata.dart';
 import 'package:find_tutors/ui/widgets/profile_tile.dart';
@@ -35,10 +35,18 @@ class MapPage extends StatelessWidget {
                   child: new Text("Bottom Sheet"),
                 ),
                 new RaisedButton(
-                  onPressed: () { Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfileTwoPage()),
-                  );},
+                  onPressed: () {
+                    // Navigator.push(
+                    // context,
+                    // MaterialPageRoute(builder: (context) => ProfileTwoPage()),
+                    Navigator.of(context, rootNavigator: true).push(
+                        new CupertinoPageRoute<bool>(
+                          fullscreenDialog: true,
+                          builder: (BuildContext context) =>
+                              new ProfileTwoPage(),
+                        ),
+                  );
+                  },
                   child: new Text("Route"),
                 ),
               ],
