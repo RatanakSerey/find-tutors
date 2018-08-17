@@ -14,10 +14,6 @@ class MapPage extends StatelessWidget {
     return homeScaffold(context);
   }
 
-  static _showModalSheets(context) {
-    ModalSheet.modalBottomSheetMore(context);
-  }
-
   Widget homeScaffold(BuildContext context) => Theme(
         data: Theme.of(context).copyWith(
               canvasColor: Colors.transparent,
@@ -30,53 +26,9 @@ class MapPage extends StatelessWidget {
                 child: new Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new RaisedButton(
-                  onPressed: () => _showModalSheets(context),
-                  child: new Text("Bottom Sheet"),
-                ),
-                new RaisedButton(
-                  onPressed: () {
-                    // Navigator.push(
-                    // context,
-                    // MaterialPageRoute(builder: (context) => ProfileTwoPage()),
-                    Navigator.of(context, rootNavigator: true).push(
-                        new CupertinoPageRoute<bool>(
-                          fullscreenDialog: true,
-                          builder: (BuildContext context) =>
-                              new ProfileTwoPage(),
-                        ),
-                  );
-                  },
-                  child: new Text("Route"),
-                ),
+                new Text('This is Map Page'),
               ],
             )),
-          ),
-        ),
-      );
-
-  Widget header() => Ink(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(colors: UIData.kitGradients)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              CircleAvatar(
-                radius: 25.0,
-                backgroundColor: Colors.white,
-                // backgroundImage: AssetImage(UIData.pkImage),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ProfileTile(
-                  title: "Heng YouSour",
-                  subtitle: "sourkh@gmail.com",
-                  textColor: Colors.white,
-                ),
-              )
-            ],
           ),
         ),
       );

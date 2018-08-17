@@ -7,7 +7,6 @@ import 'package:find_tutors/ui/widgets/profile_tile.dart';
 import 'package:find_tutors/ui/pages/map/map.dart';
 
 Widget header(context) => Ink(
-  
       decoration:
           BoxDecoration(gradient: LinearGradient(colors: UIData.kitGradients)),
       child: Padding(
@@ -42,7 +41,7 @@ Widget header(context) => Ink(
       ),
     );
 
-class CommonDrawer extends StatelessWidget {
+class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(

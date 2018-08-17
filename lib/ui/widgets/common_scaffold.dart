@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'common_drawer.dart';
+import 'drawer.dart';
 import 'custom_float.dart';
 import 'package:find_tutors/utils/uidata.dart';
 import 'package:flutter/cupertino.dart';
@@ -88,24 +88,24 @@ class CommonScaffold extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey != null ? scaffoldKey : null,
       backgroundColor: backGroundColor != null ? backGroundColor : null,
-      // appBar: AppBar(
-      //   elevation: elevation,
-      //   backgroundColor: Colors.black,
-      //   title: Text(appTitle),
-      //   actions: <Widget>[
-      //     SizedBox(
-      //       width: 5.0,
-      //     ),
-      //     IconButton(
-      //       onPressed: () {},
-      //       icon: Icon(actionFirstIcon),
-      //     ),
-      //     IconButton(
-      //       onPressed: () {},
-      //       icon: Icon(Icons.more_vert),
-      //     )
-      //   ],
-      // ),
+      appBar: AppBar(
+        elevation: elevation,
+        backgroundColor: Colors.black,
+        title: Text(appTitle),
+        actions: <Widget>[
+          SizedBox(
+            width: 5.0,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(actionFirstIcon),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert),
+          )
+        ],
+      ),
       // drawer: showDrawer ? CommonDrawer() : null,
       body: bodyData,
       floatingActionButton: showFAB

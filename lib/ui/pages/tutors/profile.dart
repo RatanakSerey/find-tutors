@@ -9,11 +9,19 @@ import 'package:find_tutors/utils/uidata.dart';
 import 'package:find_tutors/ui/widgets/bottom_modal_sheet.dart';
 
 class ProfileTwoPage extends StatelessWidget {
+
+  final Function changeScreen;
+  ProfileTwoPage({this.changeScreen});
   var deviceSize;
+
   static _showModalSheets(context) {
     ModalSheet.modalBottomSheetMore(context);
   }
-
+  @override
+  Widget build(BuildContext context) {
+    deviceSize = MediaQuery.of(context).size;
+    return bodyData(context);
+  }
   // Profile Column
   Widget profileColumn(BuildContext context) => Container(
         height: deviceSize.height * 0.35,
@@ -164,11 +172,5 @@ class ProfileTwoPage extends StatelessWidget {
         floatingIcon: Icons.add,
         // showDrawer: true,
         // showBottomNav: true,
-      );
-
-  @override
-  Widget build(BuildContext context) {
-    deviceSize = MediaQuery.of(context).size;
-    return _scaffold(context);
-  }
+  );
 }

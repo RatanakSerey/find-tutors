@@ -123,13 +123,14 @@ class SignInWidget extends StatelessWidget {
                 onPressed: () {
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, "/Profile");
-                  Navigator.of(context, rootNavigator: true).push(
-                        new CupertinoPageRoute<bool>(
-                          fullscreenDialog: true,
-                          builder: (BuildContext context) =>
-                              new ProfileTwoPage(),
-                        ),
-                      );
+                  changeScreen(screen: "Profile");
+                  // Navigator.of(context, rootNavigator: true).push(
+                  //       new CupertinoPageRoute<bool>(
+                  //         fullscreenDialog: true,
+                  //         builder: (BuildContext context) =>
+                  //             new ProfileTwoPage(),
+                  //       ),
+                  //     );
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(builder: (context) => ProfileTwoPage()),
@@ -145,14 +146,14 @@ class SignInWidget extends StatelessWidget {
                 SizedBox(height: 20.0),
                 new GestureDetector(
                   onTap: () {
-                    changeScreen(screen: "ResetPassword");
-                    // Navigator.of(context, rootNavigator: true).push(
-                    //       new CupertinoPageRoute<bool>(
-                    //         fullscreenDialog: true,
-                    //         builder: (BuildContext context) =>
-                    //             new ResetPassword(),
-                    //       ),
-                    //     );
+                    // changeScreen(screen: "ResetPassword");
+                    Navigator.of(context, rootNavigator: true).push(
+                          new CupertinoPageRoute<bool>(
+                            fullscreenDialog: true,
+                            builder: (BuildContext context) =>
+                                new ResetPassword(),
+                          ),
+                        );
                   },
                   child: new Text(
                     "Forgot Password?",

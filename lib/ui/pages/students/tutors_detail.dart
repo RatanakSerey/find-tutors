@@ -4,7 +4,9 @@ import 'package:find_tutors/ui/widgets/common_divider.dart';
 import 'package:find_tutors/ui/widgets/common_scaffold.dart';
 import 'package:find_tutors/ui/widgets/profile_tile.dart';
 
-class ProfileOnePage extends StatelessWidget {
+class TutorsDetail extends StatelessWidget {
+  final Function changeScreen;
+  TutorsDetail({this.changeScreen});
   var deviceSize;
 
   //Column1
@@ -14,7 +16,7 @@ class ProfileOnePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ProfileTile(
-              title: "Pawan Kumar",
+              title: "Heng YouSour",
               subtitle: "Developer",
             ),
             SizedBox(
@@ -136,9 +138,9 @@ class ProfileOnePage extends StatelessWidget {
   Widget _scaffold() => CommonScaffold(
         appTitle: "View Profile",
         bodyData: bodyData(),
-        showFAB: true,
+        // showFAB: true,
         showDrawer: true,
-        floatingIcon: Icons.person_add,
+        // floatingIcon: Icons.person_add,
       );
 
   @override

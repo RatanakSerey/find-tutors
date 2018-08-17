@@ -9,7 +9,7 @@ class Signup extends StatelessWidget {
         // title: Text("Second Screen"),
       ),
       body: Center(
-        child: new Text('Sudent Sign Up'),
+        child: new Text('Sign Up'),
         // child: RaisedButton(
         //   onPressed: () {
         //     Navigator.pop(context);

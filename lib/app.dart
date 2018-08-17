@@ -13,7 +13,7 @@ import 'package:find_tutors/home.dart';
 import 'package:find_tutors/ui/pages/map/map.dart';
 import 'package:find_tutors/ui/pages/tutors/profile.dart';
 import 'package:find_tutors/ui/pages/notfound_page.dart';
-
+import 'package:find_tutors/ui/pages/students/tutors_detail.dart';
 
 
 class App extends StatelessWidget {
@@ -33,6 +33,7 @@ class App extends StatelessWidget {
         UIData.homeRoute: (BuildContext context) => Home(),
         UIData.mapRoute: (BuildContext context) => MapPage(),
         UIData.profileRoute: (BuildContext context) => ProfileTwoPage(),
+        UIData.tutorsDetailRoute: (BuildContext context) => TutorsDetail(),
       },
       onUnknownRoute: (RouteSettings rs) => new MaterialPageRoute(
           builder: (context) => new NotFoundPage(

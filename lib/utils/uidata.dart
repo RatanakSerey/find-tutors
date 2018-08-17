@@ -10,6 +10,8 @@ class UIData {
   static const String signinRoute = "/Signin";
   static const String notFoundRoute = "/No Search Result";
   static const String profileRoute = "/Profile";
+  static const String tutorsDetailRoute = "/Tutors Detail";
+
   static const String timelineTwoRoute = "/Tweets";
   static const String settingsOneRoute = "/Device Settings";
   static const String shoppingOneRoute = "/Shopping List";
@@ -20,7 +22,6 @@ class UIData {
   static const String loginOneRoute = "/Login With OTP";
   static const String loginTwoRoute = "/Login 2";
   static const String dashboardOneRoute = "/Dashboard 1";
-  static const String dashboardTwoRoute = "/Dashboard 2";
 
   //strings
   static const String appName = "Find Tutors";

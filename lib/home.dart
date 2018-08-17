@@ -19,7 +19,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       title: 'Find Tutors',
       home: Backdrop(
         frontLayer: SubjectList(),
-        backLayer: CommonDrawer(),
+        backLayer: CustomDrawer(),
         frontTitle: Text('HOME'),
         backTitle: Text('MENU'),
       ),
