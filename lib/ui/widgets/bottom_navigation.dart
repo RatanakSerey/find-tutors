@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/cupertino.dart';
 
 // Widget
-import 'package:find_tutors/ui/widgets/drawer.dart';
-import 'package:find_tutors/ui/widgets/bottom_modal_sheet.dart';
+// import 'package:find_tutors/ui/widgets/drawer.dart';
+// import 'package:find_tutors/ui/widgets/bottom_modal_sheet.dart';
 
-// Page
-import 'package:find_tutors/ui/pages/auth/signin.dart';
-import 'package:find_tutors/ui/pages/students/subjects.dart';
-import 'package:find_tutors/ui/pages/map/map.dart';
+// // Page
+// import 'package:find_tutors/ui/pages/auth/signin.dart';
+// import 'package:find_tutors/ui/pages/students/subjects.dart';
+// import 'package:find_tutors/ui/pages/map/map.dart';
 
 // class Navigation extends StatefulWidget {
 //   @override
@@ -113,108 +113,216 @@ import 'package:find_tutors/ui/pages/map/map.dart';
 //   }
 // }
 
-class NavigationItem {
-  const NavigationItem({this.title, this.icon});
-  final String title;
-  final IconData icon;
-}
+// class NavigationItem {
+//   const NavigationItem({this.title, this.icon});
+//   final String title;
+//   final IconData icon;
+// }
 
-const List<NavigationItem> NavigationItems = const <NavigationItem>[
-  const NavigationItem(title: 'Subjects', icon: Icons.bookmark),
-  const NavigationItem(title: 'Map', icon: Icons.navigation),
-  const NavigationItem(title: 'Profile', icon: Icons.person_outline),
-];
+// const List<NavigationItem> NavigationItems = const <NavigationItem>[
+//   const NavigationItem(title: 'Subjects', icon: Icons.bookmark),
+//   const NavigationItem(title: 'Map', icon: Icons.navigation),
+//   const NavigationItem(title: 'Profile', icon: Icons.person_outline),
+// ];
 
-class Navigate extends StatefulWidget {
+// class Navigate extends StatefulWidget {
+//   @override
+//   _NavigationState createState() => _NavigationState();
+// }
+
+// class _NavigationState extends State<Navigate> {
+//   String appTitle = "";
+//   Widget appBarBuilder(String title) {
+//     if (title == "Home") {
+//       return AppBar(
+//         title: Text(appTitle),
+//         // leading: IconButton(icon: Icon(Icons.ac_unit), onPressed: ()=> _showModalSheets(context),),
+//       );
+//     } else {
+//       return null;
+//     }
+//     // switch (title) {
+//     //   case 'Subjects':
+//     //     appBar = null
+//     //     break;
+//     //   case 1:
+//     //     this.appTitle = NavigationItems[1].title;
+//     //     break;
+//     //   case 2:
+//     //     this.appTitle = NavigationItems[2].title;
+//     //     break;
+//     // }
+//   }
+
+//   static _showModalSheets(context) {
+//     ModalSheet.modalBottomSheetMore(context);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) => new Scaffold(
+//       // appBar: appBarBuilder(appTitle),
+//       appBar: AppBar(
+//         title: Text('Title'),
+//         actions: [
+//           new IconButton(
+//               icon: new Icon(Icons.notifications_none),
+//               onPressed: () {})
+//         ],
+//       ),
+//       // floatingActionButton: new IconButton(
+//       //   icon: Icon(Icons.ac_unit),
+//       //   onPressed: () => _showModalSheets(context),
+//       // ),
+//       drawer: CommonDrawer(),
+//       body: new CupertinoTabScaffold(
+//         tabBar: CupertinoTabBar(
+//           backgroundColor: CupertinoColors.white,
+//           activeColor: Color(0xFF6c5ce7),
+//           items: [
+//             BottomNavigationBarItem(
+//               icon: Icon(Icons.bookmark),
+//               title: Text('Subject'),
+//             ),
+//             BottomNavigationBarItem(
+//               icon: Icon(
+//                 Icons.navigation,
+//               ),
+//               title: Text('Map'),
+//             ),
+//             BottomNavigationBarItem(
+//               icon: Icon(
+//                 Icons.person_outline,
+//               ),
+//               title: Text('Profile'),
+//             ),
+//           ],
+//         ),
+//         tabBuilder: (context, index) {
+//           return CupertinoTabView(
+//             builder: (context) {
+//               switch (index) {
+//                 case 0:
+//                   return SubjectList();
+//                   break;
+//                 case 1:
+//                   return MapPage();
+//                   break;
+//                 case 2:
+//                   return Signin();
+//                   break;
+//                 default:
+//                   return Container();
+//               }
+//             },
+//           );
+//         },
+//       ));
+// }
+
+import 'dart:async';
+
+import 'package:find_tutors/ui/pages/auth/signin.dart';
+import 'package:find_tutors/ui/pages/map/map.dart';
+import 'package:find_tutors/ui/pages/students/subjects.dart';
+import 'package:flutter/material.dart';
+
+class TabNavigator extends StatefulWidget {
   @override
-  _NavigationState createState() => _NavigationState();
+  State createState() => TabNavigatorState();
 }
 
-class _NavigationState extends State<Navigate> {
-  String appTitle = "";
-  Widget appBarBuilder(String title) {
-    if (title == "Home") {
-      return AppBar(
-        title: Text(appTitle),
-        // leading: IconButton(icon: Icon(Icons.ac_unit), onPressed: ()=> _showModalSheets(context),),
-      );
-    } else {
-      return null;
+class TabNavigatorState extends State<TabNavigator> {
+  int _page = 0;
+  String appBarTitle = "";
+  // List<Widget> initialWidgets = <Widget>[
+  //   Home(appBarTitle: appBarTitle),
+  //   Message(),
+  //   Post(),
+  // ];
+  // );
+  // ],
+  // children: List<Widget>.generate(initialWidgets.length, (int index) {
+  // }
+  Future<bool> _onBackPressed() async {
+    if (_page != 0) {
+      return true;
     }
-    // switch (title) {
-    //   case 'Subjects':
-    //     appBar = null
-    //     break;
-    //   case 1:
-    //     this.appTitle = NavigationItems[1].title;
-    //     break;
-    //   case 2:
-    //     this.appTitle = NavigationItems[2].title;
-    //     break;
-    // }
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text('Are you sure?'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('No'),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+                FlatButton(
+                    child: Text('Yes'),
+                    onPressed: () => Navigator.pop(context, true)),
+              ],
+            ));
   }
 
-  static _showModalSheets(context) {
-    ModalSheet.modalBottomSheetMore(context);
-  }
-
-  @override
-  Widget build(BuildContext context) => new Scaffold(
-      // appBar: appBarBuilder(appTitle),
-      appBar: AppBar(
-        title: Text('Title'),
-        actions: [
-          new IconButton(
-              icon: new Icon(Icons.notifications_none),
-              onPressed: () {})
-        ],
-      ),
-      // floatingActionButton: new IconButton(
-      //   icon: Icon(Icons.ac_unit),
-      //   onPressed: () => _showModalSheets(context),
-      // ),
-      drawer: CommonDrawer(),
-      body: new CupertinoTabScaffold(
-        tabBar: CupertinoTabBar(
-          backgroundColor: CupertinoColors.white,
-          activeColor: Color(0xFF6c5ce7),
-          items: [
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        appBar: buildAppBar(),
+        drawer: buildDrawer(),
+        body: Stack(children: <Widget>[
+          Offstage(
+            offstage: _page != 0,
+            child: SubjectList(),
+          ),
+          Offstage(
+            offstage: _page != 1,
+            child: MapPage(),
+          ),
+          Offstage(
+            offstage: _page != 2,
+            child: Signin(),
+          ),
+        ]),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _page,
+          onTap: onTap,
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark),
-              title: Text('Subject'),
+              icon: Icon(Icons.security),
+              title: Text('Home'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.navigation,
-              ),
+              icon: Icon(Icons.verified_user),
               title: Text('Map'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_outline,
-              ),
+              icon: Icon(Icons.verified_user),
               title: Text('Profile'),
             ),
           ],
         ),
-        tabBuilder: (context, index) {
-          return CupertinoTabView(
-            builder: (context) {
-              switch (index) {
-                case 0:
-                  return SubjectList();
-                  break;
-                case 1:
-                  return MapPage();
-                  break;
-                case 2:
-                  return Signin();
-                  break;
-                default:
-                  return Container();
-              }
-            },
-          );
-        },
-      ));
+      ),
+    );
+  }
+
+  void onTap(int index) {
+    setState(() {
+      _page = index;
+      appBarTitle = index.toString();
+    });
+  }
+
+  Widget buildDrawer() {
+    // return null;
+    return Drawer();
+  }
+
+  Widget buildAppBar() {
+    if (_page != 0) {
+      return null;
+    }
+    return AppBar(
+      title: Text(appBarTitle),
+    );
+  }
 }

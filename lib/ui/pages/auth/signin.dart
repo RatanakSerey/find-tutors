@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:find_tutors/ui/widgets/change_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:find_tutors/utils/uidata.dart';
@@ -5,16 +8,42 @@ import 'package:find_tutors/ui/pages/tutors/profile.dart';
 import 'package:find_tutors/ui/widgets/colors.dart';
 import 'signup.dart';
 import 'reset_password.dart';
-class Signin extends StatelessWidget {
+
+class Signin extends StatefulWidget {
+  @override
+  _SigninState createState() => _SigninState();
+}
+
+class _SigninState extends State<Signin> {
+  List<String> screens = ['SignIn'];
+
+  changeScreen({String screen, bool pop = false}) {
+    if (!pop) {
+      this.screens.add(screen);
+    } else {
+      this.screens.removeLast();
+    }
+    setState(() {
+      this.screens;
+    });
+    print(this.screens);
+  }
+
+  Future<bool> _onBackPressed() async {
+    if (this.screens.length == 1) {
+      return true;
+    }
+    changeScreen(pop: true);
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Center(
+    return WillPopScope(
+      onWillPop: _onBackPressed,
       child: new SingleChildScrollView(
-          child: new Center(
-              child: new Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[loginHeader(), loginFields(context)],
-      ))),
+          child: ChangeScreen(
+              screen: screens[screens.length - 1], changeScreen: changeScreen)),
       // backgroundColor: Colors.white,
       // body: Center(
       //   child: new SingleChildScrollView(
@@ -22,27 +51,35 @@ class Signin extends StatelessWidget {
       // ),
     );
   }
+
+  // List<Widget> signWidget() {
+  //   return [loginHeader(), loginFields(context)];
+  // }
   // loginBody() => Column(
   //       mainAxisAlignment: MainAxisAlignment.center,
   //       children: <Widget>[loginHeader(), loginFields()],
   //     );
 
-  loginHeader() => Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          FlutterLogo(
-            colors: Colors.green,
-            size: 80.0,
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Text(
-            "Welcome to ${UIData.appName}",
-            style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
-          ),
-        ],
-      );
+}
+
+class SignInWidget extends StatelessWidget {
+  final Function changeScreen;
+  const SignInWidget({
+    this.changeScreen,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            loginHeader(), loginFields(context)
+            // ChangeScreen(screen: this.screens[this.screens.length - 1])
+          ]),
+    );
+  }
 
   loginFields(context) => Container(
         child: Column(
@@ -77,8 +114,7 @@ class Signin extends StatelessWidget {
               child: RaisedButton(
                 padding: EdgeInsets.all(12.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0))
-                ),
+                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
                 child: Text(
                   "SIGN IN",
                   style: TextStyle(color: Colors.white),
@@ -93,7 +129,7 @@ class Signin extends StatelessWidget {
                           builder: (BuildContext context) =>
                               new ProfileTwoPage(),
                         ),
-                  );
+                      );
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(builder: (context) => ProfileTwoPage()),
@@ -109,13 +145,14 @@ class Signin extends StatelessWidget {
                 SizedBox(height: 20.0),
                 new GestureDetector(
                   onTap: () {
-                    Navigator.of(context, rootNavigator: true).push(
-                        new CupertinoPageRoute<bool>(
-                          fullscreenDialog: true,
-                          builder: (BuildContext context) =>
-                              new ResetPassword(),
-                        ),
-                  );
+                    changeScreen(screen: "ResetPassword");
+                    // Navigator.of(context, rootNavigator: true).push(
+                    //       new CupertinoPageRoute<bool>(
+                    //         fullscreenDialog: true,
+                    //         builder: (BuildContext context) =>
+                    //             new ResetPassword(),
+                    //       ),
+                    //     );
                   },
                   child: new Text(
                     "Forgot Password?",
@@ -126,12 +163,11 @@ class Signin extends StatelessWidget {
                 new GestureDetector(
                   onTap: () {
                     Navigator.of(context, rootNavigator: true).push(
-                        new CupertinoPageRoute<bool>(
-                          fullscreenDialog: true,
-                          builder: (BuildContext context) =>
-                              new Signup(),
-                        ),
-                  );
+                          new CupertinoPageRoute<bool>(
+                            fullscreenDialog: true,
+                            builder: (BuildContext context) => new Signup(),
+                          ),
+                        );
                   },
                   child: new Text(
                     "Dont have account? Sign Up",
@@ -142,5 +178,21 @@ class Signin extends StatelessWidget {
             ),
           ],
         ),
+      );
+  loginHeader() => Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          FlutterLogo(
+            colors: Colors.green,
+            size: 80.0,
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Text(
+            "Welcome to ${UIData.appName}",
+            style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
+          ),
+        ],
       );
 }

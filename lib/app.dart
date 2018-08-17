@@ -25,7 +25,7 @@ class App extends StatelessWidget {
           primarySwatch: Colors.amber),
       debugShowCheckedModeBanner: false,
       showPerformanceOverlay: false,
-      home: Navigate(),
+      home: TabNavigator(),
       // initialRoute: UIData.notFoundRoute,
 
       //routes
