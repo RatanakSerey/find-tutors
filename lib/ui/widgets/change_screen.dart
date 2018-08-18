@@ -1,12 +1,10 @@
-import 'package:find_tutors/ui/pages/auth/reset_password.dart';
+import 'package:flutter/material.dart';
 import 'package:find_tutors/ui/pages/auth/signin.dart';
-import 'package:find_tutors/ui/pages/auth/signup.dart';
 import 'package:find_tutors/ui/pages/tutors/profile.dart';
 import 'package:find_tutors/ui/pages/students/subjects.dart';
 import 'package:find_tutors/ui/pages/students/tutors_list.dart';
-import 'package:find_tutors/ui/pages/students/tutors_detail.dart';
 import 'package:find_tutors/ui/pages/students/subjects_detail.dart';
-import 'package:flutter/material.dart';
+import 'package:find_tutors/utils/constants.dart';
 
 class ChangeScreen extends StatelessWidget {
   final String screen;
@@ -20,26 +18,23 @@ class ChangeScreen extends StatelessWidget {
 
   Widget buildScreen(String screen) {
     switch (screen) {
-      case "SignIn":
+      case Constants.signin:
         return SignInWidget(changeScreen: changeScreen);
         break;
-      case "Profile":
+      case Constants.profile:
         return ProfileTwoPage(changeScreen: changeScreen);
         break;
-      case "SubjectList":
+      case Constants.subjectList:
         return SubjectList(changeScreen: changeScreen);
         break;
-      case "SubjectDetail":
+      case Constants.subjectDetail:
         return SubjectsDetail(changeScreen: changeScreen);
         break;
-      case "TutorsList":
+      case Constants.tutorsList:
         return TutorList(changeScreen: changeScreen);
         break;
-      // case "TutorsDetail":
-      //   return TutorsDetail(changeScreen: changeScreen);
-      //   break;
       default:
-        return null;
+        return Text("null");
         break;
     }
   }

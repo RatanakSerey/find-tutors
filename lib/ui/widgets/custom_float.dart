@@ -1,6 +1,6 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'package:find_tutors/utils/uidata.dart';
 
 class CustomFloat extends StatelessWidget {
   final IconData icon;
@@ -17,7 +17,7 @@ class CustomFloat extends StatelessWidget {
       onPressed: qrCallback,
       child: Ink(
         decoration: new BoxDecoration(
-            gradient: new LinearGradient(colors: UIData.kitGradients)),
+            gradient: new LinearGradient(colors: Constants.kitGradients)),
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[

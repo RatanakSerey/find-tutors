@@ -1,13 +1,7 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
-// Style Component
-import 'package:find_tutors/utils/uidata.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:find_tutors/ui/widgets/profile_tile.dart';
 
-
-_showModalSheets(context){
-  ModalSheet.modalBottomSheetMore(context);
-}
 class ModalSheet {
   static modalBottomSheetMore(context) {
     showModalBottomSheet(
@@ -24,7 +18,6 @@ class ModalSheet {
               child: new Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  // header(),
                   Expanded(
                       child: ListView(
                           shrinkWrap: true,
@@ -125,7 +118,7 @@ class ModalSheet {
   }
   Widget header() => Ink(
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: UIData.kitGradients)),
+            gradient: LinearGradient(colors: Constants.kitGradients)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

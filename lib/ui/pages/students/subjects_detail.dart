@@ -1,6 +1,5 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-// import 'import/Signin.dart';
 
 class SubjectsDetail extends StatelessWidget {
   final Function changeScreen;
@@ -10,17 +9,10 @@ class SubjectsDetail extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          AppBar(
-            title: Text("Subject Detail"),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () => changeScreen(pop: true),
-            ),
-          ),
           Text("Subject Detail"),
           RaisedButton(
             onPressed: () => 
-            Navigator.pushNamed(context, "/Tutors Detail"),
+            Navigator.pushNamed(context, Constants.tutorsDetailRoute),
             // Navigator.push(
             //       context,
             //       MaterialPageRoute(builder: (context) => ProfileTwoPage()),

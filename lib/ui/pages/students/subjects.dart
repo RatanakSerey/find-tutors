@@ -1,36 +1,26 @@
 // Show Subjects on home page
 import 'dart:async';
+import 'package:find_tutors/ui/widgets/page_reveal.dart';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:find_tutors/ui/pages/students/tutors_list.dart';
-import 'package:find_tutors/ui/widgets/drawer.dart';
 import 'package:find_tutors/ui/widgets/change_screen.dart';
 
-class SubjectListScreen extends StatefulWidget {
+class SubjectListPage extends StatefulWidget {
+  final List<String> screens;
+  final Function changeScreen;
+  SubjectListPage({this.screens, this.changeScreen});
+
   @override
-  _SubjectListScreenState createState() => _SubjectListScreenState();
+  _SubjectListPageState createState() => _SubjectListPageState();
 }
 
-class _SubjectListScreenState extends State<SubjectListScreen> {
-  List<String> screens = ['SubjectList'];
-
-  changeScreen({String screen, bool pop = false}) {
-    if (!pop) {
-      this.screens.add(screen);
-    } else {
-      this.screens.removeLast();
-    }
-    setState(() {
-      this.screens;
-    });
-    print(this.screens);
-  }
-
+class _SubjectListPageState extends State<SubjectListPage> {
   Future<bool> _onBackPressed() async {
-    if (this.screens.length == 1) {
+    if (widget.screens.length == 1) {
       return true;
     }
-    changeScreen(pop: true);
+    widget.changeScreen(pop: true);
     return false;
   }
 
@@ -39,40 +29,80 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: new SingleChildScrollView(
-          child: ChangeScreen(
-              screen: screens[screens.length - 1], changeScreen: changeScreen)),
-      // backgroundColor: Colors.white,
-      // body: Center(
-      //   child: new SingleChildScrollView(
-      //   child: loginBody(),)
-      // ),
+          child: Column(
+        children: <Widget>[
+          buildAppBar(),
+          ChangeScreen(
+              screen: widget.screens[widget.screens.length - 1],
+              changeScreen: widget.changeScreen),
+        ],
+      )),
     );
   }
 
-  // List<Widget> signWidget() {
-  //   return [loginHeader(), loginFields(context)];
-  // }
-  // loginBody() => Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: <Widget>[loginHeader(), loginFields()],
-  //     );
-
+  Widget buildAppBar() {
+    Widget leading;
+    if (widget.screens.length > 1) {
+      leading = IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () => widget.changeScreen(pop: true),
+      );
+    }
+    return AppBar(
+        title: Text(widget.screens[widget.screens.length - 1]),
+        leading: leading);
+  }
 }
 
-class SubjectList extends StatelessWidget {
+class SubjectList extends StatefulWidget {
   final Function changeScreen;
   const SubjectList({
     this.changeScreen,
     Key key,
   }) : super(key: key);
   @override
+  SubjectListState createState() {
+    return new SubjectListState();
+  }
+}
+
+class SubjectListState extends State<SubjectList>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+  Animation animation;
+  @override
+  initState() {
+    super.initState();
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animation =
+        CurvedAnimation(parent: animationController, curve: Curves.easeIn)
+          ..addListener(() {
+            setState(() {});
+          });
+    animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Center(
-      child: RaisedButton(
-        onPressed: () => changeScreen(screen: "TutorsList"),
-        child: new Text("Go To Tutors List"),
-      ),
-    ));
+    print(animation.value);
+    return PageReveal(
+      revealPercent: animation.value,
+      child: Container(
+          color: Colors.red,
+          height: 500.0,
+          child: Center(
+            child: RaisedButton(
+              onPressed: () => widget.changeScreen(screen: Constants.tutorsList),
+              child: new Text("Go To Tutors List"),
+            ),
+          )),
+    );
   }
 }

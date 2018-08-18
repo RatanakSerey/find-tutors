@@ -1,14 +1,12 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:find_tutors/ui/widgets/about_tile.dart';
-import 'package:find_tutors/utils/uidata.dart';
-import 'package:find_tutors/model/menu.dart';
 import 'package:find_tutors/ui/widgets/profile_tile.dart';
 
-import 'package:find_tutors/ui/pages/map/map.dart';
 
 Widget header(context) => Ink(
       decoration:
-          BoxDecoration(gradient: LinearGradient(colors: UIData.kitGradients)),
+          BoxDecoration(gradient: LinearGradient(colors: Constants.kitGradients)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(

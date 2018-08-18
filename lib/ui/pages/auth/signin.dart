@@ -1,65 +1,30 @@
 import 'dart:async';
-
-import 'package:find_tutors/ui/widgets/change_screen.dart';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:find_tutors/utils/uidata.dart';
-import 'package:find_tutors/ui/pages/tutors/profile.dart';
-import 'package:find_tutors/ui/widgets/colors.dart';
+
+import 'package:find_tutors/ui/widgets/change_screen.dart';
 import 'signup.dart';
 import 'reset_password.dart';
 
 class Signin extends StatefulWidget {
+  final List screens;
+  final Function changeScreen;
+  Signin({this.screens, this.changeScreen});
   @override
   _SigninState createState() => _SigninState();
 }
 
 class _SigninState extends State<Signin> {
-  List<String> screens = ['SignIn'];
-
-  changeScreen({String screen, bool pop = false}) {
-    if (!pop) {
-      this.screens.add(screen);
-    } else {
-      this.screens.removeLast();
-    }
-    setState(() {
-      this.screens;
-    });
-    print(this.screens);
-  }
-
-  Future<bool> _onBackPressed() async {
-    if (this.screens.length == 1) {
-      return true;
-    }
-    changeScreen(pop: true);
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onBackPressed,
-      child: new SingleChildScrollView(
-          child: ChangeScreen(
-              screen: screens[screens.length - 1], changeScreen: changeScreen)),
-      // backgroundColor: Colors.white,
-      // body: Center(
-      //   child: new SingleChildScrollView(
-      //   child: loginBody(),)
-      // ),
+    return SingleChildScrollView(
+      child: ChangeScreen(
+        screen: widget.screens[widget.screens.length - 1],
+        changeScreen: widget.changeScreen,
+      ),
     );
   }
-
-  // List<Widget> signWidget() {
-  //   return [loginHeader(), loginFields(context)];
-  // }
-  // loginBody() => Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: <Widget>[loginHeader(), loginFields()],
-  //     );
-
 }
 
 class SignInWidget extends StatelessWidget {
@@ -123,7 +88,7 @@ class SignInWidget extends StatelessWidget {
                 onPressed: () {
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, "/Profile");
-                  changeScreen(screen: "Profile");
+                  // changeScreen(screen: Constants.profile);
                   // Navigator.of(context, rootNavigator: true).push(
                   //       new CupertinoPageRoute<bool>(
                   //         fullscreenDialog: true,
@@ -191,7 +156,7 @@ class SignInWidget extends StatelessWidget {
             height: 20.0,
           ),
           Text(
-            "Welcome to ${UIData.appName}",
+            "Welcome to ${Constants.appName}",
             style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
           ),
         ],

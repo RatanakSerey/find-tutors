@@ -3,29 +3,35 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class UIData {
+class Constants {
   //routes
-  static const String homeRoute = "/Home";
-  static const String mapRoute = "/Map Page";
-  static const String signinRoute = "/Signin";
-  static const String notFoundRoute = "/No Search Result";
-  static const String profileRoute = "/Profile";
-  static const String tutorsDetailRoute = "/Tutors Detail";
+  static const String homeRoute = "/home";
+  static const String mapRoute = "/map";
+  static const String signinRoute = "/signin";
+  static const String notFoundRoute = "/notFound";
+  static const String profileRoute = "/profile";
+  static const String tutorsDetailRoute = "/tutorsDetail";
 
-  static const String timelineTwoRoute = "/Tweets";
-  static const String settingsOneRoute = "/Device Settings";
-  static const String shoppingOneRoute = "/Shopping List";
-  static const String shoppingTwoRoute = "/Shopping Details";
-  static const String shoppingThreeRoute = "/Product Details";
-  static const String paymentOneRoute = "/Credit Card";
-  static const String paymentTwoRoute = "/Payment Success";
-  static const String loginOneRoute = "/Login With OTP";
-  static const String loginTwoRoute = "/Login 2";
-  static const String dashboardOneRoute = "/Dashboard 1";
+  static const String timelineTwoRoute = "/tweets";
+  static const String settingsOneRoute = "/deviceSettings";
+  static const String shoppingOneRoute = "/shoppingList";
+  static const String shoppingTwoRoute = "/shoppingDetails";
+  static const String shoppingThreeRoute = "/productDetails";
+  static const String paymentOneRoute = "/creditCard";
+  static const String paymentTwoRoute = "/paymentSuccess";
+  static const String loginOneRoute = "/loginWithOTP";
+  static const String loginTwoRoute = "/login2";
+  static const String dashboardOneRoute = "/dashboard1";
 
   //strings
   static const String appName = "Find Tutors";
 
+  //screen helpers
+  static const String signin = "Signin";
+  static const String profile = "Profile";
+  static const String subjectList = "Subject List";
+  static const String subjectDetail = "Subject Detail";
+  static const String tutorsList = "Tutors List";
   //fonts
   static const String quickFont = "Quicksand";
   static const String ralewayFont = "Raleway";

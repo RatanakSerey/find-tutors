@@ -1,8 +1,9 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'drawer.dart';
 import 'custom_float.dart';
-import 'package:find_tutors/utils/uidata.dart';
 import 'package:flutter/cupertino.dart';
+
+
 class CommonScaffold extends StatelessWidget {
   final appTitle;
   final Widget bodyData;
@@ -34,7 +35,7 @@ class CommonScaffold extends StatelessWidget {
         child: Ink(
           height: 50.0,
           decoration: new BoxDecoration(
-              gradient: new LinearGradient(colors: UIData.kitGradients)),
+              gradient: new LinearGradient(colors: Constants.kitGradients)),
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,

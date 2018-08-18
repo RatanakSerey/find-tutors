@@ -1,6 +1,5 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
-
-import 'package:find_tutors/utils/uidata.dart';
 
 class MyAboutTile extends StatelessWidget {
   @override
@@ -23,7 +22,7 @@ class MyAboutTile extends StatelessWidget {
           "MTechViral",
         ),
       ],
-      applicationName: UIData.appName,
+      applicationName: Constants.appName,
       applicationVersion: "1.0.1",
       applicationLegalese: "Apache License 2.0",
     );

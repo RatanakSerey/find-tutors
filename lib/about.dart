@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:find_tutors/ui/widgets/common_divider.dart';
 import 'package:find_tutors/ui/widgets/common_scaffold.dart';
 import 'package:find_tutors/ui/widgets/profile_tile.dart';
-import 'package:find_tutors/ui/widgets/custom_background.dart';
 
 import 'package:find_tutors/home.dart';
 class AboutUs extends StatelessWidget {

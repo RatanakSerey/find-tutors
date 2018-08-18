@@ -1,6 +1,6 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:find_tutors/ui/tools/arc_clipper.dart';
-import 'package:find_tutors/utils/uidata.dart';
 
 class CustomBackground extends StatelessWidget {
   final showIcon;
@@ -18,7 +18,7 @@ class CustomBackground extends StatelessWidget {
             new Container(
               decoration: new BoxDecoration(
                   gradient: new LinearGradient(
-                colors: UIData.kitGradients,
+                colors: Constants.kitGradients,
               )),
             ),
             showIcon

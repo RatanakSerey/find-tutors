@@ -1,13 +1,24 @@
 import 'dart:async';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
-
 // Page
 import 'package:find_tutors/ui/pages/auth/signin.dart';
 import 'package:find_tutors/ui/pages/map/map.dart';
 import 'package:find_tutors/ui/pages/students/subjects.dart';
-
 // Widget
 import 'package:find_tutors/ui/widgets/drawer.dart';
+
+class TabItem {
+  final Widget title;
+  final Icon icon;
+  TabItem({this.title, this.icon});
+}
+
+final List tabItems = [
+  TabItem(title: Text('Home'), icon: Icon(Icons.home)),
+  TabItem(title: Text('Map'), icon: Icon(Icons.map)),
+  TabItem(title: Text('Profile'), icon: Icon(Icons.person_outline)),
+];
 
 class TabNavigator extends StatefulWidget {
   @override
@@ -15,88 +26,76 @@ class TabNavigator extends StatefulWidget {
 }
 
 class TabNavigatorState extends State<TabNavigator> {
-  int _page = 0;
+  int _tab = 0;
   String appBarTitle = "";
-  Future<bool> _onBackPressed() async {
-    if (_page != 0) {
-      return true;
-    }
-    return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text('Are you sure?'),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('No'),
-                  onPressed: () => Navigator.pop(context, false),
-                ),
-                FlatButton(
-                    child: Text('Yes'),
-                    onPressed: () => Navigator.pop(context, true)),
-              ],
-            ));
-  }
+  List<String> subjectListScreens = [Constants.subjectList];
+  List<String> signinScreens = [Constants.signin];
+  final List<String> initialScreens = [Constants.subjectList];
 
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onBackPressed,
-      child: Scaffold(
-        appBar: buildAppBar(),
-        drawer: buildDrawer(),
-        body: Stack(children: <Widget>[
-          Offstage(
-            offstage: _page != 0,
-            child: SubjectListScreen(),
-          ),
-          Offstage(
-            offstage: _page != 1,
-            child: MapPage(),
-          ),
-          Offstage(
-            offstage: _page != 2,
-            child: Signin(),
-          ),
-        ]),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _page,
-          onTap: onTap,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              title: Text('Map'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              title: Text('Profile'),
-            ),
-          ],
+    return Scaffold(
+      appBar: buildAppBar(),
+      drawer: buildDrawer(),
+      body: Stack(children: <Widget>[
+        Offstage(
+          offstage: _tab != 0,
+          child: SubjectListPage(
+              screens: subjectListScreens, changeScreen: changeScreen),
         ),
+        Offstage(
+          offstage: _tab != 1,
+          child: MapPage(),
+        ),
+        Offstage(
+          offstage: _tab != 2,
+          child: Signin(screens: signinScreens, changeScreen: changeScreen),
+        ),
+      ]),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _tab,
+        onTap: onTap,
+        items: tabItems.map((item) {
+          return BottomNavigationBarItem(
+            icon: item.icon,
+            title: item.title,
+          );
+        }).toList(),
       ),
     );
   }
 
   void onTap(int index) {
+    if (index == _tab) {
+      setState(() {
+        this.subjectListScreens = [initialScreens[index]];
+      });
+    }
     setState(() {
-      _page = index;
-      appBarTitle = index.toString();
+      _tab = index;
+    });
+  }
+
+  void changeScreen({String screen, bool pop = false}) {
+    if (!pop) {
+      this.subjectListScreens.add(screen);
+    } else {
+      this.subjectListScreens.removeLast();
+    }
+    setState(() {
+      this.subjectListScreens;
     });
   }
 
   Widget buildDrawer() {
-    // return null;
     return CustomDrawer();
   }
 
   Widget buildAppBar() {
-    if (_page != 0) {
-      return null;
-    }
-    return AppBar(
-      title: Text(appBarTitle),
-    );
+    // if (_page != 0) {
+    return null;
+    // }
+    // return AppBar(
+    // title: Text(appBarTitle),
+    // );
   }
 }

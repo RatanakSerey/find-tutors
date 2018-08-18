@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:find_tutors/ui/widgets/common_divider.dart';
 import 'package:find_tutors/ui//widgets/common_scaffold.dart';
 import 'package:find_tutors/ui/widgets/profile_tile.dart';
 import 'package:find_tutors/ui/widgets/custom_background.dart';
-
-import 'package:find_tutors/utils/uidata.dart';
 import 'package:find_tutors/ui/widgets/bottom_modal_sheet.dart';
 
 class ProfileTwoPage extends StatelessWidget {
