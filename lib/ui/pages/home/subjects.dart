@@ -28,15 +28,10 @@ class _SubjectListPageState extends State<SubjectListPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: _onBackPressed,
-      child: new SingleChildScrollView(
-          child: Column(
-        children: <Widget>[
-          buildAppBar(),
-          ChangeScreen(
-              screen: widget.screens[widget.screens.length - 1],
-              changeScreen: widget.changeScreen),
-        ],
-      )),
+      // buildAppBar(),
+      child: ChangeScreen(
+          screen: widget.screens[widget.screens.length - 1],
+          changeScreen: widget.changeScreen),
     );
   }
 
@@ -49,8 +44,13 @@ class _SubjectListPageState extends State<SubjectListPage> {
       );
     }
     return AppBar(
-        title: Text(widget.screens[widget.screens.length - 1]),
-        leading: leading);
+      title: Text(
+        widget.screens[widget.screens.length - 1],
+        style: TextStyle(color: Color(0xFF6c5ce7)),
+      ),
+      leading: leading,
+      backgroundColor: Colors.white,
+    );
   }
 }
 
@@ -97,11 +97,17 @@ class SubjectListState extends State<SubjectList>
       child: Container(
           color: Colors.red,
           height: 500.0,
-          child: Center(
-            child: RaisedButton(
-              onPressed: () => widget.changeScreen(screen: Constants.tutorsList),
-              child: new Text("Go To Tutors List"),
-            ),
+          child: Column(
+            children: <Widget>[
+              AppBar(title: Text("Chi")),
+              Center(
+                child: RaisedButton(
+                  onPressed: () =>
+                      widget.changeScreen(screen: ScreenHelper.postList),
+                  child: new Text("Go To Tutors List"),
+                ),
+              ),
+            ],
           )),
     );
   }

@@ -6,7 +6,7 @@ import 'package:find_tutors/ui/widgets/profile_tile.dart';
 
 Widget header(context) => Ink(
       decoration:
-          BoxDecoration(gradient: LinearGradient(colors: Constants.kitGradients)),
+          BoxDecoration(gradient: LinearGradient(colors: AppColors.kitGradients)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(

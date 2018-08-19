@@ -18,7 +18,7 @@ class CustomBackground extends StatelessWidget {
             new Container(
               decoration: new BoxDecoration(
                   gradient: new LinearGradient(
-                colors: Constants.kitGradients,
+                colors: AppColors.kitGradients,
               )),
             ),
             showIcon

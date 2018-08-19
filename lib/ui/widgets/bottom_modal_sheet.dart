@@ -118,7 +118,7 @@ class ModalSheet {
   }
   Widget header() => Ink(
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: Constants.kitGradients)),
+            gradient: LinearGradient(colors: AppColors.kitGradients)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

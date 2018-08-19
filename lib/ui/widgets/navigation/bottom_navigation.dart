@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Page
 import 'package:find_tutors/ui/pages/auth/signin.dart';
 import 'package:find_tutors/ui/pages/map/map.dart';
-import 'package:find_tutors/ui/pages/students/subjects.dart';
+import 'package:find_tutors/ui/pages/home/subjects.dart';
 // Widget
-import 'package:find_tutors/ui/widgets/drawer.dart';
+import 'package:find_tutors/ui/widgets/navigation/drawer.dart';
 
 class TabItem {
   final Widget title;
@@ -28,9 +28,9 @@ class TabNavigator extends StatefulWidget {
 class TabNavigatorState extends State<TabNavigator> {
   int _tab = 0;
   String appBarTitle = "";
-  List<String> subjectListScreens = [Constants.subjectList];
-  List<String> signinScreens = [Constants.signin];
-  final List<String> initialScreens = [Constants.subjectList];
+  List<String> subjectListScreens = [ScreenHelper.subjectList];
+  List<String> signinScreens = [ScreenHelper.signin];
+  final List<String> initialScreens = [ScreenHelper.subjectList];
 
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,9 +1,9 @@
 import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class SubjectsDetail extends StatelessWidget {
+class PostDetail extends StatelessWidget {
   final Function changeScreen;
-  SubjectsDetail({this.changeScreen});
+  PostDetail({this.changeScreen});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +12,7 @@ class SubjectsDetail extends StatelessWidget {
           Text("Subject Detail"),
           RaisedButton(
             onPressed: () => 
-            Navigator.pushNamed(context, Constants.tutorsDetailRoute),
+            Navigator.pushNamed(context, Routes.tutorsDetailRoute),
             // Navigator.push(
             //       context,
             //       MaterialPageRoute(builder: (context) => ProfileTwoPage()),

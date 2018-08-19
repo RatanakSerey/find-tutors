@@ -24,8 +24,8 @@ ThemeData _buildShrineTheme() {
     ),
     primaryIconTheme: base.iconTheme.copyWith(color: kShrineLynxWhite),
     inputDecorationTheme: InputDecorationTheme(
-      // border: CutCornersBorder(),
-    ),
+        // border: CutCornersBorder(),
+        ),
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
@@ -34,27 +34,26 @@ ThemeData _buildShrineTheme() {
 }
 
 TextTheme _buildShrineTextTheme(TextTheme base) {
-  return base.copyWith(
-    headline: base.headline.copyWith(
-      fontWeight: FontWeight.w500,
-    ),
-    title: base.title.copyWith(
-        fontSize: 18.0
-    ),
-    caption: base.caption.copyWith(
-      fontWeight: FontWeight.w400,
-      fontSize: 14.0,
-    ),
-    body2: base.body2.copyWith(
-      fontWeight: FontWeight.w500,
-      fontSize: 16.0,
-      color: kShrineLynxWhite
-    ),
-  ).apply(
-    fontFamily: 'Rubik',
-    displayColor: kShrineLynxWhite,
-    // bodyColor: kShrineElectromagnetic,
-  );
+  return base
+      .copyWith(
+        headline: base.headline.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        title: base.title.copyWith(fontSize: 18.0),
+        caption: base.caption.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: 14.0,
+        ),
+        body2: base.body2.copyWith(
+            fontWeight: FontWeight.w500,
+            fontSize: 16.0,
+            color: kShrineLynxWhite),
+      )
+      .apply(
+        fontFamily: 'Rubik',
+        displayColor: kShrineLynxWhite,
+        // bodyColor: kShrineElectromagnetic,
+      );
 }
 
 class PrimaryColorOverride extends StatelessWidget {
@@ -74,10 +73,6 @@ class PrimaryColorOverride extends StatelessWidget {
 }
 
 class Colors {
-
-  const Colors();
-
-
   static const Color appBarTitle = const Color(0xFFFFFFFF);
   static const Color appBarIconColor = const Color(0xFFFFFFFF);
   static const Color appBarDetailBackground = const Color(0x00FFFFFF);
@@ -91,7 +86,6 @@ class Colors {
   static const Color planetTitle = const Color(0xFFFFFFFF);
   static const Color planetLocation = const Color(0x66FFFFFF);
   static const Color planetDistance = const Color(0x66FFFFFF);
-
 }
 
 class Dimens {
@@ -102,38 +96,31 @@ class Dimens {
 }
 
 class TextStyles {
-
   const TextStyles();
 
   static const TextStyle appBarTitle = const TextStyle(
-    color: Colors.appBarTitle,
-    fontFamily: 'Poppins',
-    fontWeight: FontWeight.w600,
-    fontSize: 36.0
-  );
+      color: Colors.appBarTitle,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600,
+      fontSize: 36.0);
 
   static const TextStyle planetTitle = const TextStyle(
-    color: Colors.planetTitle,
-    fontFamily: 'Poppins',
-    fontWeight: FontWeight.w600,
-    fontSize: 24.0
-  );
+      color: Colors.planetTitle,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600,
+      fontSize: 24.0);
 
   static const TextStyle planetLocation = const TextStyle(
-    color: Colors.planetLocation,
-    fontFamily: 'Poppins',
-    fontWeight: FontWeight.w300,
-    fontSize: 14.0
-  );
+      color: Colors.planetLocation,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w300,
+      fontSize: 14.0);
 
   static const TextStyle planetDistance = const TextStyle(
-    color: Colors.planetDistance,
-    fontFamily: 'Poppins',
-    fontWeight: FontWeight.w300,
-    fontSize: 12.0
-  );
-
-
+      color: Colors.planetDistance,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w300,
+      fontSize: 12.0);
 }
 
 class CutCornersBorder extends OutlineInputBorder {
