@@ -32,3 +32,16 @@
         - common_appbar.dart
         - common_divider.dart
         - common_button.dart
+
+> easy import packages
+> 
+<code>
+//packages<br>
+import 'package:flutter/material.dart';<br>
+import 'package:flutter/cupertino.dart';
+<br>
+//widgets<br>
+import 'package:find_tutors/widgets/index.dart';<br>
+//utils<br>
+import 'package:find_tutors/utils/index.dart';
+</code>
