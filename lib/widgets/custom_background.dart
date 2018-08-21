@@ -1,6 +1,10 @@
-import 'package:find_tutors/utils/constants.dart';
+//packages
 import 'package:flutter/material.dart';
-import 'package:find_tutors/ui/tools/arc_clipper.dart';
+import 'package:flutter/cupertino.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
 
 class CustomBackground extends StatelessWidget {
   final showIcon;
@@ -18,7 +22,7 @@ class CustomBackground extends StatelessWidget {
             new Container(
               decoration: new BoxDecoration(
                   gradient: new LinearGradient(
-                colors: AppColors.kitGradients,
+                colors: CommonColors.kitGradients,
               )),
             ),
             showIcon

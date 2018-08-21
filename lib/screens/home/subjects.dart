@@ -1,21 +1,22 @@
-// Show Subjects on home page
-import 'dart:async';
-import 'package:find_tutors/ui/widgets/page_reveal.dart';
-import 'package:find_tutors/utils/constants.dart';
+//packages
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:find_tutors/ui/widgets/change_screen.dart';
+import 'dart:async';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
 
-class SubjectListPage extends StatefulWidget {
+class SubjectList extends StatefulWidget {
   final List<String> screens;
   final Function changeScreen;
-  SubjectListPage({this.screens, this.changeScreen});
+  SubjectList({this.screens, this.changeScreen});
 
   @override
-  _SubjectListPageState createState() => _SubjectListPageState();
+  _SubjectListState createState() => _SubjectListState();
 }
 
-class _SubjectListPageState extends State<SubjectListPage> {
+class _SubjectListState extends State<SubjectList> {
   Future<bool> _onBackPressed() async {
     if (widget.screens.length == 1) {
       return true;
@@ -54,19 +55,19 @@ class _SubjectListPageState extends State<SubjectListPage> {
   }
 }
 
-class SubjectList extends StatefulWidget {
+class SubjectListWidget extends StatefulWidget {
   final Function changeScreen;
-  const SubjectList({
+  const SubjectListWidget({
     this.changeScreen,
     Key key,
   }) : super(key: key);
   @override
-  SubjectListState createState() {
-    return new SubjectListState();
+  SubjectListWidgetState createState() {
+    return new SubjectListWidgetState();
   }
 }
 
-class SubjectListState extends State<SubjectList>
+class SubjectListWidgetState extends State<SubjectListWidget>
     with SingleTickerProviderStateMixin {
   AnimationController animationController;
   Animation animation;

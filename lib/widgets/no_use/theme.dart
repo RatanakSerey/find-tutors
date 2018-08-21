@@ -1,28 +1,31 @@
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' show lerpDouble;
 import 'package:flutter/widgets.dart';
-import 'colors.dart';
+
+
+// NO USING
 
 final ThemeData kShrineTheme = _buildShrineTheme();
 
 IconThemeData _customIconTheme(IconThemeData original) {
-  return original.copyWith(color: kShrineLynxWhite);
+  return original.copyWith(color: CommonColors.kShrineLynxWhite);
 }
 
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    accentColor: kShrineLynxWhite,
-    primaryColor: kShrineExodus,
-    buttonColor: kShrinePink100,
-    scaffoldBackgroundColor: kShrineBackgroundWhite,
-    cardColor: kShrineBackgroundWhite,
-    textSelectionColor: kShrineLynxWhite,
-    errorColor: kShrineErrorRed,
+    accentColor: CommonColors.kShrineLynxWhite,
+    primaryColor: CommonColors.kShrineExodus,
+    buttonColor: CommonColors.kShrinePink100,
+    scaffoldBackgroundColor: CommonColors.kShrineBackgroundWhite,
+    cardColor: CommonColors.kShrineBackgroundWhite,
+    textSelectionColor: CommonColors.kShrineLynxWhite,
+    errorColor: CommonColors.kShrineErrorRed,
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.accent,
     ),
-    primaryIconTheme: base.iconTheme.copyWith(color: kShrineLynxWhite),
+    primaryIconTheme: base.iconTheme.copyWith(color: CommonColors.kShrineLynxWhite),
     inputDecorationTheme: InputDecorationTheme(
         // border: CutCornersBorder(),
         ),
@@ -47,11 +50,11 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
         body2: base.body2.copyWith(
             fontWeight: FontWeight.w500,
             fontSize: 16.0,
-            color: kShrineLynxWhite),
+            color: CommonColors.kShrineLynxWhite),
       )
       .apply(
         fontFamily: 'Rubik',
-        displayColor: kShrineLynxWhite,
+        displayColor: CommonColors.kShrineLynxWhite,
         // bodyColor: kShrineElectromagnetic,
       );
 }

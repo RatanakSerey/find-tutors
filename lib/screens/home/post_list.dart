@@ -1,7 +1,11 @@
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
-import 'package:find_tutors/utils/constants.dart';
+//packages
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/constants.dart';
 
 class PostList extends StatefulWidget {
   final Function changeScreen;

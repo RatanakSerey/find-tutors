@@ -1,12 +1,11 @@
 import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/widgets/index.dart';
 import 'package:flutter/material.dart';
-import 'package:find_tutors/ui/widgets/about_tile.dart';
-import 'package:find_tutors/ui/widgets/profile_tile.dart';
 
 
 Widget header(context) => Ink(
       decoration:
-          BoxDecoration(gradient: LinearGradient(colors: AppColors.kitGradients)),
+          BoxDecoration(gradient: LinearGradient(colors: CommonColors.kitGradients)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
