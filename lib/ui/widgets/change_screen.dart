@@ -1,12 +1,10 @@
-//packages
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
-//screen
-import 'package:find_tutors/screens/index.dart';
+import 'package:find_tutors/ui/pages/auth/signin.dart';
+import 'package:find_tutors/ui/pages/tutors/profile.dart';
+import 'package:find_tutors/ui/pages/home/subjects.dart';
+import 'package:find_tutors/ui/pages/home/post_list.dart';
+import 'package:find_tutors/ui/pages/home/post_detail.dart';
+import 'package:find_tutors/utils/constants.dart';
 
 class ChangeScreen extends StatelessWidget {
   final String screen;
@@ -24,10 +22,10 @@ class ChangeScreen extends StatelessWidget {
         return SignInPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.profile:
-        return ProfileTwo(changeScreen: changeScreen);
+        return ProfileTwoPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.subjectList:
-        return SubjectListWidget(changeScreen: changeScreen);
+        return SubjectList(changeScreen: changeScreen);
         break;
       case ScreenHelper.postDetail:
         return PostDetail(changeScreen: changeScreen);

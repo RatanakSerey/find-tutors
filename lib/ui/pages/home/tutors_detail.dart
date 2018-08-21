@@ -1,12 +1,4 @@
-//packages
 import 'package:flutter/material.dart';
-<<<<<<< HEAD:lib/screens/home/tutors_detail.dart
-import 'package:flutter/cupertino.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
-=======
 
 import 'package:find_tutors/ui/widgets/common_divider.dart';
 import 'package:find_tutors/ui/widgets/common_scaffold.dart';
@@ -14,7 +6,6 @@ import 'package:find_tutors/ui/widgets/profile_tile.dart';
 import 'package:find_tutors/ui/widgets/custom_background.dart';
 import 'package:find_tutors/ui/tools/arc_clipper.dart';
 import 'package:find_tutors/utils/constants.dart';
->>>>>>> master:lib/ui/pages/home/tutors_detail.dart
 
 class TutorsDetail extends StatelessWidget {
   // final Function changeScreen;

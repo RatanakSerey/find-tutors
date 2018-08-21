@@ -1,10 +1,6 @@
-//packages
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
+import 'package:find_tutors/ui/widgets/profile_tile.dart';
 
 class ModalSheet {
   static modalBottomSheetMore(context) {
@@ -122,7 +118,7 @@ class ModalSheet {
   }
   Widget header() => Ink(
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: CommonColors.kitGradients)),
+            gradient: LinearGradient(colors: AppColors.kitGradients)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

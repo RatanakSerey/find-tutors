@@ -2,7 +2,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 class Routes {
   static const String homeRoute = "/home";
   static const String mapRoute = "/map";
@@ -44,7 +43,7 @@ class Images {
   static const String verifyImage = "$imageDir/verification.jpg";
 }
 
-class CommonColors {
+class AppColors {
   static const MaterialColor ui_kit_color = Colors.grey;
 // Colors
   static const kShrinePink50 = const Color(0xFFFEEAE6);
