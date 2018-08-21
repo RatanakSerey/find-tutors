@@ -1,7 +1,6 @@
 export './about_tile.dart';
 export './profile_tile.dart';
 export './common_appbar.dart';
-export './common_dialogs.dart';
 export './common_divider.dart';
 export './custom_float.dart';
 export './label_icon.dart';

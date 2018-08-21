@@ -13,7 +13,7 @@ class ProfileTwo extends StatelessWidget {
   var deviceSize;
 
   static _showModalSheets(context) {
-    ModalSheet.modalBottomSheetMore(context);
+    CommonBottomSheet(context: context).show();
   }
   @override
   Widget build(BuildContext context) {

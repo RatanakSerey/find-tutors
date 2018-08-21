@@ -47,7 +47,7 @@ class TabNavigatorState extends State<TabNavigator> {
         ),
         Offstage(
           offstage: _tab != 1,
-          child: MapWidget(scaffoldKey: _scaffoldKey),
+          child: MapWidget(),
         ),
         Offstage(
           offstage: _tab != 2,
@@ -94,15 +94,6 @@ class TabNavigatorState extends State<TabNavigator> {
   }
 
   Widget buildAppBar() {
-    // if (_page != 0) {
     return null;
-    // }
-    // return AppBar(
-    //   title: Text(appBarTitle),
-    //   leading: IconButton(
-    //     icon: Icon(Icons.memory),
-    //     onPressed: ()=> _scaffoldKey.currentState.openDrawer()
-      
-    // );
   }
 }
