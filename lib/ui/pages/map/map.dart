@@ -1,4 +1,4 @@
-import 'package:find_tutors/ui/widgets/app_bar.dart';
+import 'package:find_tutors/ui/widgets/common_appbar.dart';
 import 'package:flutter/material.dart';
 
 class MapPage extends StatelessWidget {
