@@ -6,8 +6,10 @@ import 'package:find_tutors/widgets/index.dart';
 //utils
 import 'package:find_tutors/utils/index.dart';
 
-class ModalSheet {
-  static modalBottomSheetMore(context) {
+class CommonBottomSheet {
+  BuildContext context;
+  CommonBottomSheet({@required this.context});
+  show() {
     showModalBottomSheet(
       context: context,
       builder: (builder) {
@@ -27,9 +29,9 @@ class ModalSheet {
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
                           children: <Widget>[
-                            new Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            ),
+                        new Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        ),
                         new ListTile(
                           title: const Text(
                             'Sort By',
@@ -78,48 +80,49 @@ class ModalSheet {
                           ),
                           onTap: () async {},
                         ),
-                       
-                      ])), new Divider(
-                  height: 4.0,
-                ),
-                new Padding(
-                  padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Text(
-                        "Privacy Policy",
-                        style: TextStyle(
-                          fontSize: 13.0,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      new Container(
-                        width: 25.0,
-                        child: new Icon(
-                          Icons.arrow_drop_down_circle,
-                          size: 5.0,
-                        ),
-                      ),
-                      //new Icon(
-                      //Icons.,
-                      //),
-                      new Text(
-                        "Terms of service",
-                        style: TextStyle(
-                          fontSize: 13.0,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
+                      ])),
+                  new Divider(
+                    height: 4.0,
                   ),
-                ),
+                  new Padding(
+                    padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
+                    child: new Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        new Text(
+                          "Privacy Policy",
+                          style: TextStyle(
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        new Container(
+                          width: 25.0,
+                          child: new Icon(
+                            Icons.arrow_drop_down_circle,
+                            size: 5.0,
+                          ),
+                        ),
+                        //new Icon(
+                        //Icons.,
+                        //),
+                        new Text(
+                          "Terms of service",
+                          style: TextStyle(
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ));
       },
     );
   }
+
   Widget header() => Ink(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: CommonColors.kitGradients)),

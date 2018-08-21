@@ -22,6 +22,10 @@ class ScreenHelper {
 }
 
 class Fonts {
+  static const String regular = "";
+  static const String bold = "";
+  static const String italic = "";
+
   static const String quickFont = "Quicksand";
   static const String abelFont = "Abel";
   static const String ralewayFont = "Raleway";
@@ -45,7 +49,15 @@ class Images {
 }
 
 class CommonColors {
-  static const MaterialColor ui_kit_color = Colors.grey;
+  static const primary = Color(0xFF4E54C8);
+  static const secondary = Color(0xFF8F94FB);
+  static const accent = Color(0xFF000000);
+  static const success = Color(0xFF000000) ;
+  static const warning = Color(0xFF000000) ;
+  static const danger = Color(0xFF000000) ;
+  static const info = Color(0xFF000000) ;
+
+  // static const MaterialColor ui_kit_color = Colors.gr;
 // Colors
   static const kShrinePink50 = const Color(0xFFFEEAE6);
   static const kShrinePink100 = const Color(0xFFFEDBD0);
@@ -62,8 +74,9 @@ class CommonColors {
     // new Color.fromRGBO(103, 218, 255, 1.0),
     // new Color.fromRGBO(3, 169, 244, 1.0),
     // new Color.fromRGBO(0, 122, 193, 1.0),
-    Color(0xFF4E54C8),
-    Color(0xFF8F94FB),
+    // Color(0xFF4E54C8),
+    // Color(0xFF8F94FB),
+    primary, secondary
   ];
   static List<Color> kitGradients2 = [
     Color(0xffb7ac50),
