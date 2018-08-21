@@ -10,13 +10,12 @@ class GradientButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 10.0,
+      elevation: 5.0,
       color: Colors.transparent,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0))),
       child: InkWell(
         onTap: onPressed,
-        // splashColor: Colors.yellow,
         child: Ink(
           height: 40.0,
           decoration: BoxDecoration(

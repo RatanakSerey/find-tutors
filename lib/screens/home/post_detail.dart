@@ -14,10 +14,14 @@ class PostDetail extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Text("Subject Detail"),
+          CommonAppBar(
+            title: 'Post Detail',
+            onPress: () => Scaffold.of(context).openDrawer(),
+          ),
+          Text("Post Detail"),
           RaisedButton(
-            onPressed: () => 
-            Navigator.pushNamed(context, Routes.tutorsDetailRoute),
+            onPressed: () =>
+                Navigator.pushNamed(context, Routes.tutorsDetailRoute),
             // Navigator.push(
             //       context,
             //       MaterialPageRoute(builder: (context) => ProfileTwoPage()),

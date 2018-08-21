@@ -100,7 +100,10 @@ class SubjectListWidgetState extends State<SubjectListWidget>
           height: 500.0,
           child: Column(
             children: <Widget>[
-              AppBar(title: Text("Chi")),
+              CommonAppBar(
+                title: 'Subject',
+                onPress: () => Scaffold.of(context).openDrawer(),
+              ),
               Center(
                 child: RaisedButton(
                   onPressed: () =>

@@ -15,7 +15,7 @@ class App extends StatelessWidget {
     // Constants.homeRoute: (BuildContext context) => Home(),
     Routes.mapRoute: (BuildContext context) => MapWidget(),
     Routes.profileRoute: (BuildContext context) => ProfileTwo(),
-    Routes.tutorsDetailRoute: (BuildContext context) => PostDetail(),
+    Routes.tutorsDetailRoute: (BuildContext context) => TutorsDetail(),
   };
   final theme = ThemeData(
       primaryColor: Color(0xFF4E54C8),

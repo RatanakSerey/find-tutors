@@ -9,6 +9,8 @@ import 'package:find_tutors/utils/index.dart';
 import 'package:find_tutors/screens/index.dart';
 import 'package:find_tutors/drawer.dart';
 
+import 'package:find_tutors/utils/icon_font.dart';
+
 class TabItem {
   final Widget title;
   final Icon icon;
@@ -16,9 +18,9 @@ class TabItem {
 }
 
 final List tabItems = [
-  TabItem(title: Text('Home'), icon: Icon(Icons.home)),
-  TabItem(title: Text('Map'), icon: Icon(Icons.map)),
-  TabItem(title: Text('Profile'), icon: Icon(Icons.person_outline)),
+  TabItem(title: Text('Home'), icon: Icon(FeatherIcons.home)),
+  TabItem(title: Text('Map'), icon: Icon(FeatherIcons.map)),
+  TabItem(title: Text('Profile'), icon: Icon(FeatherIcons.user)),
 ];
 
 class TabNavigator extends StatefulWidget {
