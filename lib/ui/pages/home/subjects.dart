@@ -104,7 +104,7 @@ class SubjectListState extends State<SubjectList>
                 child: RaisedButton(
                   onPressed: () =>
                       widget.changeScreen(screen: ScreenHelper.postList),
-                  child: new Text("Go To Tutors List"),
+                  child: new Text("Go To Post List"),
                 ),
               ),
             ],

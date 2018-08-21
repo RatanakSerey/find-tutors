@@ -19,7 +19,7 @@ class ChangeScreen extends StatelessWidget {
   Widget buildScreen(String screen) {
     switch (screen) {
       case ScreenHelper.signin:
-        return SignInWidget(changeScreen: changeScreen);
+        return SignInPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.profile:
         return ProfileTwoPage(changeScreen: changeScreen);

@@ -26,10 +26,9 @@ flutter:
   assets:
     - assets/images/app-icon.png
     - assets/images/slanted_menu.png
+    - assets/images/forgot_password.png
     
   fonts:
-    - family: Rubik
+    - family: Abel
       fonts:
-        - asset: assets/fonts/Rubik-Regular.ttf
-        - asset: assets/fonts/Rubik-Medium.ttf
-          weight: 500
+        - asset: assets/fonts/Abel-Regular.ttf
