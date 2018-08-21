@@ -22,6 +22,7 @@ class ScreenHelper {
 
 class Fonts {
   static const String quickFont = "Quicksand";
+  static const String abelFont = "Abel";
   static const String ralewayFont = "Raleway";
   static const String quickBoldFont = "Quicksand_Bold.otf";
   static const String quickNormalFont = "Quicksand_Book.otf";
@@ -86,14 +87,14 @@ class Constants {
   static const String enter_otp_hint = "4 Digit OTP";
   static const String get_otp = "Get OTP";
   static const String resend_otp = "Resend OTP";
-  static const String login = "Login";
+  static const String signin = "SIGNIN";
   static const String enter_valid_number = "Enter 10 digit phone number";
   static const String enter_valid_otp = "Enter 4 digit otp";
   //gneric
   static const String error = "Error";
   static const String success = "Success";
   static const String ok = "OK";
-  static const String forgot_password = "Forgot Password?";
+  static const String reset_password = "SENT PASSWORD RESET CODE";
   static const String something_went_wrong = "Something went wrong";
   static const String coming_soon = "Coming Soon";
 }

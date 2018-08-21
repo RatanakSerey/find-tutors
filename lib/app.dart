@@ -10,17 +10,18 @@ import 'package:find_tutors/ui/pages/map/map.dart';
 import 'package:find_tutors/ui/pages/tutors/profile.dart';
 import 'package:find_tutors/ui/pages/notfound_page.dart';
 import 'package:find_tutors/ui/pages/home/post_detail.dart';
+import 'package:find_tutors/ui/pages/home/tutors_detail.dart';
 
 class App extends StatelessWidget {
   final routes = {
     // Constants.homeRoute: (BuildContext context) => Home(),
     Routes.mapRoute: (BuildContext context) => MapPage(),
     Routes.profileRoute: (BuildContext context) => ProfileTwoPage(),
-    Routes.tutorsDetailRoute: (BuildContext context) => PostDetail(),
+    Routes.tutorsDetailRoute: (BuildContext context) => TutorsDetail(),
   };
   final theme = ThemeData(
       primaryColor: Color(0xFF4E54C8),
-      fontFamily: Fonts.quickFont,
+      fontFamily: Fonts.abelFont,
       primarySwatch: Colors.amber);
   @override
   Widget build(BuildContext context) {

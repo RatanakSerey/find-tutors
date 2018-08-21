@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:find_tutors/ui/widgets/common_divider.dart';
 import 'package:find_tutors/ui/widgets/common_scaffold.dart';
 import 'package:find_tutors/ui/widgets/profile_tile.dart';
+import 'package:find_tutors/ui/widgets/custom_background.dart';
+import 'package:find_tutors/ui/tools/arc_clipper.dart';
+import 'package:find_tutors/utils/constants.dart';
 
 class TutorsDetail extends StatelessWidget {
-  final Function changeScreen;
-  TutorsDetail({this.changeScreen});
+  // final Function changeScreen;
+  // TutorsDetail({this.changeScreen});
   var deviceSize;
 
   //Column1
@@ -15,19 +18,12 @@ class TutorsDetail extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ProfileTile(
-              title: "Heng YouSour",
-              subtitle: "Developer",
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.chat),
-                  color: Colors.black,
+                  color: Colors.white,
                   onPressed: () {},
                 ),
                 Container(
@@ -35,31 +31,37 @@ class TutorsDetail extends StatelessWidget {
                     borderRadius:
                         new BorderRadius.all(new Radius.circular(50.0)),
                     border: new Border.all(
-                      color: Colors.black,
+                      color: Colors.white,
                       width: 4.0,
                     ),
                   ),
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
-                        "https://avatars0.githubusercontent.com/u/12619420?s=460&v=4"),
-                    foregroundColor: Colors.black,
+                        "https://lh4.googleusercontent.com/-pxQQZHW89b8/AAAAAAAAAAI/AAAAAAAAABk/WiqR17OEq9o/photo.jpg?sz=328"),
+                    foregroundColor: Color(0xFF4E54C8),
                     radius: 40.0,
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.call),
-                  color: Colors.black,
+                  color: Colors.white,
                   onPressed: () {},
                 ),
               ],
-            )
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            ProfileTile(
+              title: "Heng YouSour",
+              subtitle: "Math Teacher",
+              textColor: Colors.white,
+            ),
           ],
         ),
       );
 
-  //column2
-
-  //column3
+  // Description
   Widget descColumn() => Container(
         height: deviceSize.height * 0.13,
         child: Center(
@@ -75,7 +77,8 @@ class TutorsDetail extends StatelessWidget {
           ),
         ),
       );
-  //column4
+
+  // Account
   Widget accountColumn() => Container(
         height: deviceSize.height * 0.3,
         child: Row(
@@ -119,58 +122,137 @@ class TutorsDetail extends StatelessWidget {
         ),
       );
 
-  Widget bodyData() {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          profileColumn(),
-          CommonDivider(),
-          followColumn(deviceSize),
-          CommonDivider(),
-          descColumn(),
-          CommonDivider(),
-          accountColumn()
-        ],
+//  Follow
+  Widget followColumn(Size deviceSize) => Container(
+        height: deviceSize.height * 0.13,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            ProfileTile(
+              title: "15",
+              subtitle: "Posts",
+            ),
+            ProfileTile(
+              title: "50",
+              subtitle: "Followers",
+            ),
+            ProfileTile(
+              title: "10",
+              subtitle: "Likes",
+            ),
+          ],
+        ),
+      );
+
+  // Widget bodyData(context) {
+  //   return SingleChildScrollView(
+  //       child: SafeArea(
+  //     child: Column(
+  //       children: <Widget>[
+  //         IconButton(
+  //           icon: Icon(Icons.arrow_back_ios),
+  //           onPressed: () => Navigator.pop(context),
+  //         ),
+  //         profileColumn(),
+  //         CommonDivider(),
+  //         followColumn(deviceSize),
+  //         CommonDivider(),
+  //         descColumn(),
+  //         CommonDivider(),
+  //         accountColumn(),
+  //         CommonDivider(),
+  //         accountColumn(),
+  //       ],
+  //     ),
+  //   ));
+  // }
+
+  // Widget _scaffold(context) => CommonScaffold(
+  //       appTitle: "View Profile",
+  //       bodyData: bodyData(context),
+  //       // showFAB: true,
+  //       showDrawer: true,
+  //       // floatingIcon: Icons.person_add,
+  //     );
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   deviceSize = MediaQuery.of(context).size;
+  //   return Scaffold(
+  //     body: Column(
+  //       // fit: StackFit.expand,
+  //       children: <Widget>[
+  //         // CustomBackground(
+  //         //   showIcon: false,
+  //         // ),
+  //         bodyData(context)
+  //       ],
+  //     ),
+  //   );
+  // }
+
+  // final showIcon;
+  // final image;
+  // TutorsDetail({this.showIcon = true, this.image});
+
+  Widget topHalf(BuildContext context) {
+    var deviceSize = MediaQuery.of(context).size;
+    return new Flexible(
+      flex: 3,
+      child: ClipPath(
+        clipper: new ArcClipper(),
+        child: Stack(
+          children: <Widget>[
+            new Container(
+              decoration: new BoxDecoration(
+                  gradient: new LinearGradient(
+                colors: AppColors.kitGradients,
+              )),
+            ),
+            new SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                IconButton(
+                icon: Icon(Icons.arrow_back),
+                color: Colors.white,
+                onPressed: () => Navigator.pop(context),),
+                profileColumn(),
+              ],
+            ))
+          ],
+        ),
       ),
     );
   }
 
-  Widget _scaffold() => CommonScaffold(
-        appTitle: "View Profile",
-        bodyData: bodyData(),
-        // showFAB: true,
-        showDrawer: true,
-        // floatingIcon: Icons.person_add,
-      );
+  Widget bottomHalf(BuildContext context) {
+    return Flexible(
+      flex: 5,
+      child: new SingleChildScrollView(
+        child: new Column(
+          children: <Widget>[
+            followColumn(deviceSize),
+            CommonDivider(),
+            descColumn(),
+            CommonDivider(),
+            accountColumn(),
+            CommonDivider(),
+            accountColumn(),
+            CommonDivider(),
+            accountColumn(),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
-    return _scaffold();
+    return new Scaffold(
+        body: Column(
+      children: <Widget>[topHalf(context), bottomHalf(context)],
+    ));
   }
 }
-
-Widget followColumn(Size deviceSize) => Container(
-      height: deviceSize.height * 0.13,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          ProfileTile(
-            title: "1.5K",
-            subtitle: "Posts",
-          ),
-          ProfileTile(
-            title: "2.5K",
-            subtitle: "Followers",
-          ),
-          ProfileTile(
-            title: "10K",
-            subtitle: "Comments",
-          ),
-          ProfileTile(
-            title: "1.2K",
-            subtitle: "Following",
-          )
-        ],
-      ),
-    );
