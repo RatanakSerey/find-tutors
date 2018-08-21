@@ -1,14 +1,15 @@
+//packages
 import 'package:flutter/material.dart';
-import 'package:find_tutors/ui/widgets/common_divider.dart';
-import 'package:find_tutors/ui//widgets/common_scaffold.dart';
-import 'package:find_tutors/ui/widgets/profile_tile.dart';
-import 'package:find_tutors/ui/widgets/custom_background.dart';
-import 'package:find_tutors/ui/widgets/bottom_modal_sheet.dart';
+import 'package:flutter/cupertino.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
 
-class ProfileTwoPage extends StatelessWidget {
+class ProfileTwo extends StatelessWidget {
 
   final Function changeScreen;
-  ProfileTwoPage({this.changeScreen});
+  ProfileTwo({this.changeScreen});
   var deviceSize;
 
   static _showModalSheets(context) {

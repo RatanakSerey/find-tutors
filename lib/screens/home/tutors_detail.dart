@@ -1,8 +1,10 @@
+//packages
 import 'package:flutter/material.dart';
-
-import 'package:find_tutors/ui/widgets/common_divider.dart';
-import 'package:find_tutors/ui/widgets/common_scaffold.dart';
-import 'package:find_tutors/ui/widgets/profile_tile.dart';
+import 'package:flutter/cupertino.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
 
 class TutorsDetail extends StatelessWidget {
   final Function changeScreen;

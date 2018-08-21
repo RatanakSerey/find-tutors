@@ -1,9 +1,14 @@
-import 'package:find_tutors/ui/widgets/common_appbar.dart';
+//packages
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
 
-class MapPage extends StatelessWidget {
+class MapWidget extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  MapPage({this.scaffoldKey});
+  MapWidget({this.scaffoldKey});
   @override
   Widget build(BuildContext context) {
     return Container(

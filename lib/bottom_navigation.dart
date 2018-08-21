@@ -1,11 +1,13 @@
-import 'package:find_tutors/utils/constants.dart';
+//packages
 import 'package:flutter/material.dart';
-// Page
-import 'package:find_tutors/ui/pages/auth/signin.dart';
-import 'package:find_tutors/ui/pages/map/map.dart';
-import 'package:find_tutors/ui/pages/home/subjects.dart';
-// Widget
-import 'package:find_tutors/ui/widgets/navigation/drawer.dart';
+import 'package:flutter/cupertino.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
+//screens
+import 'package:find_tutors/screens/index.dart';
+import 'package:find_tutors/drawer.dart';
 
 class TabItem {
   final Widget title;
@@ -40,12 +42,12 @@ class TabNavigatorState extends State<TabNavigator> {
       body: Stack(children: <Widget>[
         Offstage(
           offstage: _tab != 0,
-          child: SubjectListPage(
+          child: SubjectList(
               screens: subjectListScreens, changeScreen: changeScreen),
         ),
         Offstage(
           offstage: _tab != 1,
-          child: MapPage(scaffoldKey: _scaffoldKey),
+          child: MapWidget(scaffoldKey: _scaffoldKey),
         ),
         Offstage(
           offstage: _tab != 2,

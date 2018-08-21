@@ -1,9 +1,11 @@
-import 'dart:async';
-import 'package:find_tutors/utils/constants.dart';
+//packages
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'package:find_tutors/ui/widgets/change_screen.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
+//screens
 import 'signup.dart';
 import 'reset_password.dart';
 

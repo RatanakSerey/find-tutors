@@ -1,8 +1,12 @@
+//packages
 import 'package:flutter/material.dart';
-import 'package:find_tutors/ui/widgets/common_scaffold.dart';
-// import 'package:flutter_uikit/ui/widgets/profile_tile.dart';
+import 'package:flutter/cupertino.dart';
+//widget
+import 'package:find_tutors/widgets/index.dart';
+//utils
+import 'package:find_tutors/utils/index.dart';
 
-class NotFoundPage extends StatelessWidget {
+class NotFound extends StatelessWidget {
   final appTitle;
   final title;
   final message;
@@ -10,7 +14,7 @@ class NotFoundPage extends StatelessWidget {
   final String image;
   final iconColor;
 
-  NotFoundPage(
+  NotFound(
       {this.appTitle = "Search",
       this.title = "No Result",
       this.message = "Try a more general keyword.",
