@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 // Page
@@ -26,6 +25,7 @@ class TabNavigator extends StatefulWidget {
 }
 
 class TabNavigatorState extends State<TabNavigator> {
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
   int _tab = 0;
   String appBarTitle = "";
   List<String> subjectListScreens = [ScreenHelper.subjectList];
@@ -34,6 +34,7 @@ class TabNavigatorState extends State<TabNavigator> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: buildAppBar(),
       drawer: buildDrawer(),
       body: Stack(children: <Widget>[
@@ -44,7 +45,7 @@ class TabNavigatorState extends State<TabNavigator> {
         ),
         Offstage(
           offstage: _tab != 1,
-          child: MapPage(),
+          child: MapPage(scaffoldKey: _scaffoldKey),
         ),
         Offstage(
           offstage: _tab != 2,
@@ -95,7 +96,11 @@ class TabNavigatorState extends State<TabNavigator> {
     return null;
     // }
     // return AppBar(
-    // title: Text(appBarTitle),
+    //   title: Text(appBarTitle),
+    //   leading: IconButton(
+    //     icon: Icon(Icons.memory),
+    //     onPressed: ()=> _scaffoldKey.currentState.openDrawer()
+      
     // );
   }
 }
