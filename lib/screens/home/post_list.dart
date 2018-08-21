@@ -80,7 +80,7 @@ class PostListState extends State<PostList>
       return Center(
         child: RaisedButton(
           onPressed: () => widget.changeScreen(screen: ScreenHelper.postDetail),
-          child: new Text("Go To Subject Detail"),
+          child: new Text("Go To Post Detail"),
         ),
       );
     }

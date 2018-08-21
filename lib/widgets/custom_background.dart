@@ -14,7 +14,7 @@ class CustomBackground extends StatelessWidget {
   Widget topHalf(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
     return new Flexible(
-      flex: 2,
+      flex: 3,
       child: ClipPath(
         clipper: new ArcClipper(),
         child: Stack(
@@ -49,7 +49,7 @@ class CustomBackground extends StatelessWidget {
   }
 
   final bottomHalf = new Flexible(
-    flex: 3,
+    flex: 5,
     child: new Container(),
   );
 
