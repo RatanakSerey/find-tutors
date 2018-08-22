@@ -1,4 +1,5 @@
 //packages
+import 'package:find_tutors/screens/map/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 //widget
@@ -63,9 +64,14 @@ class _MapWidgetState extends State<MapWidget> {
             },
           ),
           RaisedButton(
-            child: Text("alert dialog ios style"),
+            child: Text("Test"),
             onPressed: () {
-              CommonAlertDialog(context: context).showIos();
+              Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute<bool>(
+                        fullscreenDialog: true,
+                        builder: (BuildContext context) => Test(),
+                      ),
+                    );
             },
           ),
           Expanded(
