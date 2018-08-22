@@ -1,5 +1,6 @@
 import 'package:find_tutors/utils/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class CommonAlertDialog {
   BuildContext context;
@@ -21,7 +22,7 @@ class CommonAlertDialog {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return CupertinoAlertDialog(
           title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
           content: Text(content),
           actions: actions,
@@ -40,7 +41,7 @@ class CommonAlertDialog {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return CupertinoAlertDialog(
           title: Text(
             title,
             style: TextStyle(fontWeight: FontWeight.bold),
@@ -67,5 +68,29 @@ class CommonAlertDialog {
         );
       },
     );
+  }
+
+  showIos() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("title"),
+            content: Text("content"),
+            // actions: <Widget>[
+            //   FlatButton(child: Text("Yes"), onPressed: ()=>null,),
+            //   FlatButton(child: Text("No"), onPressed: ()=>null,),
+            //   // CupertinoDialogAction(
+            //   //   child: Text("Yes"),
+            //   //   isDefaultAction: true,
+            //   //   onPressed: () => null,
+            //   // ),
+            //   // CupertinoDialogAction(
+            //   //   child: Text("No"),
+            //   //   onPressed: () => Navigator.of(context).pop(),
+            //   // )
+            // ],
+          );
+        });
   }
 }
