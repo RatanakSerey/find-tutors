@@ -14,22 +14,28 @@ class ResetPassword extends StatelessWidget {
             child: SingleChildScrollView(
                 child: Column(
       children: <Widget>[
-        resetHeader(),
+        // IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   color: Colors.black,
+        //   onPressed: () => Navigator.pop(context),
+        // ),
+        resetHeader(context),
         resetFields(context),
         resetFooter(context)
       ],
     ))));
   }
 
-  resetHeader() => Container(
-      margin: new EdgeInsets.only(top: 20.0),
-      child: Column(
+  resetHeader(context) => Container(
+          // margin: new EdgeInsets.only(top: 20.0),
+          child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           // FlutterLogo(
           //   colors: Colors.green,
           //   size: 80.0,
           // ),
+
           Image.asset(
             'assets/images/forgot_password.png',
             width: 300.0,
@@ -72,10 +78,12 @@ class ResetPassword extends StatelessWidget {
               height: 20.0,
             ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-              width: double.infinity,
-              child: GradientButton(onPressed: (){}, text: Constants.reset_password,)
-            ),
+                padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+                width: double.infinity,
+                child: GradientButton(
+                  onPressed: () {},
+                  text: Constants.reset_password,
+                )),
           ],
         ),
       );

@@ -42,7 +42,8 @@ class PostListState extends State<PostList>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bubble Tab Indicator'),
+        title: Text('Posts', style: TextStyle(color: Color(0xFF6c5ce7))),
+        backgroundColor: Colors.white,
         bottom: new TabBar(
           isScrollable: true,
           unselectedLabelColor: Colors.grey,
@@ -50,7 +51,7 @@ class PostListState extends State<PostList>
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: new BubbleTabIndicator(
             indicatorHeight: 25.0,
-            indicatorColor: Colors.blueAccent,
+            indicatorColor: Color(0xFF6c5ce7),
             tabBarIndicatorSize: TabBarIndicatorSize.tab,
           ),
           tabs: tabs,
