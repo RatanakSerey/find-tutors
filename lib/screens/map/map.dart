@@ -108,27 +108,27 @@ class _MapWidgetState extends State<MapWidget> {
       controller: slidableController,
       direction: direction,
       slideToDismissDelegate: SlideToDismissDrawerDelegate(
-        onWillDismiss: (actionType) {
-          return showDialog<bool>(
-                  context: context,
-                  builder: (context) {
-                    return new AlertDialog(
-                      title: new Text('Delete'),
-                      content: new Text('Item will be deleted'),
-                      actions: <Widget>[
-                        new FlatButton(
-                          child: new Text('Cancel'),
-                          onPressed: () => Navigator.of(context).pop(false),
-                        ),
-                        new FlatButton(
-                          child: new Text('Ok'),
-                          onPressed: () => Navigator.of(context).pop(true),
-                        ),
-                      ],
-                    );
-                  },
-                );
-        },
+        // onWillDismiss: (actionType) {
+        //   return showDialog<bool>(
+        //           context: context,
+        //           builder: (context) {
+        //             return new AlertDialog(
+        //               title: new Text('Delete'),
+        //               content: new Text('Item will be deleted'),
+        //               actions: <Widget>[
+        //                 new FlatButton(
+        //                   child: new Text('Cancel'),
+        //                   onPressed: () => Navigator.of(context).pop(false),
+        //                 ),
+        //                 new FlatButton(
+        //                   child: new Text('Ok'),
+        //                   onPressed: () => Navigator.of(context).pop(true),
+        //                 ),
+        //               ],
+        //             );
+        //           },
+        //         );
+        // },
         onDismissed: (actionType) {
           _showSnackBar(
               context,
@@ -190,7 +190,7 @@ class _MapWidgetState extends State<MapWidget> {
                     ? Colors.red.withOpacity(animation.value)
                     : Colors.red,
                 icon: Icons.delete,
-                onTap: () => _showSnackBar(context, ' ${index}'),
+                onTap: () => _showSnackBar(context, 'delete'),
               );
             }
           }),
