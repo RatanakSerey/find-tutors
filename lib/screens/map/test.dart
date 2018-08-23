@@ -26,54 +26,10 @@ class _TestState extends State<Test> {
     });
   }
 
-  /// from - inclusive, to - exclusive
-  Future<List<Map<String, dynamic>>> fakeRequest() async {
-    return Future.delayed(Duration(seconds: 1), () {
-      var arr = [
-        {"name": "nickname", "gender": "female", "address": "pp"}
-      ];
-      return arr.toList();
-    });
-  }
-
-  _loadMoreData() async {
-    if (!isPerformingRequest) {
-      setState(() => isPerformingRequest = true);
-      List<Map<String, dynamic>> newEntries = await fakeRequest();
-      if (newEntries.isEmpty) {
-        double edge = 50.0;
-        double offsetFromBottom = _scrollController.position.maxScrollExtent -
-            _scrollController.position.pixels;
-        if (offsetFromBottom < edge) {
-          _scrollController.animateTo(
-              _scrollController.offset - (edge - offsetFromBottom),
-              duration: Duration(milliseconds: 500),
-              curve: Curves.easeOut);
-        }
-      }
-      setState(() {
-        items.addAll(newEntries);
-        isPerformingRequest = false;
-      });
-    }
-  }
-
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  }
-
-  Widget _buildProgressIndicator() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: Opacity(
-          opacity: isPerformingRequest ? 1.0 : 0.0,
-          child: CircularProgressIndicator(),
-        ),
-      ),
-    );
   }
 
   @override
@@ -118,5 +74,48 @@ class _TestState extends State<Test> {
         },
       ),
     );
+  }
+
+  Widget _buildProgressIndicator() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Opacity(
+          opacity: isPerformingRequest ? 1.0 : 0.0,
+          child: CircularProgressIndicator(strokeWidth: 2.3,),
+        ),
+      ),
+    );
+  }
+
+  _loadMoreData() async {
+    if (!isPerformingRequest) {
+      setState(() => isPerformingRequest = true);
+      List<Map<String, dynamic>> newEntries = await fakeRequest();
+      if (newEntries.isEmpty) {
+        double edge = 50.0;
+        double offsetFromBottom = _scrollController.position.maxScrollExtent -
+            _scrollController.position.pixels;
+        if (offsetFromBottom < edge) {
+          _scrollController.animateTo(
+              _scrollController.offset - (edge - offsetFromBottom),
+              duration: Duration(milliseconds: 500),
+              curve: Curves.easeOut);
+        }
+      }
+      setState(() {
+        items.addAll(newEntries);
+        isPerformingRequest = false;
+      });
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> fakeRequest() async {
+    return Future.delayed(Duration(seconds: 1), () {
+      var arr = [
+        {"name": "nickname", "gender": "female", "address": "pp"}
+      ];
+      return arr.toList();
+    });
   }
 }
