@@ -16,6 +16,7 @@ dependencies:
   flutter_masked_text:
   bubble_tab_indicator: "^0.1.3"
   flutter_slidable: "^0.4.1"
+  http:
 
 
 dev_dependencies:
