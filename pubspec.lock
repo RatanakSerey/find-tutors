@@ -110,7 +110,7 @@ packages:
       name: flutter_slidable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -145,7 +145,7 @@ packages:
     source: hosted
     version: "0.13.3"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"

@@ -7,17 +7,17 @@ import 'package:find_tutors/widgets/index.dart';
 //utils
 import 'package:find_tutors/utils/constants.dart';
 
-class PostList extends StatefulWidget {
+class PostListPage extends StatefulWidget {
   final Function changeScreen;
-  PostList({this.changeScreen});
+  PostListPage({this.changeScreen});
 
   @override
-  PostListState createState() {
-    return new PostListState();
+  PostListPageState createState() {
+    return new PostListPageState();
   }
 }
 
-class PostListState extends State<PostList>
+class PostListPageState extends State<PostListPage>
     with SingleTickerProviderStateMixin {
   final List<Tab> tabs = <Tab>[
     new Tab(text: "Featured"),

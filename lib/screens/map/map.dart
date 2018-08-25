@@ -1,4 +1,5 @@
 //packages
+import 'package:find_tutors/screens/map/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 //widget
@@ -7,12 +8,12 @@ import 'package:find_tutors/widgets/index.dart';
 import 'package:find_tutors/utils/index.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class MapWidget extends StatefulWidget {
+class MapPage extends StatefulWidget {
   @override
-  _MapWidgetState createState() => _MapWidgetState();
+  _MapPageState createState() => _MapPageState();
 }
 
-class _MapWidgetState extends State<MapWidget> {
+class _MapPageState extends State<MapPage> {
   final SlidableController slidableController = SlidableController();
   final List<_HomeItem> items = List.generate(
     5,
@@ -63,9 +64,14 @@ class _MapWidgetState extends State<MapWidget> {
             },
           ),
           RaisedButton(
-            child: Text("alert dialog ios style"),
+            child: Text("Test"),
             onPressed: () {
-              CommonAlertDialog(context: context).showIos();
+              Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute<bool>(
+                        fullscreenDialog: true,
+                        builder: (BuildContext context) => Test(),
+                      ),
+                    );
             },
           ),
           Expanded(

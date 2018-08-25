@@ -24,16 +24,16 @@ class ChangeScreen extends StatelessWidget {
         return SignInWidget(changeScreen: changeScreen);
         break;
       case ScreenHelper.profile:
-        return ProfileTwo(changeScreen: changeScreen);
+        return ProfileTwoPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.subjectList:
-        return SubjectListWidget(changeScreen: changeScreen);
+        return SubjectListPageWidget(changeScreen: changeScreen);
         break;
       case ScreenHelper.postDetail:
-        return PostDetail(changeScreen: changeScreen);
+        return PostDetailPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.postList:
-        return PostList(changeScreen: changeScreen);
+        return PostListPage(changeScreen: changeScreen);
         break;
       default:
         return Text("null");

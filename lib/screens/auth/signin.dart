@@ -9,15 +9,15 @@ import 'package:find_tutors/utils/index.dart';
 import 'signup.dart';
 import 'reset_password.dart';
 
-class Signin extends StatefulWidget {
+class SigninPage extends StatefulWidget {
   final List screens;
   final Function changeScreen;
-  Signin({this.screens, this.changeScreen});
+  SigninPage({this.screens, this.changeScreen});
   @override
-  _SigninState createState() => _SigninState();
+  _SigninPageState createState() => _SigninPageState();
 }
 
-class _SigninState extends State<Signin> {
+class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -138,7 +138,7 @@ class SignInWidget extends StatelessWidget {
                 Navigator.of(context, rootNavigator: true).push(
                       new MaterialPageRoute<bool>(
                         fullscreenDialog: true,
-                        builder: (BuildContext context) => new ResetPassword(),
+                        builder: (BuildContext context) => new ResetPasswordPage(),
                       ),
                     );
               },
@@ -153,7 +153,7 @@ class SignInWidget extends StatelessWidget {
                 Navigator.of(context, rootNavigator: true).push(
                       new CupertinoPageRoute<bool>(
                         fullscreenDialog: true,
-                        builder: (BuildContext context) => new Signup(),
+                        builder: (BuildContext context) => new SignupPage(),
                       ),
                     );
               },

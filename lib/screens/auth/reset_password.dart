@@ -5,7 +5,7 @@ import 'package:find_tutors/widgets/index.dart';
 import 'package:find_tutors/utils/index.dart';
 import 'signup.dart';
 
-class ResetPassword extends StatelessWidget {
+class ResetPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +96,7 @@ class ResetPassword extends StatelessWidget {
                 Navigator.of(context, rootNavigator: true).push(
                       new MaterialPageRoute<bool>(
                         fullscreenDialog: true,
-                        builder: (BuildContext context) => new Signup(),
+                        builder: (BuildContext context) => new SignupPage(),
                       ),
                     );
               },

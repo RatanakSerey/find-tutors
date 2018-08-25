@@ -6,7 +6,7 @@ import 'package:find_tutors/widgets/index.dart';
 //utils
 import 'package:find_tutors/utils/index.dart';
 
-class TutorsDetail extends StatelessWidget {
+class TutorsDetailPage extends StatelessWidget {
   // final Function changeScreen;
   // TutorsDetail({this.changeScreen});
   var deviceSize;

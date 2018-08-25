@@ -6,9 +6,9 @@ import 'package:find_tutors/widgets/index.dart';
 //utils
 import 'package:find_tutors/utils/index.dart';
 
-class PostDetail extends StatelessWidget {
+class PostDetailPage extends StatelessWidget {
   final Function changeScreen;
-  PostDetail({this.changeScreen});
+  PostDetailPage({this.changeScreen});
   @override
   Widget build(BuildContext context) {
     return Container(

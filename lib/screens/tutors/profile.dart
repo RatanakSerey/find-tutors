@@ -6,10 +6,10 @@ import 'package:find_tutors/widgets/index.dart';
 //utils
 import 'package:find_tutors/utils/index.dart';
 
-class ProfileTwo extends StatelessWidget {
+class ProfileTwoPage extends StatelessWidget {
 
   final Function changeScreen;
-  ProfileTwo({this.changeScreen});
+  ProfileTwoPage({this.changeScreen});
   var deviceSize;
 
   static _showModalSheets(context) {
