@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:find_tutors/model/subject.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
@@ -10,10 +11,10 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  // List<SubjectItem> _subjects = [];
-  List<SubjectItem> _subjects = List.generate(
+  // List<Subject> _subjects = [];
+  List<Subject> _subjects = List.generate(
     25,
-    (i) => SubjectItem(id: '${i+1}', khName: 'yiman', enName: 'male'),
+    (i) => Subject(id: '${i+1}', khName: 'yiman', enName: 'male'),
   );
   Future fetchSubject(String params) {
     String url = 'http://192.168.43.3:3000/find-subject/${params}';
@@ -21,7 +22,7 @@ class _TestState extends State<Test> {
     return httpClient.get(url).then((response) {
       var result = json.decode(response.body);
 
-      result.map((o) => _subjects.add(SubjectItem.fromMap(o))).toList();
+      result.map((o) => _subjects.add(Subject.fromMap(o))).toList();
       setState(() {
         _subjects;
       });
@@ -62,8 +63,8 @@ class _TestState extends State<Test> {
               itemCount: _subjects.length,
               padding: const EdgeInsets.only(bottom: 30.0),
               itemBuilder: (context, index) {
-                final SubjectItem subjectItem = _subjects[index];
-                return _listItem(subjectItem, index);
+                final Subject subject = _subjects[index];
+                return _listItem(subject, index);
               },
               controller: _scrollController,
             ),
@@ -74,7 +75,7 @@ class _TestState extends State<Test> {
     );
   }
 
-  Widget _listItem(SubjectItem item, int i) {
+  Widget _listItem(Subject item, int i) {
     return ListTile(
       leading: Icon(Icons.book),
       title: Text(item.khName.toString() + item.id.toString()),
@@ -113,7 +114,7 @@ class _TestState extends State<Test> {
   _loadMoreData() async {
     if (!isPerformingRequest) {
       setState(() => isPerformingRequest = true);
-      List<SubjectItem> newEntries = await fakeRequest();
+      List<Subject> newEntries = await fakeRequest();
 
       if (newEntries.isEmpty) {
         double edge = 50.0;
@@ -134,7 +135,7 @@ class _TestState extends State<Test> {
     }
   }
 
-  Future<List<SubjectItem>> fakeRequest() async {
+  Future<List<Subject>> fakeRequest() async {
     return Future.delayed(Duration(seconds: 1), () {
       // return [
       //   SubjectItem(id: "0099", khName: "veasna", enName: "male"),
@@ -146,24 +147,4 @@ class _TestState extends State<Test> {
   }
 }
 
-class SubjectItem {
-  JsonDecoder jsonDecoder = new JsonDecoder();
-  String id;
-  String khName;
-  String enName;
 
-  SubjectItem({this.id, this.khName, this.enName});
-
-  SubjectItem.fromMap(Map<String, dynamic> map)
-      : khName = map['khName'] as String,
-        enName = map['enName'] as String,
-        id = map['_id'] as String;
-
-  Map<String, dynamic> toMap() {
-    var map = new Map<String, dynamic>();
-    map['khName'] = khName;
-    map['enName'] = enName;
-    map['_id'] = id;
-    return map;
-  }
-}

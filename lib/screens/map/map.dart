@@ -8,12 +8,12 @@ import 'package:find_tutors/widgets/index.dart';
 import 'package:find_tutors/utils/index.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class MapWidget extends StatefulWidget {
+class MapPage extends StatefulWidget {
   @override
-  _MapWidgetState createState() => _MapWidgetState();
+  _MapPageState createState() => _MapPageState();
 }
 
-class _MapWidgetState extends State<MapWidget> {
+class _MapPageState extends State<MapPage> {
   final SlidableController slidableController = SlidableController();
   final List<_HomeItem> items = List.generate(
     5,

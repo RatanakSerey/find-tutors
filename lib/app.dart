@@ -13,9 +13,9 @@ import 'package:find_tutors/bottom_navigation.dart';
 class App extends StatelessWidget {
   final routes = {
     // Constants.homeRoute: (BuildContext context) => Home(),
-    Routes.mapRoute: (BuildContext context) => MapWidget(),
-    Routes.profileRoute: (BuildContext context) => ProfileTwo(),
-    Routes.tutorsDetailRoute: (BuildContext context) => TutorsDetail(),
+    Routes.mapRoute: (BuildContext context) => MapPage(),
+    Routes.profileRoute: (BuildContext context) => ProfileTwoPage(),
+    Routes.tutorsDetailRoute: (BuildContext context) => TutorsDetailPage(),
   };
   final theme = ThemeData(
       primaryColor: Color(0xFF4E54C8),
@@ -36,7 +36,7 @@ class App extends StatelessWidget {
   }
   onUnknownRoute(RouteSettings rs) {
     return MaterialPageRoute(
-        builder: (context) => NotFound(
+        builder: (context) => NotFoundPage(
               appTitle: Constants.coming_soon,
               icon: FontAwesomeIcons.solidSmile,
               title: Constants.coming_soon,

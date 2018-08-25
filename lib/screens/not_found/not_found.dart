@@ -6,7 +6,7 @@ import 'package:find_tutors/widgets/index.dart';
 //utils
 import 'package:find_tutors/utils/index.dart';
 
-class NotFound extends StatelessWidget {
+class NotFoundPage extends StatelessWidget {
   final appTitle;
   final title;
   final message;
@@ -14,7 +14,7 @@ class NotFound extends StatelessWidget {
   final String image;
   final iconColor;
 
-  NotFound(
+  NotFoundPage(
       {this.appTitle = "Search",
       this.title = "No Result",
       this.message = "Try a more general keyword.",

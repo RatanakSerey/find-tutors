@@ -44,16 +44,16 @@ class TabNavigatorState extends State<TabNavigator> {
       body: Stack(children: <Widget>[
         Offstage(
           offstage: _tab != 0,
-          child: SubjectList(
+          child: SubjectListPage(
               screens: subjectListScreens, changeScreen: changeScreen),
         ),
         Offstage(
           offstage: _tab != 1,
-          child: MapWidget(),
+          child: MapPage(),
         ),
         Offstage(
           offstage: _tab != 2,
-          child: Signin(screens: signinScreens, changeScreen: changeScreen),
+          child: SigninPage(screens: signinScreens, changeScreen: changeScreen),
         ),
       ]),
       bottomNavigationBar: BottomNavigationBar(
