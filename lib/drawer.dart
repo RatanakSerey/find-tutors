@@ -2,138 +2,123 @@ import 'package:find_tutors/utils/constants.dart';
 import 'package:find_tutors/widgets/index.dart';
 import 'package:flutter/material.dart';
 
+class CustomDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Material(
+            child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[closeIcon(context), header(context), menu(context)],
+    )));
+  }
+}
 
-Widget header(context) => Ink(
-      decoration:
-          BoxDecoration(gradient: LinearGradient(colors: CommonColors.kitGradients)),
+Widget closeIcon(context) =>
+    Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+      IconButton(
+        icon: Icon(Icons.close),
+        color: Colors.black,
+        onPressed: () => Navigator.pop(context),
+      )
+    ]);
+Widget header(context) => Container(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircleAvatar(
-              radius: 25.0,
-              backgroundColor: Colors.white,
-              // backgroundImage: AssetImage(UIData.pkImage),
+            FlutterLogo(
+              colors: Colors.green,
+              size: 80.0,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ProfileTile(
-                title: "Pawan Kumar",
-                subtitle: "mtechviral@gmail.com",
-                textColor: Colors.white,
+                title: "Find Tutors",
+                subtitle: "V 0.01",
+                textColor: Colors.black,
               ),
             ),
-            new IconButton(
-              icon: new Icon(
-                Icons.close,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            )
           ],
         ),
       ),
     );
-
-class CustomDrawer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-        color: Colors.white,
-        // shape: RoundedRectangleBorder(
-        //     borderRadius: new BorderRadius.only(
-        //         topLeft: new Radius.circular(15.0),
-        //         topRight: new Radius.circular(15.0))),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            header(context),
-            Expanded(
-                child: ListView(children: <Widget>[
-              Column(
-                children: <Widget>[
-                  SizedBox(height: 16.0),
-                  new GestureDetector(
-                    child: new Text(
-                      "Home",
-                      style: Theme.of(context).textTheme.body2,
-                      textAlign: TextAlign.center,
-                    ),
-                    onTap: () {
-                      print("Hello world");
-                    },
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    width: 70.0,
-                    height: 2.0,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                  SizedBox(height: 20.0),
-                  new GestureDetector(
-                    onTap: () {
-                      // Navigator.pop(context);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Signin()),
-                      // );
-                    },
-                    child: new Text(
-                      "Sign In",
-                      style: Theme.of(context).textTheme.body2,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    width: 70.0,
-                    height: 2.0,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                  SizedBox(height: 20.0),
-                  new GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, 'otherPage');
-                    },
-                    child: new Text(
-                      "Setting",
-                      style: Theme.of(context).textTheme.body2,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    width: 70.0,
-                    height: 2.0,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                  SizedBox(height: 20.0),
-                  new GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, "/Tutor Profile");
-                    },
-                    child: new Text(
-                      "About",
-                      style: Theme.of(context).textTheme.body2,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    width: 70.0,
-                    height: 2.0,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ],
-              ),
-            ])),
-            MyAboutTile()
-          ],
-        ));
-  }
-}
+Widget menu(context) => Expanded(
+      child: Column(
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: 20.0),
+          new GestureDetector(
+            child: new Text(
+              "Home",
+              style: Theme.of(context).textTheme.title,
+              textAlign: TextAlign.center,
+            ),
+            onTap: () {
+              print("Hello world");
+            },
+          ),
+          SizedBox(height: 25.0),
+          new GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/Tutor Profile");
+            },
+            child: new Text(
+              "Map",
+              style: Theme.of(context).textTheme.title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(height: 25.0),
+          new GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/Tutor Profile");
+            },
+            child: new Text(
+              "Profile",
+              style: Theme.of(context).textTheme.title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(height: 25.0),
+          new GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, 'otherPage');
+            },
+            child: new Text(
+              "Setting",
+              style: Theme.of(context).textTheme.title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(height: 25.0),
+          new GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/Tutor Profile");
+            },
+            child: new Text(
+              "About",
+              style: Theme.of(context).textTheme.title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(height: 25.0),
+          new GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/Tutor Profile");
+            },
+            child: new Text(
+              "FeedBack",
+              style: Theme.of(context).textTheme.title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );

@@ -11,19 +11,23 @@ class TutorsDetailPage extends StatelessWidget {
   // TutorsDetail({this.changeScreen});
   var deviceSize;
 
-  //Column1
+  // Profile
   Widget profileColumn() => Container(
-        height: deviceSize.height * 0.24,
+        height: deviceSize.height * 0.25,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.chat),
-                  color: Colors.white,
-                  onPressed: () {},
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: IconButton(
+                    icon: Icon(Icons.chat),
+                    color: CommonColors.primary,
+                    onPressed: () {},
+                  ),
+                  // radius: 10.0,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -31,20 +35,29 @@ class TutorsDetailPage extends StatelessWidget {
                         new BorderRadius.all(new Radius.circular(50.0)),
                     border: new Border.all(
                       color: Colors.white,
-                      width: 4.0,
+                      width: 2.0,
                     ),
                   ),
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
                         "https://lh4.googleusercontent.com/-pxQQZHW89b8/AAAAAAAAAAI/AAAAAAAAABk/WiqR17OEq9o/photo.jpg?sz=328"),
                     foregroundColor: Color(0xFF4E54C8),
-                    radius: 40.0,
+                    radius: 45.0,
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.call),
-                  color: Colors.white,
-                  onPressed: () {},
+                // IconButton(
+                //   icon: Icon(Icons.call),
+                //   color: Colors.white,
+                //   onPressed: () {},
+                // ),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: IconButton(
+                    icon: Icon(Icons.call),
+                    color: CommonColors.primary,
+                    onPressed: () {},
+                  ),
+                  // radius: 10.0,
                 ),
               ],
             ),
@@ -60,9 +73,31 @@ class TutorsDetailPage extends StatelessWidget {
         ),
       );
 
+  //  Follow
+  Widget followColumn(Size deviceSize) => Container(
+        height: deviceSize.height * 0.10,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            ProfileTile(
+              title: "15",
+              subtitle: "Posts",
+            ),
+            ProfileTile(
+              title: "50",
+              subtitle: "Followers",
+            ),
+            ProfileTile(
+              title: "10",
+              subtitle: "Likes",
+            ),
+          ],
+        ),
+      );
+
   // Description
   Widget descColumn() => Container(
-        height: deviceSize.height * 0.13,
+        height: deviceSize.height * 0.10,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50.0),
@@ -79,7 +114,7 @@ class TutorsDetailPage extends StatelessWidget {
 
   // Account
   Widget accountColumn() => Container(
-        height: deviceSize.height * 0.3,
+        height: deviceSize.height * 0.25,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -121,108 +156,39 @@ class TutorsDetailPage extends StatelessWidget {
         ),
       );
 
-//  Follow
-  Widget followColumn(Size deviceSize) => Container(
-        height: deviceSize.height * 0.13,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            ProfileTile(
-              title: "15",
-              subtitle: "Posts",
-            ),
-            ProfileTile(
-              title: "50",
-              subtitle: "Followers",
-            ),
-            ProfileTile(
-              title: "10",
-              subtitle: "Likes",
-            ),
-          ],
-        ),
-      );
-
-  // Widget bodyData(context) {
-  //   return SingleChildScrollView(
-  //       child: SafeArea(
-  //     child: Column(
-  //       children: <Widget>[
-  //         IconButton(
-  //           icon: Icon(Icons.arrow_back_ios),
-  //           onPressed: () => Navigator.pop(context),
-  //         ),
-  //         profileColumn(),
-  //         CommonDivider(),
-  //         followColumn(deviceSize),
-  //         CommonDivider(),
-  //         descColumn(),
-  //         CommonDivider(),
-  //         accountColumn(),
-  //         CommonDivider(),
-  //         accountColumn(),
-  //       ],
-  //     ),
-  //   ));
-  // }
-
-  // Widget _scaffold(context) => CommonScaffold(
-  //       appTitle: "View Profile",
-  //       bodyData: bodyData(context),
-  //       // showFAB: true,
-  //       showDrawer: true,
-  //       // floatingIcon: Icons.person_add,
-  //     );
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   deviceSize = MediaQuery.of(context).size;
-  //   return Scaffold(
-  //     body: Column(
-  //       // fit: StackFit.expand,
-  //       children: <Widget>[
-  //         // CustomBackground(
-  //         //   showIcon: false,
-  //         // ),
-  //         bodyData(context)
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // final showIcon;
-  // final image;
-  // TutorsDetail({this.showIcon = true, this.image});
-
   Widget topHalf(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
     return new Flexible(
-      flex: 3,
-      child: ClipPath(
-        clipper: new ArcClipper(),
-        child: Stack(
-          children: <Widget>[
-            new Container(
-              decoration: new BoxDecoration(
+        flex: 3,
+        child: ClipPath(
+          clipper: new ArcClipper(),
+          child: Stack(
+            children: <Widget>[
+              new Container(
+                decoration: new BoxDecoration(
                   gradient: new LinearGradient(
-                colors: CommonColors.kitGradients,
-              )),
-            ),
-            new SafeArea(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                IconButton(
-                icon: Icon(Icons.arrow_back),
-                color: Colors.white,
-                onPressed: () => Navigator.pop(context),),
-                profileColumn(),
-              ],
-            ))
-          ],
-        ),
-      ),
-    );
+                      colors: CommonColors.kitGradients,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      // stops: [0.0, 0.5],
+                      tileMode: TileMode.clamp),
+                ),
+              ),
+              new SafeArea(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.white,
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  profileColumn(),
+                ],
+              ))
+            ],
+          ),
+        ));
   }
 
   Widget bottomHalf(BuildContext context) {

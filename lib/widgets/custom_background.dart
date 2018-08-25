@@ -25,23 +25,6 @@ class CustomBackground extends StatelessWidget {
                 colors: CommonColors.kitGradients,
               )),
             ),
-            showIcon
-                ? new Center(
-                    child: SizedBox(
-                        height: deviceSize.height / 8,
-                        width: deviceSize.width / 2,
-                        child: FlutterLogo(
-                          colors: Colors.yellow,
-                        )),
-                  )
-                : new Container(
-                    width: double.infinity,
-                    child: image != null
-                        ? Image.network(
-                            image,
-                            fit: BoxFit.cover,
-                          )
-                        : new Container())
           ],
         ),
       ),

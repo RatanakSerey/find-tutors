@@ -15,6 +15,7 @@ class CommonAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 2.0,
       leading: IconButton(
           icon: Icon(icon),
           color: leadingColor,

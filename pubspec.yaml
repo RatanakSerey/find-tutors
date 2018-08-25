@@ -11,7 +11,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   font_awesome_flutter:
   transparent_image: "^0.1.0"
-  cached_network_image: "^0.4.1"
+  # cached_network_image: "^0.4.1"
   rxdart:
   flutter_masked_text:
   bubble_tab_indicator: "^0.1.3"
@@ -35,6 +35,11 @@ flutter:
     - family: Abel
       fonts:
         - asset: assets/fonts/Abel-Regular.ttf
+    - family: Kantumruy
+      fonts:
+        - asset: assets/fonts/Kantumruy-Regular.ttf
+        - asset: assets/fonts/Kantumruy-Bold.ttf
+          weight: 700
     - family: Icomoon
       fonts:
         - asset: assets/fonts/icomoon.ttf

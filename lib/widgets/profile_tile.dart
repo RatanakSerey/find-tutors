@@ -14,7 +14,7 @@ class ProfileTile extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-              fontSize: 20.0, fontWeight: FontWeight.w700, color: textColor),
+              fontSize: 22.0, fontWeight: FontWeight.w700, color: textColor),
         ),
         SizedBox(
           height: 5.0,
@@ -22,7 +22,7 @@ class ProfileTile extends StatelessWidget {
         Text(
           subtitle,
           style: TextStyle(
-              fontSize: 15.0, fontWeight: FontWeight.normal, color: textColor),
+              fontSize: 16.0, fontWeight: FontWeight.normal, color: textColor),
         ),
       ],
     );
