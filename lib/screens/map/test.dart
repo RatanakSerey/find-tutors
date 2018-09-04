@@ -4,6 +4,8 @@ import 'package:find_tutors/model/subject.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:find_tutors/utils/icon_font.dart';
+import 'package:find_tutors/utils/index.dart';
 
 class Test extends StatefulWidget {
   @override
@@ -14,7 +16,7 @@ class _TestState extends State<Test> {
   // List<Subject> _subjects = [];
   List<Subject> _subjects = List.generate(
     25,
-    (i) => Subject(id: '${i+1}', khName: 'yiman', enName: 'male'),
+    (i) => Subject(id: '${i + 1}', khName: 'yiman', enName: 'posts'),
   );
   Future fetchSubject(String params) {
     String url = 'http://192.168.43.3:3000/find-subject/${params}';
@@ -76,24 +78,97 @@ class _TestState extends State<Test> {
   }
 
   Widget _listItem(Subject item, int i) {
-    return ListTile(
-      leading: Icon(Icons.book),
-      title: Text(item.khName.toString() + item.id.toString()),
-      subtitle: Text(item.enName.toString()),
-      onTap: () {
-        // fetchSubject(json.encode(item.toMap()));
-      },
-      trailing: IconButton(
-        icon: Icon(
-          Icons.delete,
-          color: Colors.red,
-        ),
-        onPressed: () {
-          setState(() {
-            _subjects.removeAt(i);
-          });
-        },
+    double width = MediaQuery.of(context).size.width;
+    // return ListTile(
+    //   leading: Icon(Icons.book),
+    //   title: Text(item.khName.toString() + item.id.toString()),
+    //   subtitle: Text(item.enName.toString()),
+    //   onTap: () {
+    //     // fetchSubject(json.encode(item.toMap()));
+    //   },
+    //   trailing: IconButton(
+    //     icon: Icon(
+    //       Icons.delete,
+    //       color: Colors.red,
+    //     ),
+    //     onPressed: () {
+    //       setState(() {
+    //         _subjects.removeAt(i);
+    //       });
+    //     },
+    //   ),
+    // );
+    return new ListTile(
+      title: new Card(
+        elevation: 2.0,
+        child: new Container(
+            // alignment: Alignment.topCenter,
+            margin: new EdgeInsets.only(top: 10.0, bottom: 10.0),
+            child: new Row(
+              // mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: 100.0,
+                      child: Image.asset(
+                        "assets/images/sub_icon.png",
+                        height: 80.0,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Container(
+                        width: width - 200.0,
+                        child: Column(
+                          // mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  item.khName.toString(),
+                                  style: TextStyle(fontSize: 24.0),
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    FeatherIcons.star,
+                                    color: CommonColors.primary,
+                                    // size: 24.0,
+                                  ),
+                                  onPressed: () {},
+                                  alignment: Alignment.center,
+                                  iconSize: 20.0,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(item.id.toString() +
+                                    ' ' +
+                                    item.enName.toString())
+                              ],
+                            ),
+                          ],
+                        )),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      FeatherIcons.chevron_right,
+                      color: CommonColors.primary,
+                      size: 36.0,
+                    ),
+                  ],
+                )
+              ],
+            )),
       ),
+      onTap: () {},
     );
   }
 
@@ -146,5 +221,3 @@ class _TestState extends State<Test> {
     });
   }
 }
-
-
