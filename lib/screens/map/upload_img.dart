@@ -10,6 +10,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 import '../../utils/firebase_config.dart';
 
@@ -22,6 +23,8 @@ class _UploadImgState extends State<UploadImg> {
   FirebaseStorage _storage;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = new GoogleSignIn();
+
+  bool isLoggedIn = false;
 
   String _networkImage = "";
   // FirebaseStorage firebaseStorage = FirebaseStorage.instance;
@@ -71,7 +74,7 @@ class _UploadImgState extends State<UploadImg> {
         .catchError((err) => print(err));
   }
 
-  Future<FirebaseUser> signIn() async {
+  Future<FirebaseUser> signInGoogle() async {
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication gSA = await googleSignInAccount.authentication
         .catchError((err) => print(err));
@@ -80,10 +83,59 @@ class _UploadImgState extends State<UploadImg> {
         idToken: gSA.idToken, accessToken: gSA.accessToken);
 
     print("User Name : ${user.displayName}");
+    setState(() {
+      isLoggedIn = true;
+    });
     return user;
   }
 
-  void signOut() => googleSignIn.signOut();
+  void signOutGoogle() {
+    googleSignIn.signOut();
+    deleteAuthAccount();
+  }
+
+  void initiateFacebookLogin() async {
+    var facebookLogin = FacebookLogin();
+    var facebookLoginResult = await facebookLogin
+        .logInWithReadPermissions(['email', 'public_profile']);
+    switch (facebookLoginResult.status) {
+      case FacebookLoginStatus.error:
+        print("Error");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print("CancelledByUser");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.loggedIn:
+        print("LoggedIn");
+        onLoginStatusChanged(true);
+        //firebase_auth
+        print(facebookLoginResult.accessToken.token);
+        print(facebookLoginResult.accessToken.userId);
+        _auth
+            .signInWithFacebook(
+                accessToken: facebookLoginResult.accessToken.token)
+            .then((user) => print(user))
+            .catchError((err) => print(err));
+        break;
+    }
+  }
+
+  deleteAuthAccount() {
+    _auth.currentUser().then((user) {
+      user.delete();
+      setState(() {
+        isLoggedIn = false;
+      });
+    }).catchError((err) => print(err));
+  }
+
+  void onLoginStatusChanged(bool isLoggedIn) {
+    setState(() {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +143,17 @@ class _UploadImgState extends State<UploadImg> {
       appBar: AppBar(title: Text("Upload image")),
       body: Column(
         children: <Widget>[
+          Center(
+            child: isLoggedIn
+                ? RaisedButton(
+                    child: Text("Logout Facebook"),
+                    onPressed: () => deleteAuthAccount(),
+                  )
+                : RaisedButton(
+                    child: Text("Login with Facebook"),
+                    onPressed: () => initiateFacebookLogin(),
+                  ),
+          ),
           Container(
             child: RaisedButton(
               child: Text("Choose image"),
@@ -98,13 +161,16 @@ class _UploadImgState extends State<UploadImg> {
             ),
           ),
           _networkImage != "" ? Image.network(_networkImage) : Text("no image"),
-          RaisedButton(
-            child: Text("sign in"),
-            onPressed: signIn,
-          ),
-          RaisedButton(
-            child: Text("sign out"),
-            onPressed: signOut,
+          Center(
+            child: isLoggedIn
+                ? RaisedButton(
+                    child: Text("Sign out Google"),
+                    onPressed: signOutGoogle,
+                  )
+                : RaisedButton(
+                    child: Text("Sign in with Google"),
+                    onPressed: signInGoogle,
+                  ),
           ),
           RaisedButton(
             child: Text("delete file from storage"),
