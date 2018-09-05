@@ -1,7 +1,14 @@
 //packages
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 import 'package:find_tutors/screens/map/test.dart';
+import 'package:find_tutors/screens/map/upload_img.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 //widget
 import 'package:find_tutors/widgets/index.dart';
 //utils
@@ -14,6 +21,9 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  File _image;
+  String _base64;
+
   final SlidableController slidableController = SlidableController();
   final List<_HomeItem> items = List.generate(
     5,
@@ -24,6 +34,29 @@ class _MapPageState extends State<MapPage> {
           _getAvatarColor(i),
         ),
   );
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Uint8List bytes = BASE64.decode(_base64);
+  }
+
+  Future getImageFromLocal() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print("Selected image =  ${image}");
+    List<int> imageBytes = image.readAsBytesSync();
+    String base64Image = base64.encode(imageBytes);
+    fetchTesting(base64Image);
+  }
+
+  Future fetchTesting(String params) {
+    String url = 'http://192.168.0.103:3000/testing/${params}';
+    var httpClient = http.Client();
+    return httpClient.get(url).then((response) {
+      print(response.body);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +100,22 @@ class _MapPageState extends State<MapPage> {
             child: Text("Test"),
             onPressed: () {
               Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute<bool>(
-                        fullscreenDialog: true,
-                        builder: (BuildContext context) => Test(),
-                      ),
-                    );
+                MaterialPageRoute<bool>(
+                  fullscreenDialog: true,
+                  builder: (BuildContext context) => Test(),
+                ),
+              );
+            },
+          ),
+          RaisedButton(
+            child: Text("Upload image"),
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).push(
+                MaterialPageRoute<bool>(
+                  fullscreenDialog: true,
+                  builder: (BuildContext context) => UploadImg(),
+                ),
+              );
             },
           ),
           Expanded(
@@ -83,13 +127,24 @@ class _MapPageState extends State<MapPage> {
                       : Axis.horizontal),
             ),
           ),
+          Expanded(
+            child: Center(
+              child: _image == null
+                  ? new Text('No image selected.')
+                  : new Image.file(_image),
+            ),
+          ),
+          RaisedButton(
+            child: Text("Image picker"),
+            onPressed: () => getImageFromLocal(),
+          )
         ],
       ),
     );
   }
 
   @override
-  void dispose (){
+  void dispose() {
     super.dispose();
   }
 
