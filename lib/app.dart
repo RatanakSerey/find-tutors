@@ -1,4 +1,5 @@
 //packages
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +12,8 @@ import 'package:find_tutors/screens/index.dart';
 import 'package:find_tutors/bottom_navigation.dart';
 
 class App extends StatelessWidget {
+  final FirebaseStorage storage;
+
   final routes = {
     // Constants.homeRoute: (BuildContext context) => Home(),
     Routes.mapRoute: (BuildContext context) => MapPage(),

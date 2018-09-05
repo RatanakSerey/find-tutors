@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1050676976358",
+    "firebase_url": "https://find-tutors.firebaseio.com",
+    "project_id": "find-tutors",
+    "storage_bucket": "find-tutors.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050676976358:android:d5ef913016960d3e",
+        "android_client_info": {
+          "package_name": "com.example.findtutors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050676976358-k0p882icnh76elnusaeeqtbgu0pac4rs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfSJL8-eabWevwEgqvuA9EnKctHHucYnc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
