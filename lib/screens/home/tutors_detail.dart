@@ -24,17 +24,29 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
   Widget followColumn(Size deviceSize) => Container(
         height: deviceSize.height * 0.10,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             ProfileTile(
               title: "15",
               subtitle: "Likes",
               textColor: CommonColors.primary,
             ),
+            Container(
+              height: 30.0,
+              width: 1.0,
+              color: CommonColors.primary,
+              // margin: const EdgeInsets.only(left: 10.0, right: 10.0),
+            ),
             ProfileTile(
               title: "50",
               subtitle: "Followers",
               textColor: CommonColors.primary,
+            ),
+            Container(
+              height: 30.0,
+              width: 1.0,
+              color: CommonColors.primary,
+              // margin: const EdgeInsets.only(left: 10.0, right: 10.0),
             ),
             ProfileTile(
               title: "10",
@@ -59,6 +71,12 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
               title: "50",
               subtitle: "Followers",
               textColor: Colors.white,
+            ),
+            Container(
+              height: 30.0,
+              width: 1.0,
+              color: Colors.white30,
+              margin: const EdgeInsets.only(left: 10.0, right: 10.0),
             ),
             ProfileTile(
               title: "10",
@@ -196,7 +214,7 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
                     children: <Widget>[
                       // Back Icon
                       IconButton(
-                        icon: Icon(Icons.arrow_back),
+                        icon: Icon(FeatherIcons.x),
                         color: Colors.white,
                         onPressed: () => Navigator.pop(context),
                       ),
@@ -238,21 +256,10 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: IconButton(
-                                icon: Icon(FeatherIcons.phone),
-                                iconSize: 18.0,
-                                color: CommonColors.primary,
-                                onPressed: () {},
-                              ),
-                              // radius: 10.0,
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
                             Material(
+                              // borderRadius: BorderRadius.all(Radius.circular(50.0)),
                               elevation: 1.0,
+                              clipBehavior: Clip.antiAlias,
                               color: Colors.transparent,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
@@ -260,34 +267,72 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
                               child: InkWell(
                                 onTap: () {},
                                 child: Ink(
-                                  height: 40.0,
+                                  height: 36.0,
                                   width: 120.0,
                                   color: Colors.white,
-                                  child: Center(
-                                    child: Text(
-                                      'Follow',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          FeatherIcons.phone,
+                                          size: 16.0,
                                           color: CommonColors.primary,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0),
-                                    ),
-                                  ),
+                                        ),
+                                        SizedBox(
+                                          width: 6.0,
+                                        ),
+                                        Text(
+                                          'Call',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: CommonColors.primary,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18.0),
+                                        ),
+                                      ]),
                                 ),
                               ),
                             ),
                             SizedBox(
                               width: 10.0,
                             ),
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: IconButton(
-                                icon: Icon(FeatherIcons.message_square),
-                                iconSize: 18.0,
-                                color: CommonColors.primary,
-                                onPressed: () {},
+                            Material(
+                              elevation: 1.0,
+                              clipBehavior: Clip.antiAlias,
+                              color: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50.0))),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Ink(
+                                  height: 36.0,
+                                  width: 120.0,
+                                  color: Colors.white,
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          FeatherIcons.user_plus,
+                                          size: 16.0,
+                                          color: CommonColors.primary,
+                                        ),
+                                        SizedBox(
+                                          width: 6.0,
+                                        ),
+                                        Text(
+                                          'Folow',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: CommonColors.primary,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18.0),
+                                        ),
+                                      ]),
+                                ),
                               ),
-                              // radius: 10.0,
                             ),
                           ],
                         ),
@@ -498,32 +543,32 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
 
   TabController _controller;
   ScrollController scrollController;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _controller = new TabController(vsync: this, length: 3);
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _controller = new TabController(vsync: this, length: 3);
+  }
 
-  // @override
-  // void dispose() {
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   deviceSize = MediaQuery.of(context).size;
-  //   return new Scaffold(
-  //       body: Column(
-  //     children: <Widget>[
-  //       profileColumn(context),
-  //       // contactColumn(deviceSize),
-  //       // CommonDivider(),
-  //       tabBar(context),
-  //       // tabBar(context)
-  //     ],
-  //   ));
-  // }
+  @override
+  Widget build(BuildContext context) {
+    deviceSize = MediaQuery.of(context).size;
+    return new Scaffold(
+        body: Column(
+      children: <Widget>[
+        profileColumn(context),
+        followColumn(deviceSize),
+        // CommonDivider(),
+        tabBar(context),
+        // tabBar(context)
+      ],
+    ));
+  }
 
   // TabBar
   Widget tabBar(BuildContext context) {
@@ -567,6 +612,7 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
       ],
     );
   }
+
   // About Tab
   Widget aboutTab(BuildContext context) {
     return new SingleChildScrollView(
@@ -585,6 +631,7 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
       new ListTile(leading: const Icon(Icons.home), title: new Text('Name:')),
     ]));
   }
+
   // History Tab
   Widget historyTab(BuildContext context) => new Card(
         child: new ListTile(
@@ -640,78 +687,78 @@ class TutorsDetailPageState extends State<TutorsDetailPage>
     );
   }
 
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   scrollController.dispose();
+  //   super.dispose();
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    scrollController = new ScrollController();
-    scrollController.addListener(() => setState(() {}));
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   scrollController = new ScrollController();
+  //   scrollController.addListener(() => setState(() {}));
+  // }
 
-  @override
-  Widget build(BuildContext context) {
-    var flexibleSpaceWidget = new SliverAppBar(
-      expandedHeight: 250.0,
-      pinned: true,
-      flexibleSpace: FlexibleSpaceBar(
-          centerTitle: true,
-          title: Text("Developer Libs",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-              )),
-          background: profileColumn(context)),
-      actions: <Widget>[
-        new Container(
-          padding: EdgeInsets.all(5.0),
-          child: _buildActions(),
-        ),
-      ],
-    );
+  // @override
+  // Widget build(BuildContext context) {
+  //   var flexibleSpaceWidget = new SliverAppBar(
+  //     expandedHeight: 250.0,
+  //     pinned: true,
+  //     flexibleSpace: FlexibleSpaceBar(
+  //         centerTitle: true,
+  //         title: Text("Developer Libs",
+  //             style: TextStyle(
+  //               color: Colors.white,
+  //               fontSize: 16.0,
+  //             )),
+  //         background: profileColumn(context)),
+  //     actions: <Widget>[
+  //       new Container(
+  //         padding: EdgeInsets.all(5.0),
+  //         child: _buildActions(),
+  //       ),
+  //     ],
+  //   );
 
-    return Scaffold(
-      body: new DefaultTabController(
-        length: 3,
-        child: NestedScrollView(
-          controller: scrollController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              flexibleSpaceWidget,
-              SliverPersistentHeader(
-                delegate: _SliverAppBarDelegate(
-                  TabBar(
-                    labelColor: Colors.black87,
-                    unselectedLabelColor: Colors.black26,
-                    tabs: [
-                      Tab(
-                        icon: Icon(Icons.account_box),
-                        text: "Detail",
-                      ),
-                      Tab(icon: Icon(Icons.add_location), text: "Address"),
-                      Tab(icon: Icon(Icons.monetization_on), text: "Earning"),
-                    ],
-                  ),
-                ),
-                pinned: true,
-              ),
-            ];
-          },
-          body: new TabBarView(
-            children: <Widget>[
-              new Text("Detail"),
-              new Text("Address"),
-              new Text("Earning"),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  //   return Scaffold(
+  //     body: new DefaultTabController(
+  //       length: 3,
+  //       child: NestedScrollView(
+  //         controller: scrollController,
+  //         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+  //           return <Widget>[
+  //             flexibleSpaceWidget,
+  //             SliverPersistentHeader(
+  //               delegate: _SliverAppBarDelegate(
+  //                 TabBar(
+  //                   labelColor: Colors.black87,
+  //                   unselectedLabelColor: Colors.black26,
+  //                   tabs: [
+  //                     Tab(
+  //                       icon: Icon(Icons.account_box),
+  //                       text: "Detail",
+  //                     ),
+  //                     Tab(icon: Icon(Icons.add_location), text: "Address"),
+  //                     Tab(icon: Icon(Icons.monetization_on), text: "Earning"),
+  //                   ],
+  //                 ),
+  //               ),
+  //               pinned: true,
+  //             ),
+  //           ];
+  //         },
+  //         body: new TabBarView(
+  //           children: <Widget>[
+  //             new Text("Detail"),
+  //             new Text("Address"),
+  //             new Text("Earning"),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }
 
 class PhotoHero extends StatelessWidget {
