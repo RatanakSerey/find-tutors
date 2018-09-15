@@ -319,7 +319,7 @@ class PostListPageState extends State<PostListPage>
                                 width: 6.0,
                               ),
                               Text(
-                                'Fk Shit',
+                                '10 អ្នក',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.white,
