@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:find_tutors/widgets/index.dart';
 import 'package:find_tutors/utils/index.dart';
+import 'package:find_tutors/utils/icon_font.dart';
 import 'signup.dart';
 
 class ResetPasswordPage extends StatelessWidget {
@@ -12,18 +13,20 @@ class ResetPasswordPage extends StatelessWidget {
         // appBar: AppBar(),
         body: SafeArea(
             child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: Column(
-      children: <Widget>[
-        // IconButton(
-        //   icon: Icon(Icons.arrow_back),
-        //   color: Colors.black,
-        //   onPressed: () => Navigator.pop(context),
-        // ),
-        resetHeader(context),
-        resetFields(context),
-        resetFooter(context)
-      ],
-    ))));
+                  children: <Widget>[
+                    resetHeader(context),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    resetFields(context),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    resetFooter(context)
+                  ],
+                ))));
   }
 
   resetHeader(context) => Container(
@@ -61,31 +64,41 @@ class ResetPasswordPage extends StatelessWidget {
         ],
       ));
   resetFields(context) => Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.min,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+                color: CommonColors.primary,
+                width: 0.5,
+                style: BorderStyle.solid),
+          ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            new Padding(
+              padding: EdgeInsets.only(top: 10.0, bottom: 10.0, right: 15.0),
+              child: Icon(
+                FeatherIcons.mail,
+                color: CommonColors.primary,
+                size: 20.0,
+              ),
+            ),
+            new Expanded(
               child: TextField(
-                maxLines: 1,
+                textAlign: TextAlign.left,
                 decoration: InputDecoration(
-                  labelText: "Email",
+                  // labelText: "Username",
+                  // contentPadding: EdgeInsets.only(bottom: 0.0),
+                  border: InputBorder.none,
+                  hintText: 'Enter your email',
+                  hintStyle: TextStyle(color: CommonColors.primary),
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Container(
-                padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-                width: double.infinity,
-                child: GradientButton(
-                  onPressed: () {},
-                  text: Constants.reset_password,
-                )),
           ],
         ),
+        // child:
       );
   resetFooter(context) => Container(
         child: Column(
@@ -94,11 +107,11 @@ class ResetPasswordPage extends StatelessWidget {
             new GestureDetector(
               onTap: () {
                 Navigator.of(context, rootNavigator: true).push(
-                      new MaterialPageRoute<bool>(
-                        fullscreenDialog: true,
-                        builder: (BuildContext context) => new SignupPage(),
-                      ),
-                    );
+                  new MaterialPageRoute<bool>(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => new SignupPage(),
+                  ),
+                );
               },
               child: new Text(
                 "Dont have account? Sign Up",

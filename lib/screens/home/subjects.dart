@@ -148,7 +148,7 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
                   title: Text("Subject",
                       style: TextStyle(
                         color: Colors.black87,
-                        fontSize: 18.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       )),
                   // background: Image.network(
@@ -185,99 +185,15 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
           // isPerformingRequest ? _buildProgressIndicator() : Container()
           ),
     );
-    // return PageReveal(
-    //   revealPercent: animation.value,
-    //   child: Container(
-    //       color: Colors.white10,
-    //       // height: 500.0,
-    //       child: Column(
-    //         children: <Widget>[
-    //           CommonAppBar(
-    //             title: 'Subject',
-    //             onPress: () => Scaffold.of(context).openDrawer(),
-    //           ),
-    //           Expanded(
-    //             child: GridView.builder(
-    //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //                 crossAxisCount: 2,
-    //                 // mainAxisSpacing: 10.0,
-    //                 crossAxisSpacing: 0.0,
-    //                 // childAspectRatio: 1.0,
-    //               ),
-    //               itemCount: _subjects.length,
-    //               padding: const EdgeInsets.only(bottom: 30.0),
-    //               itemBuilder: (context, index) {
-    //                 final Subject subject = _subjects[index];
-    //                 return _listItem(subject, index);
-    //               },
-    //               controller: _scrollController,
-    //             ),
-    //           ),
-    //           isPerformingRequest ? _buildProgressIndicator() : Container()
-    //         ],
-    //       )),
-    // );
   }
 
   Widget _listItem(Subject item, int i) {
     double width = MediaQuery.of(context).size.width;
-    // return new InkWell(
-    //   splashColor: Colors.orange,
-    //   child: new Card(
-    //       margin: new EdgeInsets.all(10.0),
-    //       elevation: 2.0,
-    //       // alignment: Alignment.topCenter,
-    //       // margin: new EdgeInsets.only(top: 10.0, bottom: 10.0),
-    //       child: new Column(
-    //         // mainAxisAlignment: MainAxisAlignment.end,
-    //         children: <Widget>[
-    //           Column(
-    //             crossAxisAlignment: CrossAxisAlignment.center,
-    //             children: <Widget>[
-    //               Align(
-    //                 alignment: Alignment.topRight,
-    //                 // mainAxisAlignment: MainAxisAlignment.end,
-    //                 child: Container(
-    //                   child: IconButton(
-    //                     icon: Icon(
-    //                       FeatherIcons.star,
-    //                       color: Colors.grey,
-    //                       // size: 24.0,
-    //                     ),
-    //                     onPressed: () {},
-    //                     alignment: Alignment.topRight,
-    //                     iconSize: 20.0,
-    //                   ),
-    //                 ),
-    //               ),
-    //               Align(
-    //                 alignment: Alignment.topCenter,
-    //                 child: Container(
-    //                   child: Image.asset(
-    //                     "assets/images/sub_icon.png",
-    //                     height: 80.0,
-    //                   ),
-    //                 ),
-    //               ),
-    //               SizedBox(
-    //                 width: 10.0,
-    //               ),
-    //               Text(
-    //                 item.khName.toString(),
-    //                 style: TextStyle(fontSize: 24.0),
-    //               ),
-    //               Text(item.id.toString() + ' ' + item.enName.toString())
-    //             ],
-    //           ),
-    //         ],
-    //       )),
-    //   onTap: () => widget.changeScreen(screen: ScreenHelper.postList),
-    // );
     return Padding(
       padding: EdgeInsets.only(top: 15.0),
       child: Stack(
         children: <Widget>[
-          /// Item card
+          /// Item Grid Card
           Align(
             alignment: Alignment.topCenter,
             child: SizedBox.fromSize(
@@ -285,7 +201,6 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    /// Item description inside a material
                     Container(
                       margin: EdgeInsets.only(left: 10.0, right: 10.0),
                       child: Material(
@@ -299,23 +214,39 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
                           child: Padding(
                             padding: EdgeInsets.all(5.0),
                             child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
+                                /// Favorite Icon
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                    padding: EdgeInsets.only(right: 5.0, top: 3.0),
+                                    child: InkWell(
+                                      child: Icon(
+                                        FeatherIcons.star,
+                                        color: Colors.grey,
+                                        size: 20.0,
+                                      ),
+                                      onTap: (){},
+                                    ),
+                                  ),
+                                ),
+                                // Subject Images
                                 Align(
                                   alignment: Alignment.topCenter,
                                   child: Container(
                                     child: Image.asset(
                                       "assets/images/sub_icon.png",
-                                      height: 100.0,
+                                      height: 80.0,
                                     ),
                                   ),
                                 ),
 
-                                /// Name and Price
+                                /// SubjectName and Post Count
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Text(item.khName.toString(),
                                         style: TextStyle(
@@ -330,24 +261,6 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
                               ],
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-
-                    /// Item Icon
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        padding: EdgeInsets.only(right: 10.0),
-                        child: IconButton(
-                          icon: Icon(
-                            FeatherIcons.star,
-                            color: Colors.grey,
-                            // size: 24.0,
-                          ),
-                          onPressed: () {},
-                          alignment: Alignment.topRight,
-                          iconSize: 20.0,
                         ),
                       ),
                     ),

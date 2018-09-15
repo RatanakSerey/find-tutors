@@ -40,6 +40,7 @@ flutter:
     - assets/images/sub_icon.png
     - assets/images/slanted_menu.png
     - assets/images/forgot_password.png
+    - assets/images/Map.png
     
   fonts:
     - family: Abel
