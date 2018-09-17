@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 class Subject {
-  JsonDecoder jsonDecoder = new JsonDecoder();
   String id;
   String khName;
   String enName;

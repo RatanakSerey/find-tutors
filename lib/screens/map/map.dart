@@ -3,12 +3,17 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:find_tutors/screens/map/test_sqflite.dart';
 import 'package:http/http.dart' as http;
 import 'package:find_tutors/screens/map/test.dart';
 import 'package:find_tutors/screens/map/upload_img.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../data/app_state_container.dart';
+//locale
+import '../../services/localization/application.dart';
+import '../../services/localization/app_translations.dart';
 //widget
 import 'package:find_tutors/widgets/index.dart';
 //utils
@@ -21,6 +26,14 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  static final List<String> languagesList = application.supportedLanguages;
+  static final List<String> languageCodesList =
+      application.supportedLanguagesCodes;
+
+  final Map<dynamic, dynamic> languagesMap = {
+    languagesList[0]: languageCodesList[0],
+    languagesList[1]: languageCodesList[1],
+  };
   File _image;
   String _base64;
 
@@ -35,12 +48,12 @@ class _MapPageState extends State<MapPage> {
         ),
   );
 
-  @override
-  void initState() {
-    super.initState();
+  // @override
+  // void initState() {
+  //   super.initState();
 
-    // Uint8List bytes = BASE64.decode(_base64);
-  }
+  //   // Uint8List bytes = BASE64.decode(_base64);
+  // }
 
   Future getImageFromLocal() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -58,26 +71,66 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+//   changeLocale() {
+// application.onLocaleChanged(Locale(languagesList[0]));
+
+//   }
+  _buildLanguageItem(String language) {
+    return InkWell(
+      onTap: () {
+        print(language);
+        application.onLocaleChanged(Locale(languagesMap[language]));
+      },
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          child: Text(
+            language,
+            style: TextStyle(
+              fontSize: 24.0,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // final container = AppStateContainer.of(context);
+    // print(container);
     return Container(
       child: Column(
         children: <Widget>[
           CommonAppBar(
+            // title: AppTranslations.of(context).text("home"),
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
-          RaisedButton(
-            child: Text("bottomSheet"),
-            onPressed: () {
-              CommonBottomSheet(context: context).show();
-            },
+          // RaisedButton(
+          //   child: Text("bottomSheet"),
+          //   onPressed: () {
+          //     CommonBottomSheet(context: context).show();
+          //   },
+          // ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: languagesList.length,
+              itemBuilder: (context, index) {
+                print(languagesList);
+                return _buildLanguageItem(languagesList[index]);
+              },
+            ),
           ),
-          RaisedButton(
-            child: Text("snackbar"),
-            onPressed: () {
-              CommonSnackBar(context: context, content: "HI").show();
-            },
-          ),
+          // RaisedButton(
+          //   onPressed: changeLocale,
+          //   child: Text('change locale'),
+          // ),
+          // RaisedButton(
+          //   child: Text("snackbar"),
+          //   onPressed: () {
+          //     CommonSnackBar(context: context, content: "HI").show();
+          //   },
+          // ),
           RaisedButton(
             child: Text("alert dialog"),
             onPressed: () {
@@ -103,6 +156,17 @@ class _MapPageState extends State<MapPage> {
                 MaterialPageRoute<bool>(
                   fullscreenDialog: true,
                   builder: (BuildContext context) => Test(),
+                ),
+              );
+            },
+          ),
+          RaisedButton(
+            child: Text("Test sqflite"),
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).push(
+                MaterialPageRoute<bool>(
+                  fullscreenDialog: true,
+                  builder: (BuildContext context) => TestSqflite(),
                 ),
               );
             },

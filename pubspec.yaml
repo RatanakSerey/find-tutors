@@ -4,6 +4,8 @@ description: A new Flutter project.
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+   sdk: flutter
   intl: ^0.15.6
 
   # The following adds the Cupertino Icons font to your application.
@@ -25,6 +27,7 @@ dependencies:
   firebase_core: ^0.2.5
   google_sign_in:
   flutter_facebook_login: ^1.1.1
+  sqflite:
 
 
 
@@ -41,7 +44,8 @@ flutter:
     - assets/images/slanted_menu.png
     - assets/images/forgot_password.png
     - assets/images/Map.png
-    
+    - assets/locale/localization_en.json
+    - assets/locale/localization_km.json
   fonts:
     - family: Abel
       fonts:
