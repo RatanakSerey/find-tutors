@@ -11,7 +11,8 @@ import 'package:find_tutors/widgets/index.dart';
 import 'package:find_tutors/utils/icon_font.dart';
 import 'package:find_tutors/utils/index.dart';
 import 'package:find_tutors/drawer.dart';
-import 'package:find_tutors/model/subject.dart';
+import 'package:find_tutors/models/subject.dart';
+import 'package:find_tutors/app_state_container.dart';
 
 class SubjectListPage extends StatefulWidget {
   final List<String> screens;
@@ -25,6 +26,11 @@ class SubjectListPage extends StatefulWidget {
 }
 
 class _SubjectListPageState extends State<SubjectListPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Future<bool> _onBackPressed() async {
     if (widget.screens.length == 1) {
       return true;
@@ -35,6 +41,7 @@ class _SubjectListPageState extends State<SubjectListPage> {
 
   @override
   Widget build(BuildContext context) {
+    // print(AppStateContainer.of(context).currentUser);
     return WillPopScope(
       onWillPop: _onBackPressed,
       // buildAppBar(),

@@ -1,7 +1,7 @@
+import 'package:find_tutors/models/app_state.dart';
+import 'package:find_tutors/models/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import '../model/index.dart';
 
 class AppStateContainer extends StatefulWidget {
   final AppState state;
@@ -29,17 +29,16 @@ class _AppStateContainerState extends State<AppStateContainer> {
   @override
   void initState() {
     super.initState();
+    // write the methods to check the local state
   }
 
   void setUser(User user) {
-    // print(user.username);
-
     setState(() {
       currentUser = user;
     });
-    print(currentUser);
   }
 
+  // AppStateContainer --> InheritedStateContainer --> The rest of your app.
   @override
   Widget build(BuildContext context) {
     return new _InheritedStateContainer(

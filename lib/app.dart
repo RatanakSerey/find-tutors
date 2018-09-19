@@ -8,24 +8,23 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import './services/localization/app_translations_delegate.dart';
 import './services/localization/application.dart';
 import './provider/index.dart';
-import './model/index.dart';
+import './models/index.dart';
 import './provider/index.dart';
 //widget
-import 'package:find_tutors/widgets/index.dart';
 //utils
 import 'package:find_tutors/utils/index.dart';
 //screens
 import 'package:find_tutors/screens/index.dart';
 import 'package:find_tutors/bottom_navigation.dart';
 
-class App extends StatefulWidget {
+class AppRootWidget extends StatefulWidget {
   @override
-  AppState createState() {
-    return new AppState();
+  AppRootWidgetState createState() {
+    return new AppRootWidgetState();
   }
 }
 
-class AppState extends State<App> {
+class AppRootWidgetState extends State<AppRootWidget> {
   final FirebaseStorage storage;
   AppTranslationsDelegate _newLocaleDelegate;
 

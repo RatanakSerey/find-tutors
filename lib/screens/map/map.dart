@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:find_tutors/app_state_container.dart';
 import 'package:find_tutors/screens/map/test_sqflite.dart';
 import 'package:http/http.dart' as http;
 import 'package:find_tutors/screens/map/test.dart';
@@ -10,7 +11,7 @@ import 'package:find_tutors/screens/map/upload_img.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../data/app_state_container.dart';
+import 'package:url_launcher/url_launcher.dart';
 //locale
 import '../../services/localization/application.dart';
 import '../../services/localization/app_translations.dart';
@@ -26,7 +27,7 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  static final List<String> languagesList = application.supportedLanguages;
+  static final List<String> languagesList = application.supportedLanguagesCodes;
   static final List<String> languageCodesList =
       application.supportedLanguagesCodes;
 
@@ -48,13 +49,6 @@ class _MapPageState extends State<MapPage> {
         ),
   );
 
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   // Uint8List bytes = BASE64.decode(_base64);
-  // }
-
   Future getImageFromLocal() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     print("Selected image =  ${image}");
@@ -71,10 +65,10 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
-//   changeLocale() {
-// application.onLocaleChanged(Locale(languagesList[0]));
+  changeLocale() {
+    application.onLocaleChanged(Locale(languagesList[0]));
+  }
 
-//   }
   _buildLanguageItem(String language) {
     return InkWell(
       onTap: () {
@@ -97,13 +91,10 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final container = AppStateContainer.of(context);
-    // print(container);
     return Container(
       child: Column(
         children: <Widget>[
           CommonAppBar(
-            // title: AppTranslations.of(context).text("home"),
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
           // RaisedButton(
@@ -133,14 +124,21 @@ class _MapPageState extends State<MapPage> {
           // ),
           RaisedButton(
             child: Text("alert dialog"),
-            onPressed: () {
-              CommonAlertDialog(context: context, actions: [
-                FlatButton(
-                  textColor: CommonColors.primary,
-                  child: Text("Okay"),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ]).show();
+            onPressed: () async {
+              const phoneNumber = "093831509";
+              const url = 'tel://${phoneNumber}';
+              if (await canLaunch(url)) {
+                await launch(url);
+              } else {
+                throw 'Could not launch $url';
+              }
+              // CommonAlertDialog(context: context, actions: [
+              //   FlatButton(
+              //     textColor: CommonColors.primary,
+              //     child: Text("Okay"),
+              //     onPressed: () => Navigator.of(context).pop(),
+              //   ),
+              // ]).show();
             },
           ),
           RaisedButton(

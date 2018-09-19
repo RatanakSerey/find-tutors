@@ -9,6 +9,6 @@ class AppState {
 
   @override
   String toString() {
-    return 'AppState isLoading null';
+    return 'AppState{isLoading: $isLoading}}';
   }
 }

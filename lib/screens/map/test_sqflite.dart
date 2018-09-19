@@ -1,7 +1,7 @@
 import 'package:find_tutors/provider/user.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/user.dart';
+import '../../models/user.dart';
 
 class TestSqflite extends StatefulWidget {
   @override

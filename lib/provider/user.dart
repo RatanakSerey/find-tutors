@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:path/path.dart';
 
-import '../model/user.dart';
+import '../models/user.dart';
 import '../provider/db_option.dart';
 import 'package:sqflite/sqflite.dart';
 
