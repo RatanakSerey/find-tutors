@@ -2,8 +2,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:find_tutors/app_state_container.dart';
+import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/screens/map/test_sqflite.dart';
 import 'package:http/http.dart' as http;
 import 'package:find_tutors/screens/map/test.dart';
@@ -13,7 +13,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 //locale
-import '../../services/localization/application.dart';
 import '../../services/localization/app_translations.dart';
 //widget
 import 'package:find_tutors/widgets/index.dart';
@@ -27,14 +26,6 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  static final List<String> languagesList = application.supportedLanguagesCodes;
-  static final List<String> languageCodesList =
-      application.supportedLanguagesCodes;
-
-  final Map<dynamic, dynamic> languagesMap = {
-    languagesList[0]: languageCodesList[0],
-    languagesList[1]: languageCodesList[1],
-  };
   File _image;
   String _base64;
 
@@ -65,36 +56,16 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
-  changeLocale() {
-    application.onLocaleChanged(Locale(languagesList[0]));
-  }
-
-  _buildLanguageItem(String language) {
-    return InkWell(
-      onTap: () {
-        print(language);
-        application.onLocaleChanged(Locale(languagesMap[language]));
-      },
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
-          child: Text(
-            language,
-            style: TextStyle(
-              fontSize: 24.0,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final stateContainer = AppStateContainer.of(context);
     return Container(
       child: Column(
         children: <Widget>[
           CommonAppBar(
+            title: stateContainer.currentUser != null
+                ? stateContainer.currentUser.username
+                : "",
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
           // RaisedButton(
@@ -103,15 +74,15 @@ class _MapPageState extends State<MapPage> {
           //     CommonBottomSheet(context: context).show();
           //   },
           // ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: languagesList.length,
-              itemBuilder: (context, index) {
-                print(languagesList);
-                return _buildLanguageItem(languagesList[index]);
-              },
-            ),
-          ),
+          // Expanded(
+          //   child: ListView.builder(
+          //     itemCount: languagesList.length,
+          //     itemBuilder: (context, index) {
+          //       print(languagesList);
+          //       return _buildLanguageItem(languagesList[index]);
+          //     },
+          //   ),
+          // ),
           // RaisedButton(
           //   onPressed: changeLocale,
           //   child: Text('change locale'),
@@ -122,16 +93,35 @@ class _MapPageState extends State<MapPage> {
           //     CommonSnackBar(context: context, content: "HI").show();
           //   },
           // ),
+          Text(stateContainer.translate != null
+              ? stateContainer.translate.text("home")
+              : "n/a"),
+          RaisedButton(
+            child: Text(
+              stateContainer.currentLanguage != null
+                  ? stateContainer.currentLanguage.code
+                  : "",
+            ),
+            onPressed: () {
+              if (stateContainer.currentLanguage.code == "km") {
+                stateContainer
+                    .setLanguage(Language(name: "English", code: "en"));
+              } else {
+                stateContainer.setLanguage(Language(name: "Khmer", code: "km"));
+              }
+            },
+          ),
           RaisedButton(
             child: Text("alert dialog"),
             onPressed: () async {
-              const phoneNumber = "093831509";
-              const url = 'tel://${phoneNumber}';
-              if (await canLaunch(url)) {
-                await launch(url);
-              } else {
-                throw 'Could not launch $url';
-              }
+              // const phoneNumber = "093831509";
+              // const url = 'tel://${phoneNumber}';
+              // if (await canLaunch(url)) {
+              //   await launch(url);
+              // } else {
+              //   throw 'Could not launch $url';
+              // }
+
               // CommonAlertDialog(context: context, actions: [
               //   FlatButton(
               //     textColor: CommonColors.primary,

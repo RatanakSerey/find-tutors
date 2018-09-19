@@ -1,4 +1,5 @@
 //packages
+import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 //widget
@@ -106,18 +107,6 @@ class CustomInactiveIcon extends StatelessWidget {
   }
 }
 
-// class TabItem {
-//   final Widget title;
-//   final Icon icon;
-//   TabItem({this.title, this.icon});
-// }
-
-// final List tabItems = [
-//   TabItem(title: Text('Home'), icon: Icon(FeatherIcons.home)),
-//   TabItem(title: Text('Map'), icon: Icon(FeatherIcons.map)),
-//   TabItem(title: Text('Profile'), icon: Icon(FeatherIcons.user)),
-// ];
-
 class TabNavigator extends StatefulWidget {
   @override
   State createState() => TabNavigatorState();
@@ -155,7 +144,7 @@ class TabNavigatorState extends State<TabNavigator>
       NavigationIconView(
         activeIcon: const Icon(Icons.event_available),
         icon: Icon(FeatherIcons.user),
-        title: 'Favorites',
+        title: 'Profile',
         color: Colors.indigo,
         vsync: this,
       ),
@@ -250,7 +239,7 @@ class TabNavigatorState extends State<TabNavigator>
       this.subjectListScreens.removeLast();
     }
     setState(() {
-      this.subjectListScreens;
+      this.subjectListScreens= this.subjectListScreens;
     });
   }
 

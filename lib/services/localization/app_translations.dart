@@ -14,21 +14,17 @@ class AppTranslations {
     _localisedValues = null;
   }
 
-  static AppTranslations of(BuildContext context) {
-    return Localizations.of<AppTranslations>(context, AppTranslations);
-  }
+  // static AppTranslations of(BuildContext context) {
+  //   return Localizations.of<AppTranslations>(context, AppTranslations);
+  // }
 
   static Future<AppTranslations> load(Locale locale) async {
-    print(locale.countryCode);
     AppTranslations appTranslations = AppTranslations(locale);
-    String jsonContent =
-    await rootBundle.loadString("assets/locale/localization_km.json");
-    // await rootBundle.loadString("assets/locale/localization_${locale.languageCode}.json");
+    String jsonContent = await rootBundle
+        .loadString("assets/locale/localization_${locale}.json");
     _localisedValues = json.decode(jsonContent);
     return appTranslations;
   }
-
-  get currentLanguage => locale.languageCode;
 
   String text(String key) {
     return _localisedValues[key] ?? "$key not found";

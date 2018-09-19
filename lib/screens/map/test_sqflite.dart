@@ -1,4 +1,4 @@
-import 'package:find_tutors/provider/user.dart';
+import 'package:find_tutors/providers/user.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/user.dart';

@@ -1,4 +1,5 @@
 //packages
+import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
@@ -141,10 +142,9 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
 
   @override
   Widget build(BuildContext context) {
+    
     // print(animation.value);
     return Scaffold(
-      // appBar: AppBar(),
-      // drawer: new CustomDrawer(),
       body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
