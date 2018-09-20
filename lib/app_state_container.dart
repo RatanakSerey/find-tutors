@@ -1,4 +1,5 @@
-import 'package:find_tutors/models/app_state.dart';
+import 'dart:async';
+
 import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/models/user.dart';
 import 'package:find_tutors/providers/language.dart';
@@ -9,12 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:find_tutors/providers/index.dart';
 
 class AppStateContainer extends StatefulWidget {
-  final AppState state;
   final Widget child;
 
   AppStateContainer({
     @required this.child,
-    this.state,
   });
 
   static _AppStateContainerState of(BuildContext context) {
@@ -28,49 +27,23 @@ class AppStateContainer extends StatefulWidget {
 }
 
 class _AppStateContainerState extends State<AppStateContainer> {
-  AppState state;
-  /* user */
   UserProvider userProvider = new UserProvider();
-  User currentUser;
-  /* language */
   LanguageProvider languageProvider = new LanguageProvider();
+  /* states */
+  bool isLoading = true;
+  User currentUser;
   Language currentLanguage;
   AppTranslations translate;
-
-  settingApp() async {
-    /* create table */
-    await userProvider.createTable();
-    await languageProvider.createTable();
-    /* get language */
-    languageProvider.count().then((res) {
-      if (res[0]["count"] == 0) {
-        languageProvider
-            .insert(Language(code: "km", name: "Khmer"))
-            .then((res) {
-          setLanguage(res);
-        });
-      } else {
-        setLanguage(Language(code: res[0]["code"], name: res[0]["name"]));
-      }
-    }).catchError((err) => print(err));
-    // userProvider
-    //     .insert(
-    //         User(username: 'yiman', email: 'yiman@gmail.com', userId: '001'))
-    //     .then((res) {
-    //       setUser(res);
-    //     })
-    //     .catchError((err) => print(err));
-
-    /* get user */
-    userProvider.getUser().then((res) {
-      setUser(User.fromMap(res[0]));
-    }).catchError((err) => print(err));
-  }
 
   @override
   void initState() {
     super.initState();
-    settingApp();
+  }
+
+  void ready() {
+    setState(() {
+      isLoading = false;
+    });
   }
 
   void setUser(User user) {
@@ -80,7 +53,6 @@ class _AppStateContainerState extends State<AppStateContainer> {
   }
 
   void setLanguage(Language language) {
-    print(language.toMap());
     languageProvider.update(language, 1).then((res) {
       AppTranslationsDelegate(newLocale: Locale(language.code))
           .load(Locale(language.code))

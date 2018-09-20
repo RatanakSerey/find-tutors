@@ -80,32 +80,32 @@ class NavigationIconView {
   }
 }
 
-class CustomIcon extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final IconThemeData iconTheme = IconTheme.of(context);
-    return Container(
-      margin: const EdgeInsets.all(4.0),
-      width: iconTheme.size - 8.0,
-      height: iconTheme.size - 8.0,
-      color: iconTheme.color,
-    );
-  }
-}
+// class CustomIcon extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final IconThemeData iconTheme = IconTheme.of(context);
+//     return Container(
+//       margin: const EdgeInsets.all(4.0),
+//       width: iconTheme.size - 8.0,
+//       height: iconTheme.size - 8.0,
+//       color: iconTheme.color,
+//     );
+//   }
+// }
 
-class CustomInactiveIcon extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final IconThemeData iconTheme = IconTheme.of(context);
-    return Container(
-        margin: const EdgeInsets.all(4.0),
-        width: iconTheme.size - 8.0,
-        height: iconTheme.size - 8.0,
-        decoration: BoxDecoration(
-          border: Border.all(color: iconTheme.color, width: 2.0),
-        ));
-  }
-}
+// class CustomInactiveIcon extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final IconThemeData iconTheme = IconTheme.of(context);
+//     return Container(
+//         margin: const EdgeInsets.all(4.0),
+//         width: iconTheme.size - 8.0,
+//         height: iconTheme.size - 8.0,
+//         decoration: BoxDecoration(
+//           border: Border.all(color: iconTheme.color, width: 2.0),
+//         ));
+//   }
+// }
 
 class TabNavigator extends StatefulWidget {
   @override

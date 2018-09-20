@@ -12,8 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
-//locale
-import '../../services/localization/app_translations.dart';
 //widget
 import 'package:find_tutors/widgets/index.dart';
 //utils
@@ -63,9 +61,7 @@ class _MapPageState extends State<MapPage> {
       child: Column(
         children: <Widget>[
           CommonAppBar(
-            title: stateContainer.currentUser != null
-                ? stateContainer.currentUser.username
-                : "",
+            title: stateContainer.currentUser.username,
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
           // RaisedButton(
@@ -93,15 +89,9 @@ class _MapPageState extends State<MapPage> {
           //     CommonSnackBar(context: context, content: "HI").show();
           //   },
           // ),
-          Text(stateContainer.translate != null
-              ? stateContainer.translate.text("home")
-              : "n/a"),
+          Text(stateContainer.translate.text("home")),
           RaisedButton(
-            child: Text(
-              stateContainer.currentLanguage != null
-                  ? stateContainer.currentLanguage.code
-                  : "",
-            ),
+            child: Text(stateContainer.currentLanguage.code),
             onPressed: () {
               if (stateContainer.currentLanguage.code == "km") {
                 stateContainer
