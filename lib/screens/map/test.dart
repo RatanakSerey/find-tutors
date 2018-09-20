@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:find_tutors/model/subject.dart';
+import 'package:find_tutors/models/subject.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';

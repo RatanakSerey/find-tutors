@@ -1,4 +1,5 @@
 //packages
+import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
@@ -11,18 +12,26 @@ import 'package:find_tutors/widgets/index.dart';
 import 'package:find_tutors/utils/icon_font.dart';
 import 'package:find_tutors/utils/index.dart';
 import 'package:find_tutors/drawer.dart';
-import 'package:find_tutors/model/subject.dart';
+import 'package:find_tutors/models/subject.dart';
+import 'package:find_tutors/app_state_container.dart';
 
 class SubjectListPage extends StatefulWidget {
   final List<String> screens;
   final Function changeScreen;
-  SubjectListPage({this.screens, this.changeScreen});
+  final GlobalKey<ScaffoldState>
+      mainScaffoldKey; //pass this to offStage widgets
+  SubjectListPage({this.screens, this.changeScreen, this.mainScaffoldKey});
 
   @override
   _SubjectListPageState createState() => _SubjectListPageState();
 }
 
 class _SubjectListPageState extends State<SubjectListPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Future<bool> _onBackPressed() async {
     if (widget.screens.length == 1) {
       return true;
@@ -33,10 +42,12 @@ class _SubjectListPageState extends State<SubjectListPage> {
 
   @override
   Widget build(BuildContext context) {
+    // print(AppStateContainer.of(context).currentUser);
     return WillPopScope(
       onWillPop: _onBackPressed,
       // buildAppBar(),
       child: ChangeScreen(
+          mainScaffoldKey: widget.mainScaffoldKey,
           screen: widget.screens[widget.screens.length - 1],
           changeScreen: widget.changeScreen),
     );
@@ -63,8 +74,10 @@ class _SubjectListPageState extends State<SubjectListPage> {
 
 class SubjectListPageWidget extends StatefulWidget {
   final Function changeScreen;
+  final GlobalKey<ScaffoldState> mainScaffoldKey;
   const SubjectListPageWidget({
     this.changeScreen,
+    this.mainScaffoldKey,
     Key key,
   }) : super(key: key);
   @override
@@ -75,7 +88,6 @@ class SubjectListPageWidget extends StatefulWidget {
 
 class SubjectListPageWidgetState extends State<SubjectListPageWidget>
     with SingleTickerProviderStateMixin {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   AnimationController animationController;
   Animation animation;
   @override
@@ -130,11 +142,9 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
 
   @override
   Widget build(BuildContext context) {
-    print(animation.value);
+    
+    // print(animation.value);
     return Scaffold(
-      key: _scaffoldKey,
-      // appBar: AppBar(),
-      drawer: new CustomDrawer(),
       body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -157,12 +167,13 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
                   // )
                 ),
                 leading: IconButton(
-                  icon: Icon(
-                    FeatherIcons.align_left,
-                    color: CommonColors.primary,
-                  ),
-                  onPressed: () => Scaffold.of(context).openDrawer(),
-                ),
+                    icon: Icon(
+                      FeatherIcons.align_left,
+                      color: CommonColors.primary,
+                    ),
+                    onPressed: () => widget.mainScaffoldKey.currentState
+                        .openDrawer() //null // Scaffold.of().openDrawer(),
+                    ),
               ),
             ];
           },
@@ -221,14 +232,15 @@ class SubjectListPageWidgetState extends State<SubjectListPageWidget>
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: Container(
-                                    padding: EdgeInsets.only(right: 5.0, top: 3.0),
+                                    padding:
+                                        EdgeInsets.only(right: 5.0, top: 3.0),
                                     child: InkWell(
                                       child: Icon(
                                         FeatherIcons.star,
                                         color: Colors.grey,
                                         size: 20.0,
                                       ),
-                                      onTap: (){},
+                                      onTap: () {},
                                     ),
                                   ),
                                 ),

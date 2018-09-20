@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -32,6 +33,7 @@ class Fonts {
   static const String quickBoldFont = "Quicksand_Bold.otf";
   static const String quickNormalFont = "Quicksand_Book.otf";
   static const String quickLightFont = "Quicksand_Light.otf";
+  static const String kantumruy = "Kantumruy.ttf";
 }
 
 class Images {
@@ -91,4 +93,8 @@ class Constants {
   static const String reset_password = "SENT PASSWORD RESET CODE";
   static const String something_went_wrong = "Something went wrong";
   static const String coming_soon = "Coming Soon";
+
+  static storageRef(FirebaseStorage storage, String path, String filename){
+    return storage.ref().child(path).child(filename);
+  }
 }

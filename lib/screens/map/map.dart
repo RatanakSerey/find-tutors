@@ -2,13 +2,16 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
+import 'package:find_tutors/app_state_container.dart';
+import 'package:find_tutors/models/language.dart';
+import 'package:find_tutors/screens/map/test_sqflite.dart';
 import 'package:http/http.dart' as http;
 import 'package:find_tutors/screens/map/test.dart';
 import 'package:find_tutors/screens/map/upload_img.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 //widget
 import 'package:find_tutors/widgets/index.dart';
 //utils
@@ -35,13 +38,6 @@ class _MapPageState extends State<MapPage> {
         ),
   );
 
-  @override
-  void initState() {
-    super.initState();
-
-    // Uint8List bytes = BASE64.decode(_base64);
-  }
-
   Future getImageFromLocal() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     print("Selected image =  ${image}");
@@ -60,34 +56,69 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    final stateContainer = AppStateContainer.of(context);
     return Container(
       child: Column(
         children: <Widget>[
           CommonAppBar(
+            title: stateContainer.currentUser.username,
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
+          // RaisedButton(
+          //   child: Text("bottomSheet"),
+          //   onPressed: () {
+          //     CommonBottomSheet(context: context).show();
+          //   },
+          // ),
+          // Expanded(
+          //   child: ListView.builder(
+          //     itemCount: languagesList.length,
+          //     itemBuilder: (context, index) {
+          //       print(languagesList);
+          //       return _buildLanguageItem(languagesList[index]);
+          //     },
+          //   ),
+          // ),
+          // RaisedButton(
+          //   onPressed: changeLocale,
+          //   child: Text('change locale'),
+          // ),
+          // RaisedButton(
+          //   child: Text("snackbar"),
+          //   onPressed: () {
+          //     CommonSnackBar(context: context, content: "HI").show();
+          //   },
+          // ),
+          Text(stateContainer.translate.text("home")),
           RaisedButton(
-            child: Text("bottomSheet"),
+            child: Text(stateContainer.currentLanguage.code),
             onPressed: () {
-              CommonBottomSheet(context: context).show();
-            },
-          ),
-          RaisedButton(
-            child: Text("snackbar"),
-            onPressed: () {
-              CommonSnackBar(context: context, content: "HI").show();
+              if (stateContainer.currentLanguage.code == "km") {
+                stateContainer
+                    .setLanguage(Language(name: "English", code: "en"));
+              } else {
+                stateContainer.setLanguage(Language(name: "Khmer", code: "km"));
+              }
             },
           ),
           RaisedButton(
             child: Text("alert dialog"),
-            onPressed: () {
-              CommonAlertDialog(context: context, actions: [
-                FlatButton(
-                  textColor: CommonColors.primary,
-                  child: Text("Okay"),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ]).show();
+            onPressed: () async {
+              // const phoneNumber = "093831509";
+              // const url = 'tel://${phoneNumber}';
+              // if (await canLaunch(url)) {
+              //   await launch(url);
+              // } else {
+              //   throw 'Could not launch $url';
+              // }
+
+              // CommonAlertDialog(context: context, actions: [
+              //   FlatButton(
+              //     textColor: CommonColors.primary,
+              //     child: Text("Okay"),
+              //     onPressed: () => Navigator.of(context).pop(),
+              //   ),
+              // ]).show();
             },
           ),
           RaisedButton(
@@ -103,6 +134,17 @@ class _MapPageState extends State<MapPage> {
                 MaterialPageRoute<bool>(
                   fullscreenDialog: true,
                   builder: (BuildContext context) => Test(),
+                ),
+              );
+            },
+          ),
+          RaisedButton(
+            child: Text("Test sqflite"),
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).push(
+                MaterialPageRoute<bool>(
+                  fullscreenDialog: true,
+                  builder: (BuildContext context) => TestSqflite(),
                 ),
               );
             },

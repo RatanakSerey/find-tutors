@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path/path.dart' as path;
 import 'package:flutter/material.dart';
@@ -52,7 +53,10 @@ class _UploadImgState extends State<UploadImg> {
     final File file = File('${tempDir.path}/$fileName');
     file.writeAsBytes(bytes.buffer.asInt8List(), mode: FileMode.write);
 
-    final StorageReference ref = _storage.ref().child(fileName);
+    // final StorageReference ref = _storage.ref().child("student_001/" + fileName);
+
+final StorageReference ref = Constants.storageRef(_storage,"teacher_001/post", "001_${fileName}");
+
     final StorageUploadTask task = ref.putFile(
       file,
       new StorageMetadata(

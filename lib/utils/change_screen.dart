@@ -11,7 +11,8 @@ import 'package:find_tutors/screens/index.dart';
 class ChangeScreen extends StatelessWidget {
   final String screen;
   final Function changeScreen;
-  ChangeScreen({this.screen, this.changeScreen});
+  final GlobalKey<ScaffoldState> mainScaffoldKey;
+  ChangeScreen({this.screen, this.changeScreen, this.mainScaffoldKey});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class ChangeScreen extends StatelessWidget {
         return ProfileTwoPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.subjectList:
-        return SubjectListPageWidget(changeScreen: changeScreen);
+        return SubjectListPageWidget(changeScreen: changeScreen, mainScaffoldKey: mainScaffoldKey);
         break;
       case ScreenHelper.postDetail:
         return PostDetailPage(changeScreen: changeScreen);
