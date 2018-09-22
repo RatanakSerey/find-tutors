@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1050676976358:android:d5ef913016960d3e",
+        "mobilesdk_app_id": "1:1050676976358:android:a76da56cfd7c1f71",
         "android_client_info": {
           "package_name": "com.h2e.findtutors"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1050676976358-d56adoch5kh36avr5kuto3322o05reno.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.h2e.findtutors",
+            "certificate_hash": "ffb5696211e08c1e02bcec439535178d85f3af3c"
+          }
+        },
         {
           "client_id": "1050676976358-k0p882icnh76elnusaeeqtbgu0pac4rs.apps.googleusercontent.com",
           "client_type": 3
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050676976358-k0p882icnh76elnusaeeqtbgu0pac4rs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
