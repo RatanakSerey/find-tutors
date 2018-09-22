@@ -1,4 +1,4 @@
-import 'package:find_tutors/utils/index.dart';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 

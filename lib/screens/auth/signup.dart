@@ -1,11 +1,10 @@
 //packages
+import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math';
 import 'package:flutter/services.dart';
-import 'package:find_tutors/utils/index.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
 
 class SignupPage extends StatefulWidget {
   SignupPage({Key key}) : super(key: key);

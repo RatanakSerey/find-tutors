@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 //widget
-import 'package:find_tutors/widgets/index.dart';
 import 'package:find_tutors/utils/icon_font.dart';
 //utils
 import 'package:find_tutors/utils/constants.dart';

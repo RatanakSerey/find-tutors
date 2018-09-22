@@ -1,10 +1,7 @@
 //packages
+import 'package:find_tutors/widgets/common_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
 
 class NotFoundPage extends StatelessWidget {
   final appTitle;

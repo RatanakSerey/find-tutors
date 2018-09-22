@@ -1,4 +1,4 @@
-package com.example.findtutors;
+package com.h2e.findtutors;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

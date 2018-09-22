@@ -1,5 +1,4 @@
-import 'package:find_tutors/utils/constants.dart';
-import 'package:find_tutors/widgets/index.dart';
+import 'package:find_tutors/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {

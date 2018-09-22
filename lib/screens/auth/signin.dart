@@ -1,24 +1,21 @@
 // //packages
+import 'package:find_tutors/utils/change_screen.dart';
+import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
-import 'package:find_tutors/utils/icon_font.dart';
 //screens
 import 'signup.dart';
-import 'reset_password.dart';
 
-class SigninPage extends StatefulWidget {
+class SignInWidget extends StatefulWidget {
   final List screens;
   final Function changeScreen;
-  SigninPage({this.screens, this.changeScreen});
+  SignInWidget({this.screens, this.changeScreen});
   @override
-  _SigninPageState createState() => _SigninPageState();
+  _SignInWidgetState createState() => _SignInWidgetState();
 }
 
-class _SigninPageState extends State<SigninPage> {
+class _SignInWidgetState extends State<SignInWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -30,9 +27,9 @@ class _SigninPageState extends State<SigninPage> {
   }
 }
 
-class SignInWidget extends StatelessWidget {
+class SigninPage extends StatelessWidget {
   final Function changeScreen;
-  const SignInWidget({
+  const SigninPage({
     this.changeScreen,
     Key key,
   }) : super(key: key);

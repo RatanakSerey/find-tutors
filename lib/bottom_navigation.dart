@@ -1,13 +1,11 @@
 //packages
-import 'package:find_tutors/services/localization/app_translations.dart';
+import 'package:find_tutors/screens/auth/signin.dart';
+import 'package:find_tutors/screens/home/subjects.dart';
+import 'package:find_tutors/screens/map/map.dart';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 //widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
-//screens
-import 'package:find_tutors/screens/index.dart';
 import 'package:find_tutors/drawer.dart';
 
 import 'package:find_tutors/utils/icon_font.dart';
@@ -214,7 +212,7 @@ class TabNavigatorState extends State<TabNavigator>
       body: Stack(children: <Widget>[
         Offstage(
           offstage: _tab != 0,
-          child: SubjectListPage(
+          child: SubjectListWidget(
               mainScaffoldKey: _scaffoldKey,
               screens: subjectListScreens,
               changeScreen: changeScreen),
@@ -225,7 +223,7 @@ class TabNavigatorState extends State<TabNavigator>
         ),
         Offstage(
           offstage: _tab != 2,
-          child: SigninPage(screens: signinScreens, changeScreen: changeScreen),
+          child: SignInWidget(screens: signinScreens, changeScreen: changeScreen),
         ),
       ]),
       bottomNavigationBar: botNavBar,

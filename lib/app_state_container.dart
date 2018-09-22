@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/models/user.dart';
 import 'package:find_tutors/providers/language.dart';
+import 'package:find_tutors/providers/user.dart';
 import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:find_tutors/services/localization/app_translations_delegate.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:find_tutors/providers/index.dart';
 
 class AppStateContainer extends StatefulWidget {
   final Widget child;

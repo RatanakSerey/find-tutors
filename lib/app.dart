@@ -2,13 +2,17 @@
 import 'dart:async';
 
 import 'package:find_tutors/models/user.dart';
+import 'package:find_tutors/screens/home/tutors_detail.dart';
+import 'package:find_tutors/screens/map/map.dart';
+import 'package:find_tutors/screens/not_found/not_found.dart';
+import 'package:find_tutors/screens/tutors/profile.dart';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './services/localization/app_translations_delegate.dart';
 //widget
 //utils
-import 'package:find_tutors/utils/index.dart';
 import 'package:find_tutors/app_state_container.dart';
 //model
 import 'package:find_tutors/models/language.dart';
@@ -16,7 +20,6 @@ import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/providers/language.dart';
 import 'package:find_tutors/providers/user.dart';
 //screens
-import 'package:find_tutors/screens/index.dart';
 import 'package:find_tutors/bottom_navigation.dart';
 
 class AppRootWidget extends StatefulWidget {

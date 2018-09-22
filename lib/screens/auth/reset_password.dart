@@ -1,8 +1,7 @@
 //packages
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:find_tutors/widgets/index.dart';
-import 'package:find_tutors/utils/index.dart';
 import 'package:find_tutors/utils/icon_font.dart';
 import 'signup.dart';
 

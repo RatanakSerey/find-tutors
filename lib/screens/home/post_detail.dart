@@ -1,10 +1,8 @@
 //packages
+import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/widgets/common_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
 
 class PostDetailPage extends StatelessWidget {
   final Function changeScreen;

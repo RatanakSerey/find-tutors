@@ -1,51 +1,44 @@
 //packages
-import 'package:find_tutors/services/localization/app_translations.dart';
+import 'package:find_tutors/utils/animations/page_reveal.dart';
+import 'package:find_tutors/utils/change_screen.dart';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
 import 'package:find_tutors/utils/icon_font.dart';
-import 'package:find_tutors/utils/index.dart';
-import 'package:find_tutors/drawer.dart';
 import 'package:find_tutors/models/subject.dart';
-import 'package:find_tutors/app_state_container.dart';
 
-class SubjectListPage extends StatefulWidget {
+class SubjectListWidget extends StatefulWidget {
   final List<String> screens;
   final Function changeScreen;
   final GlobalKey<ScaffoldState>
       mainScaffoldKey; //pass this to offStage widgets
-  SubjectListPage({this.screens, this.changeScreen, this.mainScaffoldKey});
+  SubjectListWidget({this.screens, this.changeScreen, this.mainScaffoldKey});
 
   @override
-  _SubjectListPageState createState() => _SubjectListPageState();
+  _SubjectListWidgetState createState() => _SubjectListWidgetState();
 }
 
-class _SubjectListPageState extends State<SubjectListPage> {
+class _SubjectListWidgetState extends State<SubjectListWidget> {
   @override
   void initState() {
     super.initState();
   }
 
   Future<bool> _onBackPressed() async {
-    if (widget.screens.length == 1) {
-      return true;
-    }
-    widget.changeScreen(pop: true);
+    // if (widget.screens.length == 1) {
+    //   return true;
+    // }
+    // widget.changeScreen(pop: true);
     return false;
   }
 
   @override
   Widget build(BuildContext context) {
-    // print(AppStateContainer.of(context).currentUser);
     return WillPopScope(
       onWillPop: _onBackPressed,
-      // buildAppBar(),
       child: ChangeScreen(
           mainScaffoldKey: widget.mainScaffoldKey,
           screen: widget.screens[widget.screens.length - 1],
@@ -72,21 +65,21 @@ class _SubjectListPageState extends State<SubjectListPage> {
   }
 }
 
-class SubjectListPageWidget extends StatefulWidget {
+class SubjectListPage extends StatefulWidget {
   final Function changeScreen;
   final GlobalKey<ScaffoldState> mainScaffoldKey;
-  const SubjectListPageWidget({
+  const SubjectListPage({
     this.changeScreen,
     this.mainScaffoldKey,
     Key key,
   }) : super(key: key);
   @override
-  SubjectListPageWidgetState createState() {
-    return new SubjectListPageWidgetState();
+  SubjectListPageState createState() {
+    return new SubjectListPageState();
   }
 }
 
-class SubjectListPageWidgetState extends State<SubjectListPageWidget>
+class SubjectListPageState extends State<SubjectListPage>
     with SingleTickerProviderStateMixin {
   AnimationController animationController;
   Animation animation;

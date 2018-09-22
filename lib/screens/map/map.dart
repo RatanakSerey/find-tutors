@@ -5,6 +5,9 @@ import 'dart:io';
 import 'package:find_tutors/app_state_container.dart';
 import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/screens/map/test_sqflite.dart';
+import 'package:find_tutors/utils/alert_dialog.dart';
+import 'package:find_tutors/utils/snack_bar.dart';
+import 'package:find_tutors/widgets/common_appbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:find_tutors/screens/map/test.dart';
 import 'package:find_tutors/screens/map/upload_img.dart';
@@ -12,10 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
-//widget
-import 'package:find_tutors/widgets/index.dart';
-//utils
-import 'package:find_tutors/utils/index.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MapPage extends StatefulWidget {
