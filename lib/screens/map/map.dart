@@ -6,6 +6,7 @@ import 'package:find_tutors/app_state_container.dart';
 import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/screens/map/test_sqflite.dart';
 import 'package:find_tutors/utils/alert_dialog.dart';
+import 'package:find_tutors/utils/constants.dart';
 import 'package:find_tutors/utils/snack_bar.dart';
 import 'package:find_tutors/widgets/common_appbar.dart';
 import 'package:http/http.dart' as http;
@@ -25,6 +26,7 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   File _image;
   String _base64;
+  String gender = "male";
 
   final SlidableController slidableController = SlidableController();
   final List<_HomeItem> items = List.generate(
@@ -53,6 +55,12 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+  handleGenderChange(String val) {
+    setState(() {
+      gender = val;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final stateContainer = AppStateContainer.of(context);
@@ -62,6 +70,24 @@ class _MapPageState extends State<MapPage> {
           CommonAppBar(
             title: stateContainer.currentUser.username,
             onPress: () => Scaffold.of(context).openDrawer(),
+          ),
+          ButtonBar(
+            children: <Widget>[
+              Text("Male"),
+              Radio(
+                groupValue: gender,
+                value: "male",
+                activeColor: CommonColors.accent,
+                onChanged: (String val) => handleGenderChange(val),
+              ),
+              Text("Female"),
+              Radio(
+                groupValue: gender,
+                value: "female",
+                activeColor: CommonColors.accent,
+                onChanged: (String val) => handleGenderChange(val),
+              ),
+            ],
           ),
           // RaisedButton(
           //   child: Text("bottomSheet"),
