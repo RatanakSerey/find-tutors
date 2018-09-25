@@ -11,8 +11,7 @@ import 'package:flutter/cupertino.dart';
 class ChangeScreen extends StatelessWidget {
   final String screen;
   final Function changeScreen;
-  final GlobalKey<ScaffoldState> mainScaffoldKey;
-  ChangeScreen({this.screen, this.changeScreen, this.mainScaffoldKey});
+  ChangeScreen({this.screen, this.changeScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class ChangeScreen extends StatelessWidget {
         return ProfileTwoPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.subjectList:
-        return SubjectListPage(changeScreen: changeScreen, mainScaffoldKey: mainScaffoldKey);
+        return SubjectListPage(changeScreen: changeScreen);
         break;
       case ScreenHelper.postDetail:
         return PostDetailPage(changeScreen: changeScreen);

@@ -22,7 +22,8 @@ class AppTranslationsDelegate extends LocalizationsDelegate<AppTranslations> {
 
   @override
   Future<AppTranslations> load(Locale locale) async {
-    return await AppTranslations.load(newLocale ?? locale);
+    return await translate.load(newLocale?? locale);
+    // return await AppTranslations.load(newLocale ?? locale);
   }
 
   @override

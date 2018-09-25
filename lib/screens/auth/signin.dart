@@ -1,4 +1,5 @@
 // //packages
+import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:find_tutors/utils/change_screen.dart';
 import 'package:find_tutors/utils/constants.dart';
 import 'package:find_tutors/widgets/gradient_button.dart';
@@ -484,7 +485,7 @@ class SigninPage extends StatelessWidget {
                     child: GradientButton(
                       onPressed: () => Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Student())),
-                      text: Constants.signin,
+                      text: translate.text("signIn"),
                     )),
               ],
             ),

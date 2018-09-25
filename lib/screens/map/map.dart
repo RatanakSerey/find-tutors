@@ -2,9 +2,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:find_tutors/app_state_container.dart';
 import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/screens/map/test_sqflite.dart';
+import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:find_tutors/utils/alert_dialog.dart';
 import 'package:find_tutors/utils/constants.dart';
 import 'package:find_tutors/utils/snack_bar.dart';
@@ -68,7 +70,7 @@ class _MapPageState extends State<MapPage> {
       child: Column(
         children: <Widget>[
           CommonAppBar(
-            title: stateContainer.currentUser.username,
+            title: "stateContainer.currentUser.username",
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
           ButtonBar(
@@ -114,7 +116,7 @@ class _MapPageState extends State<MapPage> {
           //     CommonSnackBar(context: context, content: "HI").show();
           //   },
           // ),
-          Text(stateContainer.translate.text("home")),
+          Text(translate.text("home")),
           RaisedButton(
             child: Text(stateContainer.currentLanguage.code),
             onPressed: () {
@@ -196,9 +198,11 @@ class _MapPageState extends State<MapPage> {
           ),
           Expanded(
             child: Center(
-              child: _image == null
-                  ? new Text('No image selected.')
-                  : new Image.file(_image),
+              child: CachedNetworkImage(
+                imageUrl: "https://firebasestorage.googleapis.com/v0/b/find-tutors.appspot.com/o/subjects%2Fcooking.png?alt=media&token=188ab9c2-7126-43dc-a628-872b5c561f94",
+                placeholder: new CircularProgressIndicator(),
+                errorWidget: new Icon(Icons.error),
+              ),
             ),
           ),
           RaisedButton(
