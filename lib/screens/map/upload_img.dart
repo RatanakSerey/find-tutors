@@ -6,7 +6,6 @@ import 'package:find_tutors/utils/constants.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path/path.dart' as path;
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -22,7 +21,7 @@ class UploadImg extends StatefulWidget {
 
 class _UploadImgState extends State<UploadImg> {
   FirebaseStorage _storage;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = new GoogleSignIn();
 
   bool isLoggedIn = false;
@@ -78,20 +77,20 @@ final StorageReference ref = Constants.storageRef(_storage,"teacher_001/post", "
         .catchError((err) => print(err));
   }
 
-  Future<FirebaseUser> signInGoogle() async {
-    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    GoogleSignInAuthentication gSA = await googleSignInAccount.authentication
-        .catchError((err) => print(err));
+  // Future<FirebaseUser> signInGoogle() async {
+  //   GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+  //   GoogleSignInAuthentication gSA = await googleSignInAccount.authentication
+  //       .catchError((err) => print(err));
 
-    FirebaseUser user = await _auth.signInWithGoogle(
-        idToken: gSA.idToken, accessToken: gSA.accessToken);
+  //   FirebaseUser user = await _auth.signInWithGoogle(
+  //       idToken: gSA.idToken, accessToken: gSA.accessToken);
 
-    print("User Name : ${user.displayName}");
-    setState(() {
-      isLoggedIn = true;
-    });
-    return user;
-  }
+  //   print("User Name : ${user.displayName}");
+  //   setState(() {
+  //     isLoggedIn = true;
+  //   });
+  //   return user;
+  // }
 
   void signOutGoogle() {
     googleSignIn.signOut();
@@ -117,22 +116,22 @@ final StorageReference ref = Constants.storageRef(_storage,"teacher_001/post", "
         //firebase_auth
         print(facebookLoginResult.accessToken.token);
         print(facebookLoginResult.accessToken.userId);
-        _auth
-            .signInWithFacebook(
-                accessToken: facebookLoginResult.accessToken.token)
-            .then((user) => print(user))
-            .catchError((err) => print(err));
+        // _auth
+        //     .signInWithFacebook(
+        //         accessToken: facebookLoginResult.accessToken.token)
+        //     .then((user) => print(user))
+        //     .catchError((err) => print(err));
         break;
     }
   }
 
   deleteAuthAccount() {
-    _auth.currentUser().then((user) {
-      user.delete();
-      setState(() {
-        isLoggedIn = false;
-      });
-    }).catchError((err) => print(err));
+    // _auth.currentUser().then((user) {
+    //   user.delete();
+    //   setState(() {
+    //     isLoggedIn = false;
+    //   });
+    // }).catchError((err) => print(err));
   }
 
   void onLoginStatusChanged(bool isLoggedIn) {
@@ -173,7 +172,7 @@ final StorageReference ref = Constants.storageRef(_storage,"teacher_001/post", "
                   )
                 : RaisedButton(
                     child: Text("Sign in with Google"),
-                    onPressed: signInGoogle,
+                    onPressed: null,
                   ),
           ),
           RaisedButton(

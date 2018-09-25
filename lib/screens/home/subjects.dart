@@ -1,7 +1,12 @@
 //packages
+import 'package:find_tutors/app_state_container.dart';
+import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:find_tutors/utils/animations/page_reveal.dart';
 import 'package:find_tutors/utils/change_screen.dart';
 import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/utils/snack_bar.dart';
+import 'package:find_tutors/widgets/image_loader.dart';
+import 'package:find_tutors/widgets/not_found.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
@@ -13,9 +18,7 @@ import 'package:find_tutors/models/subject.dart';
 class SubjectListWidget extends StatefulWidget {
   final List<String> screens;
   final Function changeScreen;
-  final GlobalKey<ScaffoldState>
-      mainScaffoldKey; //pass this to offStage widgets
-  SubjectListWidget({this.screens, this.changeScreen, this.mainScaffoldKey});
+  SubjectListWidget({this.screens, this.changeScreen});
 
   @override
   _SubjectListWidgetState createState() => _SubjectListWidgetState();
@@ -28,10 +31,10 @@ class _SubjectListWidgetState extends State<SubjectListWidget> {
   }
 
   Future<bool> _onBackPressed() async {
-    // if (widget.screens.length == 1) {
-    //   return true;
-    // }
-    // widget.changeScreen(pop: true);
+    if (widget.screens.length == 1) {
+      return true;
+    }
+    widget.changeScreen(pop: true);
     return false;
   }
 
@@ -40,155 +43,81 @@ class _SubjectListWidgetState extends State<SubjectListWidget> {
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: ChangeScreen(
-          mainScaffoldKey: widget.mainScaffoldKey,
           screen: widget.screens[widget.screens.length - 1],
           changeScreen: widget.changeScreen),
-    );
-  }
-
-  Widget buildAppBar() {
-    Widget leading;
-    if (widget.screens.length > 1) {
-      leading = IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () => widget.changeScreen(pop: true),
-      );
-    }
-    return AppBar(
-      title: Text(
-        widget.screens[widget.screens.length - 1],
-        style: TextStyle(color: Color(0xFF6c5ce7)),
-      ),
-      leading: leading,
-      backgroundColor: Colors.white,
     );
   }
 }
 
 class SubjectListPage extends StatefulWidget {
   final Function changeScreen;
-  final GlobalKey<ScaffoldState> mainScaffoldKey;
   const SubjectListPage({
     this.changeScreen,
-    this.mainScaffoldKey,
     Key key,
   }) : super(key: key);
   @override
-  SubjectListPageState createState() {
-    return new SubjectListPageState();
+  _SubjectListPageState createState() {
+    return new _SubjectListPageState();
   }
 }
 
-class SubjectListPageState extends State<SubjectListPage>
+class _SubjectListPageState extends State<SubjectListPage>
     with SingleTickerProviderStateMixin {
+  BuildContext _context;
+  GlobalKey<RefreshIndicatorState> refreshKey =
+      GlobalKey<RefreshIndicatorState>();
   AnimationController animationController;
   Animation animation;
-  @override
-  initState() {
-    super.initState();
-    animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    animation =
-        CurvedAnimation(parent: animationController, curve: Curves.easeIn)
-          ..addListener(() {
-            setState(() {});
-          });
-    animationController.forward();
-    // fetchSubject("{}");
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        _loadMoreData();
-      }
-    });
-  }
+  ScrollController _scrollController = ScrollController();
+  bool isLoading = true;
+  bool notFound = false;
+  List<Subject> _subjects = [];
 
-  @override
-  void dispose() {
-    animationController.dispose();
-    super.dispose();
+  Future getSubject(String params) async {
+    String url = MethodNames.findSubject + params;
 
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-// List<Subject> _subjects = [];
-  List<Subject> _subjects = List.generate(
-    25,
-    (i) => Subject(id: '${i + 1}', khName: 'yiman', enName: 'posts'),
-  );
-  Future fetchSubject(String params) {
-    String url = 'http://192.168.43.3:3000/find-subject/${params}';
-    var httpClient = http.Client();
-    return httpClient.get(url).then((response) {
+    return http.Client().get(url).then((response) {
       var result = json.decode(response.body);
-
-      result.map((o) => _subjects.add(Subject.fromMap(o))).toList();
+      _subjects.clear();
+      if (result["result"].length != 0) {
+        result["result"].map((o) {
+          _subjects.add(Subject.fromMap(o));
+        }).toList();
+        setState(() {
+          _subjects = _subjects;
+          isLoading = false;
+        });
+      } else {
+        CommonSnackBar(
+          context: _context,
+          type: "info",
+          content: translate.text("noData"),
+        ).show();
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }).catchError((err) {
+      CommonSnackBar(
+        context: _context,
+        type: "danger",
+        content: translate.text("serverDisconnect"),
+      ).show();
       setState(() {
-        _subjects;
+        isLoading = false;
       });
     });
   }
 
-  ScrollController _scrollController = ScrollController();
-  bool isPerformingRequest = false;
+  refreshSubject() async {
+    await getSubject("{}/{}");
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    
-    // print(animation.value);
-    return Scaffold(
-      body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                expandedHeight: 160.0,
-                backgroundColor: Colors.white,
-                floating: false,
-                pinned: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Text("Subject",
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  // background: Image.network(
-                  //   "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350",
-                  //   fit: BoxFit.cover,
-                  // )
-                ),
-                leading: IconButton(
-                    icon: Icon(
-                      FeatherIcons.align_left,
-                      color: CommonColors.primary,
-                    ),
-                    onPressed: () => widget.mainScaffoldKey.currentState
-                        .openDrawer() //null // Scaffold.of().openDrawer(),
-                    ),
-              ),
-            ];
-          },
-          body: PageReveal(
-            revealPercent: animation.value,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 0.0,
-              ),
-              itemCount: _subjects.length,
-              padding: const EdgeInsets.all(10.0),
-              itemBuilder: (context, index) {
-                final Subject subject = _subjects[index];
-                return _listItem(subject, index);
-              },
-              // controller: _scrollController,
-            ),
-          )
-          // isPerformingRequest ? _buildProgressIndicator() : Container()
-          ),
-    );
+  void openDrawer() =>
+      AppStateContainer.of(_context).scaffoldKey.currentState.openDrawer();
+
+  void onSubjectTap() {
+    widget.changeScreen(screen: ScreenHelper.postList);
   }
 
   Widget _listItem(Subject item, int i) {
@@ -201,128 +130,174 @@ class SubjectListPageState extends State<SubjectListPage>
           Align(
             alignment: Alignment.topCenter,
             child: SizedBox.fromSize(
-                size: Size.fromHeight(195.0),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: Material(
-                        elevation: 5.0,
-                        borderRadius: BorderRadius.circular(10.0),
-                        shadowColor: Colors.black38,
-                        color: Colors.white,
-                        child: InkWell(
-                          onTap: () => widget.changeScreen(
-                              screen: ScreenHelper.postList),
-                          child: Padding(
-                            padding: EdgeInsets.all(5.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                /// Favorite Icon
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Container(
-                                    padding:
-                                        EdgeInsets.only(right: 5.0, top: 3.0),
-                                    child: InkWell(
-                                      child: Icon(
-                                        FeatherIcons.star,
-                                        color: Colors.grey,
-                                        size: 20.0,
-                                      ),
-                                      onTap: () {},
+              size: Size.fromHeight(195.0),
+              child: Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Material(
+                      elevation: 5.0,
+                      borderRadius: BorderRadius.circular(10.0),
+                      shadowColor: Colors.black38,
+                      color: Colors.white,
+                      child: InkWell(
+                        onTap: onSubjectTap,
+                        child: Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              /// Favorite Icon
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Container(
+                                  padding:
+                                      EdgeInsets.only(right: 5.0, top: 3.0),
+                                  child: InkWell(
+                                    child: Icon(
+                                      FeatherIcons.star,
+                                      color: Colors.grey,
+                                      size: 20.0,
                                     ),
+                                    onTap: () {},
                                   ),
                                 ),
-                                // Subject Images
-                                Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Container(
-                                    child: Image.asset(
-                                      "assets/images/sub_icon.png",
-                                      height: 80.0,
-                                    ),
+                              ),
+                              // Subject Images
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: Container(
+                                  child: ImageLoader(
+                                    height: 80.0,
+                                    imageUrl: item.path,
                                   ),
                                 ),
-
-                                /// SubjectName and Post Count
-                                Column(
-                                  // mainAxisAlignment: MainAxisAlignment.center,
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(item.khName.toString(),
-                                        style: TextStyle(
-                                            color: CommonColors.primary,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 28.0)),
-                                    Text(item.id.toString() +
-                                        ' ' +
-                                        item.enName.toString())
-                                  ],
-                                ),
-                              ],
-                            ),
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Text(
+                                    item.khName.toString(),
+                                    style: TextStyle(
+                                        color: CommonColors.primary,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 22.0),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildProgressIndicator() {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Center(
-        child: Opacity(
-          opacity: isPerformingRequest ? 1.0 : 0.0,
-          child: CircularProgressIndicator(
-            strokeWidth: 4.3,
-          ),
-        ),
+  @override
+  initState() {
+    super.initState();
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animation =
+        CurvedAnimation(parent: animationController, curve: Curves.easeIn)
+          ..addListener(() {
+            setState(() {});
+          });
+    animationController.forward();
+    refreshSubject();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _context = context;
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 160.0,
+              backgroundColor: Colors.white,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text(
+                  translate.text("subject"),
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              leading: IconButton(
+                icon: Icon(
+                  FeatherIcons.align_left,
+                  color: CommonColors.primary,
+                ),
+                onPressed: openDrawer,
+              ),
+            ),
+          ];
+        },
+        body: isLoading
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Center(
+                    child: Text(translate.text("getResource")),
+                  )
+                ],
+              )
+            : RefreshIndicator(
+                key: refreshKey,
+                onRefresh: () => refreshSubject(),
+                child: _subjects.length > 0
+                    ? PageReveal(
+                        revealPercent: animation.value,
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 0.0,
+                          ),
+                          itemCount: _subjects.length,
+                          padding: const EdgeInsets.all(10.0),
+                          itemBuilder: (context, index) {
+                            final Subject subject = _subjects[index];
+                            return _listItem(subject, index);
+                          },
+                        ),
+                      )
+                    : ListView(
+                        children: <Widget>[NotFoundWidget()],
+                      ),
+              ),
       ),
     );
-  }
-
-  _loadMoreData() async {
-    if (!isPerformingRequest) {
-      setState(() => isPerformingRequest = true);
-      List<Subject> newEntries = await fakeRequest();
-
-      if (newEntries.isEmpty) {
-        double edge = 50.0;
-        double offsetFromBottom = _scrollController.position.maxScrollExtent -
-            _scrollController.position.pixels;
-        if (offsetFromBottom < edge) {
-          _scrollController.animateTo(
-              _scrollController.offset - (edge - offsetFromBottom),
-              duration: Duration(milliseconds: 500),
-              curve: Curves.easeOut);
-        }
-      }
-
-      setState(() {
-        _subjects.addAll(newEntries);
-        isPerformingRequest = false;
-      });
-    }
-  }
-
-  Future<List<Subject>> fakeRequest() async {
-    return Future.delayed(Duration(seconds: 1), () {
-      // return [
-      //   SubjectItem(id: "0099", khName: "veasna", enName: "male"),
-      //   SubjectItem(id: "0100", khName: "veasna1", enName: "male1"),
-      //   SubjectItem(id: "0101", khName: "veasna12", enName: "male12"),
-      // ];
-      return [];
-    });
   }
 }

@@ -33,7 +33,8 @@ class _AppStateContainerState extends State<AppStateContainer> {
   bool isLoading = true;
   User currentUser;
   Language currentLanguage;
-  AppTranslations translate;
+  // AppTranslations translate;
+  GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   void initState() {
@@ -43,6 +44,12 @@ class _AppStateContainerState extends State<AppStateContainer> {
   void ready() {
     setState(() {
       isLoading = false;
+    });
+  }
+
+  void setScaffoldKey(GlobalKey key) {
+    setState(() {
+      scaffoldKey = key;
     });
   }
 
@@ -59,7 +66,7 @@ class _AppStateContainerState extends State<AppStateContainer> {
           .then((appTran) {
         setState(() {
           currentLanguage = language;
-          translate = appTran;
+          // translate = appTran;
         });
       });
     });

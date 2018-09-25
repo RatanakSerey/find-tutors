@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
+  static const String rootRoute = "/root";
   static const String homeRoute = "/home";
   static const String mapRoute = "/map";
   static const String signinRoute = "/signin";
@@ -33,21 +34,24 @@ class Fonts {
   static const String quickBoldFont = "Quicksand_Bold.otf";
   static const String quickNormalFont = "Quicksand_Book.otf";
   static const String quickLightFont = "Quicksand_Light.otf";
-  static const String kantumruy = "Kantumruy.ttf";
+  static const String kantumruy = "Kantumruy";
 }
 
 class Images {
   static const String imageDir = "assets/images";
-  static const String pkImage = "$imageDir/app-icon.png";
-  static const String profileImage = "$imageDir/profile.jpg";
-  static const String blankImage = "$imageDir/blank.jpg";
-  static const String dashboardImage = "$imageDir/dashboard.jpg";
-  static const String loginImage = "$imageDir/login.jpg";
-  static const String paymentImage = "$imageDir/payment.jpg";
-  static const String settingsImage = "$imageDir/setting.jpeg";
-  static const String shoppingImage = "$imageDir/shopping.jpeg";
-  static const String timelineImage = "$imageDir/timeline.jpeg";
-  static const String verifyImage = "$imageDir/verification.jpg";
+  static const String appIcon = "$imageDir/app-icon.png";
+  static const String imagePlaceholder = "$imageDir/image_placeholder.png";
+  static const String noImagePlaceholder = "$imageDir/no_image_placeholder.png";
+  static const String notFound = "$imageDir/not_found.png";
+  // static const String profileImage = "$imageDir/profile.jpg";
+  // static const String blankImage = "$imageDir/blank.jpg";
+  // static const String dashboardImage = "$imageDir/dashboard.jpg";
+  // static const String loginImage = "$imageDir/login.jpg";
+  // static const String paymentImage = "$imageDir/payment.jpg";
+  // static const String settingsImage = "$imageDir/setting.jpeg";
+  // static const String shoppingImage = "$imageDir/shopping.jpeg";
+  // static const String timelineImage = "$imageDir/timeline.jpeg";
+  // static const String verifyImage = "$imageDir/verification.jpg";
 }
 
 class CommonColors {
@@ -56,8 +60,8 @@ class CommonColors {
   static const accent = Color(0xFF000000);
   static const success = Color(0xFF000000);
   static const warning = Color(0xFF000000);
-  static const danger = Color(0xFF000000);
-  static const info = Color(0xFF000000);
+  static const danger = Color(0xFFfb4740);
+  static const info = Color(0xFF4dd1f4);
 
   static List<Color> kitGradients = [primary, secondary];
   static List<Color> kitGradients2 = [
@@ -74,24 +78,30 @@ class CommonColors {
   }
 }
 
+class MethodNames{
+  static const String serverUrl= "http://192.168.43.31:3000";
+  static String findSubject = "$serverUrl/find_subject/";
+}
+
 class Constants {
   static const String appName = "Find Tutors";
+  static const String version = "0.0.1";
   //login
-  static const String enter_code_label = "Phone Number";
-  static const String enter_code_hint = "10 Digit Phone Number";
-  static const String enter_otp_label = "OTP";
-  static const String enter_otp_hint = "4 Digit OTP";
-  static const String get_otp = "Get OTP";
-  static const String resend_otp = "Resend OTP";
-  static const String signin = "SIGNIN";
-  static const String enter_valid_number = "Enter 10 digit phone number";
-  static const String enter_valid_otp = "Enter 4 digit otp";
+  // static const String enter_code_label = "Phone Number";
+  // static const String enter_code_hint = "10 Digit Phone Number";
+  // static const String enter_otp_label = "OTP";
+  // static const String enter_otp_hint = "4 Digit OTP";
+  // static const String get_otp = "Get OTP";
+  // static const String resend_otp = "Resend OTP";
+  // static const String signin = "SIGNIN";
+  // static const String enter_valid_number = "Enter 10 digit phone number";
+  // static const String enter_valid_otp = "Enter 4 digit otp";
   //generic
-  static const String error = "Error";
-  static const String success = "Success";
-  static const String ok = "OK";
-  static const String reset_password = "SENT PASSWORD RESET CODE";
-  static const String something_went_wrong = "Something went wrong";
+  // static const String error = "Error";
+  // static const String success = "Success";
+  // static const String ok = "OK";
+  // static const String reset_password = "SENT PASSWORD RESET CODE";
+  // static const String something_went_wrong = "Something went wrong";
   static const String coming_soon = "Coming Soon";
 
   static storageRef(FirebaseStorage storage, String path, String filename){

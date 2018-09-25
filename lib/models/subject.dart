@@ -2,22 +2,25 @@ class Subject {
   String id;
   String khName;
   String enName;
+  String path;
 
-  Subject({this.id, this.khName, this.enName});
+  Subject({this.id, this.khName, this.enName, this.path});
 
-factory Subject.fromMap(Map map) {
+  factory Subject.fromMap(Map map) {
     return Subject(
+      id: map['_id'],
       khName: map['khName'],
       enName: map['enName'],
-      id: map['_id'],
+      path: map['path'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      '_id': id,
       'khName': khName,
       'enName': enName,
-      '_id': id,
+      'path': path,
     };
   }
 }

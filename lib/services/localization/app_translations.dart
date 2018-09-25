@@ -18,7 +18,7 @@ class AppTranslations {
   //   return Localizations.of<AppTranslations>(context, AppTranslations);
   // }
 
-  static Future<AppTranslations> load(Locale locale) async {
+  Future<AppTranslations> load(Locale locale) async {
     AppTranslations appTranslations = AppTranslations(locale);
     String jsonContent = await rootBundle
         .loadString("assets/locale/localization_${locale}.json");
@@ -27,6 +27,8 @@ class AppTranslations {
   }
 
   String text(String key) {
-    return _localisedValues[key] ?? "$key not found";
+    return _localisedValues[key] ?? "$key not found in json files";
   }
 }
+
+AppTranslations translate = new AppTranslations(Locale("km"));

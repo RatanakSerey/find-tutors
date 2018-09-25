@@ -1,7 +1,10 @@
 //packages
 import 'dart:async';
 
+import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/models/user.dart';
+import 'package:find_tutors/providers/language.dart';
+import 'package:find_tutors/providers/user.dart';
 import 'package:find_tutors/screens/home/tutors_detail.dart';
 import 'package:find_tutors/screens/map/map.dart';
 import 'package:find_tutors/screens/not_found/not_found.dart';
@@ -11,15 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import './services/localization/app_translations_delegate.dart';
-//widget
-//utils
 import 'package:find_tutors/app_state_container.dart';
-//model
-import 'package:find_tutors/models/language.dart';
-//provider
-import 'package:find_tutors/providers/language.dart';
-import 'package:find_tutors/providers/user.dart';
-//screens
 import 'package:find_tutors/bottom_navigation.dart';
 
 class AppRootWidget extends StatefulWidget {
@@ -29,29 +24,25 @@ class AppRootWidget extends StatefulWidget {
   }
 }
 
-class _AppRootWidgetState extends State<AppRootWidget> {
+class _AppRootWidgetState extends State<AppRootWidget>
+    with SingleTickerProviderStateMixin {
+  bool isBuilt = true;
+  BuildContext _context;
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
   // final FirebaseStorage storage;
   UserProvider userProvider = new UserProvider();
   LanguageProvider languageProvider = new LanguageProvider();
   User user;
   // AppTranslationsDelegate _newLocaleDelegate;
   final routes = {
+    Routes.rootRoute: (BuildContext context) => TabNavigator(),
     Routes.mapRoute: (BuildContext context) => MapPage(),
     Routes.profileRoute: (BuildContext context) => ProfileTwoPage(),
     Routes.tutorsDetailRoute: (BuildContext context) => TutorsDetailPage(),
   };
 
-  final theme = ThemeData(
-      primaryColor: Color(0xFF4E54C8),
-      fontFamily: Fonts.abelFont,
-      primarySwatch: Colors.amber);
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  Future initialization(stateContainer) async {
+  Future initialization() async {
+    final stateContainer = AppStateContainer.of(_context);
     /* create table */
     await userProvider.createTable();
     await languageProvider.createTable();
@@ -68,13 +59,16 @@ class _AppRootWidgetState extends State<AppRootWidget> {
         stateContainer
             .setLanguage(Language(code: res[0]["code"], name: res[0]["name"]));
       }
+      appReady();
 
       /* getUser */
-      userProvider.getUser().then((res) {
-        stateContainer.setUser(User.fromMap(res[0]));
-        /* app is ready */
-        appReady(stateContainer);
-      }).catchError((err) => print(err));
+      // userProvider.getUser().then((res) {
+      //   stateContainer.setUser(User.fromMap(res[0]));
+      //   /* app is ready */
+      //   stateContainer.setScaffoldKey(scaffoldKey);
+
+      //   appReady();
+      // }).catchError((err) => print(err));
       //-------------------------------------------------------------------------
       /* insert user */
       // userProvider
@@ -89,51 +83,62 @@ class _AppRootWidgetState extends State<AppRootWidget> {
     }).catchError((err) => print(err));
   }
 
-  void appReady(stateContainer) {
-    const timeOut = const Duration(seconds: 2);
+  void appReady() {
+    final stateContainer = AppStateContainer.of(_context);
+    const timeOut = const Duration(seconds: 3);
     new Timer(timeOut, () {
+      stateContainer.setScaffoldKey(scaffoldKey);
       stateContainer.ready();
     });
   }
 
-  Widget _pageToDisplay(stateContainer) {
-    if (stateContainer.isLoading) {
-      initialization(stateContainer);
-      return _loadingView;
-    } else {
-      return _homeView;
-    }
+  @override
+  void initState() {
+    super.initState();
   }
 
-  Widget get _loadingView {
-    return new Center(
-      child: new CircularProgressIndicator(),
+  Widget get _pageToDisplay {
+    final stateContainer = AppStateContainer.of(_context);
+    if (!stateContainer.isLoading) {
+      return TabNavigator();
+    }
+    return Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 
-  Widget get _homeView {
-    return TabNavigator();
+  ThemeData get themeData {
+    final stateContainer = AppStateContainer.of(_context);
+    return ThemeData(
+      // brightness: Brightness.dark,
+      primaryColor: Color(0xFF4E54C8),
+      accentColor: CommonColors.accent,
+      fontFamily: stateContainer.currentLanguage != null
+          ? stateContainer.currentLanguage.code == "en"
+              ? Fonts.abelFont
+              : Fonts.kantumruy
+          : null,
+      primarySwatch: Colors.amber,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final stateContainer = AppStateContainer.of(context);
+    _context = context;
+    if (isBuilt) {
+      isBuilt = false;
+      initialization();
+    }
 
     return MaterialApp(
         title: Constants.appName,
-        theme: ThemeData(
-            primaryColor: Color(0xFF4E54C8),
-            fontFamily: stateContainer.currentLanguage != null
-                ? stateContainer.currentLanguage.code == "en"
-                    ? Fonts.abelFont
-                    : Fonts.kantumruy
-                : null,
-            primarySwatch: Colors.amber),
+        theme: themeData,
         debugShowCheckedModeBanner: false,
         showPerformanceOverlay: false,
-        home: _pageToDisplay(stateContainer),
+        home: _pageToDisplay,
         // initialRoute: UIData.notFoundRoute,
-        // onGenerateRoute: _getRoute,
         routes: routes,
         // localizationsDelegates: [
         // // _newLocaleDelegate,
@@ -147,12 +152,13 @@ class _AppRootWidgetState extends State<AppRootWidget> {
 
   onUnknownRoute(RouteSettings rs) {
     return MaterialPageRoute(
-        builder: (context) => NotFoundPage(
-              appTitle: Constants.coming_soon,
-              icon: FontAwesomeIcons.solidSmile,
-              title: Constants.coming_soon,
-              message: "Under Development",
-              iconColor: Colors.green,
-            ));
+      builder: (context) => NotFoundPage(
+            appTitle: Constants.coming_soon,
+            icon: FontAwesomeIcons.solidSmile,
+            title: Constants.coming_soon,
+            message: "Under Development",
+            iconColor: Colors.green,
+          ),
+    );
   }
 }
