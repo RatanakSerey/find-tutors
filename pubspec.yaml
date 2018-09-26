@@ -54,6 +54,12 @@ flutter:
     - family: Abel
       fonts:
         - asset: assets/fonts/Abel-Regular.ttf
+    - family: DinNext
+      fonts:
+        - asset: assets/fonts/Din-Next.ttf
+    - family: KhBoeung
+      fonts:
+        - asset: assets/fonts/KhBoeung.ttf
     - family: Kantumruy
       fonts:
         - asset: assets/fonts/Kantumruy-Regular.ttf

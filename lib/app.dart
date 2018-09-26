@@ -62,13 +62,13 @@ class _AppRootWidgetState extends State<AppRootWidget>
       appReady();
 
       /* getUser */
-      // userProvider.getUser().then((res) {
-      //   stateContainer.setUser(User.fromMap(res[0]));
-      //   /* app is ready */
-      //   stateContainer.setScaffoldKey(scaffoldKey);
+      userProvider.getUser().then((res) {
+        stateContainer.setUser(User.fromMap(res[0]));
+        /* app is ready */
+        stateContainer.setScaffoldKey(scaffoldKey);
 
-      //   appReady();
-      // }).catchError((err) => print(err));
+        appReady();
+      }).catchError((err) => print(err));
       //-------------------------------------------------------------------------
       /* insert user */
       // userProvider
@@ -117,8 +117,8 @@ class _AppRootWidgetState extends State<AppRootWidget>
       accentColor: CommonColors.accent,
       fontFamily: stateContainer.currentLanguage != null
           ? stateContainer.currentLanguage.code == "en"
-              ? Fonts.abelFont
-              : Fonts.kantumruy
+              ? Fonts.dinNextFont
+              : Fonts.khBoeungFont
           : null,
       primarySwatch: Colors.amber,
     );
