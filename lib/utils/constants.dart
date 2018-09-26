@@ -30,8 +30,8 @@ class Fonts {
 
   static const String quickFont = "Quicksand";
   static const String abelFont = "Abel";
-  static const String ralewayFont = "Raleway";
-  static const String quickBoldFont = "Quicksand_Bold.otf";
+  static const String dinNextFont = "DinNext";
+  static const String khBoeungFont = "KhBoeung";
   static const String quickNormalFont = "Quicksand_Book.otf";
   static const String quickLightFont = "Quicksand_Light.otf";
   static const String kantumruy = "Kantumruy";

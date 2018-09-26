@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math';
 import 'package:flutter/services.dart';
+import 'package:find_tutors/utils/icon_font.dart';
 
 class SignupPage extends StatefulWidget {
   SignupPage({Key key}) : super(key: key);
@@ -425,12 +426,445 @@ class TabIndicationPainter extends CustomPainter {
   bool shouldRepaint(TabIndicationPainter oldDelegate) => true;
 }
 
-class Student extends StatelessWidget {
+class Student extends StatefulWidget {
+  @override
+  _StudentWidgetState createState() => new _StudentWidgetState();
+}
+
+class _StudentWidgetState extends State<Student> {
+  String gender = 'male';
+  handleGenderChange(String val) {
+    setState(() {
+      gender = val;
+    });
+  }
+
+  // void _toggleLogin() {
+  //   setState(() {
+  //     _obscureTextLogin = !_obscureTextLogin;
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Student Sign Up'
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 25.0),
+                child: Text(
+                  'Signup With',
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20.0),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0, right: 20.0),
+                    child: Material(
+                        elevation: 5.0,
+                        color: Colors.transparent,
+                        clipBehavior: Clip.antiAlias,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0))),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Ink(
+                            padding: const EdgeInsets.all(15.0),
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                              colors: CommonColors.kitGradients,
+                            )),
+                            child: Center(
+                              child: Icon(FeatherIcons.facebook,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 10.0,
+                    ),
+                    child: Material(
+                        elevation: 5.0,
+                        color: Colors.transparent,
+                        clipBehavior: Clip.antiAlias,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0))),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Ink(
+                            padding: const EdgeInsets.all(15.0),
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                              colors: CommonColors.kitGradients,
+                            )),
+                            child: Center(
+                              child:
+                                  Icon(Icons.golf_course, color: Colors.white),
+                            ),
+                          ),
+                        )),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: new LinearGradient(
+                            colors: [
+                              Colors.white10,
+                              Colors.amber,
+                            ],
+                            begin: const FractionalOffset(0.0, 0.0),
+                            end: const FractionalOffset(1.0, 1.0),
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
+                      ),
+                      width: 100.0,
+                      height: 1.0,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: Text(
+                        "Or",
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontSize: 16.0,
+                            fontFamily: "WorkSansMedium"),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: new LinearGradient(
+                            colors: [
+                              Colors.amber,
+                              Colors.white10,
+                            ],
+                            begin: const FractionalOffset(0.0, 0.0),
+                            end: const FractionalOffset(1.0, 1.0),
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
+                      ),
+                      width: 100.0,
+                      height: 1.0,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        height: 100.0,
+                        width: 100.0,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          // image: new DecorationImage(
+                          //   fit: BoxFit.fill,
+                          //   image: NetworkImage(
+                          //       "https://avatars2.githubusercontent.com/u/3234592?s=460&v=4"),
+                          // ),
+                          border: Border.all(
+                              color: CommonColors.primary,
+                              width: 2.0,
+                            ),
+                            
+                        ),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(50.0),
+                          onTap: (){},
+                          child: Ink(
+                            child: Align(
+                              child: Text('Add Photo'),
+                            ),
+                          )
+                        ),
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 20.0),
+                            width: MediaQuery.of(context).size.width - 160,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: Colors.grey,
+                                    width: 0.7,
+                                    style: BorderStyle.solid),
+                              ),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Expanded(
+                                  child: TextField(
+                                    style:
+                                        TextStyle(color: CommonColors.primary),
+                                    textAlign: TextAlign.left,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'Khmer Name',
+                                      icon: Icon(
+                                        FeatherIcons.user,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20.0),
+                            width: MediaQuery.of(context).size.width - 160,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: Colors.grey,
+                                    width: 0.7,
+                                    style: BorderStyle.solid),
+                              ),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Expanded(
+                                  child: TextField(
+                                    style:
+                                        TextStyle(color: CommonColors.primary),
+                                    textAlign: TextAlign.left,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'English Name',
+                                      icon: Icon(
+                                        FeatherIcons.user,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: 150.0,
+                        child: RadioListTile(
+                          title: const Text('Male'),
+                          groupValue: gender,
+                          value: "male",
+                          activeColor: CommonColors.accent,
+                          onChanged: (String val) => handleGenderChange(val),
+                        ),
+                      ),
+                      Container(
+                        width: 150.0,
+                        child: RadioListTile(
+                          title: const Text('Female'),
+                          groupValue: gender,
+                          value: "female",
+                          activeColor: CommonColors.accent,
+                          onChanged: (String val) => handleGenderChange(val),
+                        ),
+                      ),
+                    ],
+                  )),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Colors.grey,
+                        width: 0.7,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Expanded(
+                      child: TextField(
+                        style: TextStyle(color: CommonColors.primary),
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Phone Number',
+                          icon: Icon(
+                            FeatherIcons.phone,
+                            size: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Colors.grey,
+                        width: 0.7,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Expanded(
+                      child: TextField(
+                        style: TextStyle(color: CommonColors.primary),
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Email',
+                          icon: Icon(
+                            FeatherIcons.mail,
+                            size: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Colors.grey,
+                        width: 0.7,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Expanded(
+                      child: TextField(
+                        style: TextStyle(color: CommonColors.primary),
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Date of Birth',
+                          icon: Icon(
+                            FeatherIcons.calendar,
+                            size: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Colors.grey,
+                        width: 0.7,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Expanded(
+                      child: TextField(
+                        style: TextStyle(color: CommonColors.primary),
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Password',
+                          icon: Icon(
+                            FeatherIcons.lock,
+                            size: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        color: Colors.grey,
+                        width: 0.7,
+                        style: BorderStyle.solid),
+                  ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Expanded(
+                      child: TextField(
+                        style: TextStyle(color: CommonColors.primary),
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Address',
+                          icon: Icon(
+                            FeatherIcons.map_pin,
+                            size: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Container(
+                      margin: EdgeInsets.symmetric(horizontal: 25.0),
+                      alignment: Alignment.centerRight,
+                      width: 160.0,
+                      child: GradientButton(
+                        onPressed: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Student())),
+                        text: 'Create Account',
+                      )),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -440,9 +874,7 @@ class Teacher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Teacher Sign Up'
-      ),
+      child: Text('Teacher Sign Up'),
     );
   }
 }
