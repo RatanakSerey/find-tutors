@@ -9,8 +9,10 @@ import 'package:find_tutors/screens/map/test_sqflite.dart';
 import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:find_tutors/utils/alert_dialog.dart';
 import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/utils/icon_font.dart';
 import 'package:find_tutors/utils/snack_bar.dart';
 import 'package:find_tutors/widgets/common_appbar.dart';
+import 'package:find_tutors/widgets/common_textinput.dart';
 import 'package:http/http.dart' as http;
 import 'package:find_tutors/screens/map/test.dart';
 import 'package:find_tutors/screens/map/upload_img.dart';
@@ -73,23 +75,11 @@ class _MapPageState extends State<MapPage> {
             title: "stateContainer.currentUser.username",
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
-          ButtonBar(
-            children: <Widget>[
-              Text("Male"),
-              Radio(
-                groupValue: gender,
-                value: "male",
-                activeColor: CommonColors.accent,
-                onChanged: (String val) => handleGenderChange(val),
-              ),
-              Text("Female"),
-              Radio(
-                groupValue: gender,
-                value: "female",
-                activeColor: CommonColors.accent,
-                onChanged: (String val) => handleGenderChange(val),
-              ),
-            ],
+          TextInput(
+            hasIcon: true,
+            hint: "Username",
+            iconName: FeatherIcons.smartphone,
+            onChanged: (text) => print(text),
           ),
           // RaisedButton(
           //   child: Text("bottomSheet"),
@@ -165,50 +155,50 @@ class _MapPageState extends State<MapPage> {
               );
             },
           ),
-          RaisedButton(
-            child: Text("Test sqflite"),
-            onPressed: () {
-              Navigator.of(context, rootNavigator: true).push(
-                MaterialPageRoute<bool>(
-                  fullscreenDialog: true,
-                  builder: (BuildContext context) => TestSqflite(),
-                ),
-              );
-            },
-          ),
-          RaisedButton(
-            child: Text("Upload image"),
-            onPressed: () {
-              Navigator.of(context, rootNavigator: true).push(
-                MaterialPageRoute<bool>(
-                  fullscreenDialog: true,
-                  builder: (BuildContext context) => UploadImg(),
-                ),
-              );
-            },
-          ),
-          Expanded(
-            child: OrientationBuilder(
-              builder: (context, orientation) => _buildList(
-                  context,
-                  orientation == Orientation.landscape
-                      ? Axis.vertical
-                      : Axis.horizontal),
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: CachedNetworkImage(
-                imageUrl: "https://firebasestorage.googleapis.com/v0/b/find-tutors.appspot.com/o/subjects%2Fcooking.png?alt=media&token=188ab9c2-7126-43dc-a628-872b5c561f94",
-                placeholder: new CircularProgressIndicator(),
-                errorWidget: new Icon(Icons.error),
-              ),
-            ),
-          ),
-          RaisedButton(
-            child: Text("Image picker"),
-            onPressed: () => getImageFromLocal(),
-          )
+          // RaisedButton(
+          //   child: Text("Test sqflite"),
+          //   onPressed: () {
+          //     Navigator.of(context, rootNavigator: true).push(
+          //       MaterialPageRoute<bool>(
+          //         fullscreenDialog: true,
+          //         builder: (BuildContext context) => TestSqflite(),
+          //       ),
+          //     );
+          //   },
+          // ),
+          // RaisedButton(
+          //   child: Text("Upload image"),
+          //   onPressed: () {
+          //     Navigator.of(context, rootNavigator: true).push(
+          //       MaterialPageRoute<bool>(
+          //         fullscreenDialog: true,
+          //         builder: (BuildContext context) => UploadImg(),
+          //       ),
+          //     );
+          //   },
+          // ),
+          // Expanded(
+          //   child: OrientationBuilder(
+          //     builder: (context, orientation) => _buildList(
+          //         context,
+          //         orientation == Orientation.landscape
+          //             ? Axis.vertical
+          //             : Axis.horizontal),
+          //   ),
+          // ),
+          // Expanded(
+          //   child: Center(
+          //     child: CachedNetworkImage(
+          //       imageUrl: "https://firebasestorage.googleapis.com/v0/b/find-tutors.appspot.com/o/subjects%2Fcooking.png?alt=media&token=188ab9c2-7126-43dc-a628-872b5c561f94",
+          //       placeholder: new CircularProgressIndicator(),
+          //       errorWidget: new Icon(Icons.error),
+          //     ),
+          //   ),
+          // ),
+          // RaisedButton(
+          //   child: Text("Image picker"),
+          //   onPressed: () => getImageFromLocal(),
+          // )
         ],
       ),
     );

@@ -40,7 +40,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/app-icon.png
+    - assets/images/app_icon_512.png
     - assets/images/sub_icon.png
     - assets/images/slanted_menu.png
     - assets/images/forgot_password.png

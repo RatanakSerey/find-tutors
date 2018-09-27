@@ -39,7 +39,7 @@ class Fonts {
 
 class Images {
   static const String imageDir = "assets/images";
-  static const String appIcon = "$imageDir/app-icon.png";
+  static const String appIcon = "$imageDir/app_icon_512.png";
   static const String imagePlaceholder = "$imageDir/image_placeholder.png";
   static const String noImagePlaceholder = "$imageDir/no_image_placeholder.png";
   static const String notFound = "$imageDir/not_found.png";
@@ -58,6 +58,7 @@ class CommonColors {
   static const primary = Color(0xFF4E54C8);
   static const secondary = Color(0xFF8F94FB);
   static const accent = Color(0xFF000000);
+  static const black = Color(0xFF000000);
   static const success = Color(0xFF000000);
   static const warning = Color(0xFF000000);
   static const danger = Color(0xFFfb4740);

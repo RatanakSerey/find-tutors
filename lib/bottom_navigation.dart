@@ -5,6 +5,7 @@ import 'package:find_tutors/screens/home/subjects.dart';
 import 'package:find_tutors/screens/map/map.dart';
 import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/utils/modal_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:find_tutors/drawer.dart';
@@ -16,10 +17,12 @@ class NavigationIconView {
     Widget icon,
     Widget activeIcon,
     String title,
+    @required String key,
     Color color,
     TickerProvider vsync,
   })  : _icon = icon,
         _color = color,
+        _key = key,
         _title = title,
         item = BottomNavigationBarItem(
           icon: icon,
@@ -38,6 +41,7 @@ class NavigationIconView {
   }
 
   final Widget _icon;
+  final String _key;
   final Color _color;
   final String _title;
   final BottomNavigationBarItem item;
@@ -85,18 +89,26 @@ class TabNavigator extends StatefulWidget {
 
 class _TabNavigatorState extends State<TabNavigator>
     with TickerProviderStateMixin {
+  BuildContext _context;
   BottomNavigationBarType _type = BottomNavigationBarType.fixed;
   List<NavigationIconView> _navigationViews;
   int _tab = 0;
-  List<String> subjectListScreens = [ScreenHelper.subjectList];
-  List<String> signinScreens = [ScreenHelper.signin];
-  final List<String> initialScreens = [ScreenHelper.subjectList];
+  final String homeKey = "home";
+  final String mapKey = "map";
+  final String profileKey = "profile";
+
+  final String initialHome = ScreenHelper.subjectList;
+  List<String> homeScreens = [ScreenHelper.subjectList];
+
+  final String initialProfile = ScreenHelper.signin;
+  List<String> profileScreens = [ScreenHelper.signin];
 
   @override
   void initState() {
     super.initState();
     _navigationViews = <NavigationIconView>[
       NavigationIconView(
+        key: homeKey,
         activeIcon: Icon(FeatherIcons.home),
         icon: Icon(FeatherIcons.home),
         title: translate.text("home"),
@@ -104,6 +116,7 @@ class _TabNavigatorState extends State<TabNavigator>
         vsync: this,
       ),
       NavigationIconView(
+        key: profileKey,
         activeIcon: Icon(FeatherIcons.user),
         icon: Icon(FeatherIcons.user),
         title: translate.text("profile"),
@@ -111,6 +124,7 @@ class _TabNavigatorState extends State<TabNavigator>
         vsync: this,
       ),
       NavigationIconView(
+        key: mapKey,
         activeIcon: Icon(FeatherIcons.map),
         icon: Icon(FeatherIcons.map),
         title: translate.text("map"),
@@ -137,20 +151,32 @@ class _TabNavigatorState extends State<TabNavigator>
     });
   }
 
-  void onNavigationIconViewTab(int index) {
+  void onNavigationIconViewTab(int index, String key) {
     print("index = $index");
     print("tab = $_tab");
+    print("key = $key");
     if (index == _tab) {
-      setState(() {
-        subjectListScreens = [initialScreens[index]];
-      });
+      if (key == homeKey) {
+        setState(() {
+          homeScreens = [initialHome];
+        });
+      }
     }
+
+    if (key == profileKey) {
+      CommonBottomSheet(
+        context: _context,
+        child: Center(
+          child: Text("hi"),
+        ),
+      ).show();
+    }
+
     setState(() {
       _navigationViews[_tab].controller.reverse();
       _tab = index;
       _navigationViews[_tab].controller.forward();
     });
-    print("subjectListScreen = $subjectListScreens");
   }
 
   BottomNavigationBar get botNavBar {
@@ -160,12 +186,14 @@ class _TabNavigatorState extends State<TabNavigator>
           .toList(),
       currentIndex: _tab,
       type: _type,
-      onTap: onNavigationIconViewTab,
+      onTap: (int index) =>
+          onNavigationIconViewTab(index, _navigationViews[index]._key),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     final stateContainer = AppStateContainer.of(context);
     return Scaffold(
       key: stateContainer.scaffoldKey,
@@ -176,12 +204,12 @@ class _TabNavigatorState extends State<TabNavigator>
           Offstage(
             offstage: _tab != 0,
             child: SubjectListWidget(
-                screens: subjectListScreens, changeScreen: changeScreen),
+                screens: homeScreens, changeScreen: changeScreen),
           ),
           Offstage(
             offstage: _tab != 1,
             child: SignInWidget(
-                screens: signinScreens, changeScreen: changeScreen),
+                screens: profileScreens, changeScreen: changeScreen),
           ),
           Offstage(
             offstage: _tab != 2,
@@ -195,12 +223,12 @@ class _TabNavigatorState extends State<TabNavigator>
 
   void changeScreen({String screen, bool pop = false}) {
     if (!pop) {
-      subjectListScreens.add(screen);
+      homeScreens.add(screen);
     } else {
-      subjectListScreens.removeLast();
+      homeScreens.removeLast();
     }
     setState(() {
-      subjectListScreens = subjectListScreens;
+      homeScreens = homeScreens;
     });
   }
 

@@ -1,5 +1,6 @@
 import 'package:find_tutors/services/localization/app_translations.dart';
 import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/widgets/app_icon.dart';
 import 'package:find_tutors/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -40,10 +41,7 @@ Widget header(context) => Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FlutterLogo(
-              colors: Colors.green,
-              size: 80.0,
-            ),
+            AppIcon(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ProfileTile(

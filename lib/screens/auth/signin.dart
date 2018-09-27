@@ -1,6 +1,7 @@
 // //packages
 import 'package:find_tutors/utils/change_screen.dart';
 import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/widgets/app_icon.dart';
 import 'package:find_tutors/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,10 +72,7 @@ class SigninPage extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          FlutterLogo(
-            colors: Colors.green,
-            size: 80.0,
-          ),
+          AppIcon(),
           SizedBox(
             height: 20.0,
           ),
