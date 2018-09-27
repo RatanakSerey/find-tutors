@@ -1,7 +1,6 @@
 // //packages
 import 'package:find_tutors/utils/change_screen.dart';
 import 'package:find_tutors/utils/constants.dart';
-import 'package:find_tutors/widgets/app_icon.dart';
 import 'package:find_tutors/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +8,7 @@ import 'package:find_tutors/utils/icon_font.dart';
 //screens
 import 'signup.dart';
 import 'package:find_tutors/screens/auth/reset_password.dart';
+import 'package:find_tutors/screens/tutors/profile.dart';
 
 class SignInWidget extends StatefulWidget {
   final List screens;
@@ -72,7 +72,10 @@ class SigninPage extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          AppIcon(),
+          FlutterLogo(
+            colors: Colors.green,
+            size: 80.0,
+          ),
           SizedBox(
             height: 20.0,
           ),
@@ -165,7 +168,12 @@ class SigninPage extends StatelessWidget {
                 ),
                 width: double.infinity,
                 child: GradientButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.of(context, rootNavigator: true).push(
+                  new MaterialPageRoute<bool>(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => new ProfileTwoPage(),
+                  ),
+                );},
                   text: 'Sign in',
                 )),
           ],
