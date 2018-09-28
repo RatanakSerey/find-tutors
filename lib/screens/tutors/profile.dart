@@ -1,17 +1,16 @@
 //packages
-import 'package:find_tutors/utils/modal_sheet.dart';
-import 'package:find_tutors/widgets/common_divider.dart';
-import 'package:find_tutors/widgets/common_scaffold.dart';
-import 'package:find_tutors/widgets/custom_background.dart';
-import 'package:find_tutors/widgets/profile_tile.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:find_tutors/utils/icon_font.dart';
 import 'package:find_tutors/utils/constants.dart';
+import 'package:find_tutors/utils/icon_font.dart';
+import 'package:find_tutors/utils/modal_sheet.dart';
+import 'package:find_tutors/widgets/profile_tile.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ProfileTwoPage extends StatefulWidget {
   final Function changeScreen;
+
   ProfileTwoPage({this.changeScreen});
+
   @override
   _ProfileTwoPageState createState() => new _ProfileTwoPageState();
 }
@@ -57,75 +56,78 @@ class _ProfileTwoPageState extends State<ProfileTwoPage> {
                     ),
                     new Transform.translate(
                       offset: Offset(0.0, 80.0),
-                      child: new ListTile(
-                        leading: new CircleAvatar(
-                          radius: 45.0,
-                          child: new Container(
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    "https://avatars2.githubusercontent.com/u/3234592?s=460&v=4"),
+                      child: Column(
+                        children: <Widget>[
+                          new ListTile(
+                            leading: new CircleAvatar(
+                              radius: 45.0,
+                              child: new Container(
+                                decoration: new BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: new DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                        "https://avatars2.githubusercontent.com/u/3234592?s=460&v=4"),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            title: new Text(
+                              "កាំង យីម៉ាន់",
+                              style: new TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            subtitle: new Text(
+                              "គ្រូ គណិត",
+                              style: new TextStyle(
+                                color: Colors.blueAccent,
+                                fontSize: 14.0,
                               ),
                             ),
                           ),
-                        ),
-                        title: new Text(
-                          "កាំង យីម៉ាន់",
-                          style: new TextStyle(
-                              color: Colors.blueAccent,
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        subtitle: new Text(
-                          "គ្រូ គណិត",
-                          style: new TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 14.0,
-                          ),
-                        ),
+                          Container(
+                            // width: 300.0,
+                            margin: EdgeInsets.only(top: 20.0, right: 20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                ProfileTile(
+                                  title: "15",
+                                  subtitle: "Likes",
+                                  textColor: Colors.blueAccent,
+                                ),
+                                Container(
+                                  height: 30.0,
+                                  width: 1.0,
+                                  color: Colors.blueAccent,
+                                  margin: const EdgeInsets.only(
+                                      left: 20.0, right: 20.0),
+                                ),
+                                ProfileTile(
+                                  title: "50",
+                                  subtitle: "Followers",
+                                  textColor: Colors.blueAccent,
+                                ),
+                                Container(
+                                  height: 30.0,
+                                  width: 1.0,
+                                  color: Colors.blueAccent,
+                                  margin: const EdgeInsets.only(
+                                      left: 20.0, right: 20.0),
+                                ),
+                                ProfileTile(
+                                  title: "10",
+                                  subtitle: "Posts",
+                                  textColor: Colors.blueAccent,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    new Transform.translate(
-                        offset: Offset(-20.0, -100.0),
-                        child: Container(
-                          // width: 300.0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              ProfileTile(
-                                title: "15",
-                                subtitle: "Likes",
-                                textColor: Colors.blueAccent,
-                              ),
-                              Container(
-                                height: 30.0,
-                                width: 1.0,
-                                color: Colors.blueAccent,
-                                margin: const EdgeInsets.only(
-                                    left: 20.0, right: 20.0),
-                              ),
-                              ProfileTile(
-                                title: "50",
-                                subtitle: "Followers",
-                                textColor: Colors.blueAccent,
-                              ),
-                              Container(
-                                height: 30.0,
-                                width: 1.0,
-                                color: Colors.blueAccent,
-                                margin: const EdgeInsets.only(
-                                    left: 20.0, right: 20.0),
-                              ),
-                              ProfileTile(
-                                title: "10",
-                                subtitle: "Posts",
-                                textColor: Colors.blueAccent,
-                              ),
-                            ],
-                          ),
-                        )),
                   ],
                 ),
               ),
@@ -166,26 +168,20 @@ class _ProfileTwoPageState extends State<ProfileTwoPage> {
                     style: new TextStyle(color: Colors.grey, fontSize: 12.0),
                   ),
                 ),
-              )
-            ])),
-          ])),
-          new Padding(
-              padding: EdgeInsets.only(
-                top: 60.0,
               ),
-              child: Stack(children: <Widget>[
+              new Flexible(
+                  child: Stack(children: <Widget>[
                 /// Item card
                 Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.topCenter,
                   child: SizedBox.fromSize(
-                      size: Size.fromHeight(170.0),
+                      size: Size.fromHeight(150.0),
                       child: Stack(
                         fit: StackFit.expand,
                         children: <Widget>[
                           /// Item description inside a material
                           Container(
-                            margin: EdgeInsets.only(
-                                top: 20.0, left: 20.0, right: 20.0),
+                            margin: EdgeInsets.only(left: 20.0, right: 20.0),
                             child: Material(
                               elevation: 10.0,
                               borderRadius: BorderRadius.circular(10.0),
@@ -350,6 +346,8 @@ class _ProfileTwoPageState extends State<ProfileTwoPage> {
                       )),
                 ),
               ]))
+            ])),
+          ])),
         ]));
   }
 }
@@ -359,8 +357,8 @@ class MyClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     Path p = new Path();
     p.lineTo(size.width, 0.0);
-    p.lineTo(size.width, size.height / 2);
-    p.lineTo(0.0, size.height / 3);
+    p.lineTo(size.width, 300.0);
+    p.lineTo(0.0, 200.0);
     p.close();
     return p;
   }

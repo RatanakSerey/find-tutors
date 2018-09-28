@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:find_tutors/drawer.dart';
 import 'package:find_tutors/utils/icon_font.dart';
+import 'package:find_tutors/widgets/gradient_button.dart';
 
 /* navigation icon view */
 class NavigationIconView {
@@ -125,7 +126,7 @@ class _TabNavigatorState extends State<TabNavigator>
       ),
       NavigationIconView(
         key: mapKey,
-        activeIcon: Icon(FeatherIcons.map),
+        activeIcon: Icon(FeatherIcons.map_pin),
         icon: Icon(FeatherIcons.map),
         title: translate.text("map"),
         color: Colors.teal,
@@ -167,7 +168,7 @@ class _TabNavigatorState extends State<TabNavigator>
       CommonBottomSheet(
         context: _context,
         child: Center(
-          child: Text("hi"),
+          child: signInBottomSheet(),
         ),
       ).show();
     }
@@ -234,6 +235,60 @@ class _TabNavigatorState extends State<TabNavigator>
 
   Widget buildAppBar() {
     return null;
+  }
+
+  Widget signInBottomSheet() {
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+          IconButton(icon: Icon(FeatherIcons.x), onPressed: null, iconSize: 14.0,),
+        ],),
+
+        Text(
+          'You need an account to continue',
+          style: new TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w600),
+        ),
+        Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+            width: double.infinity,
+            child: GradientButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).push(
+                  new MaterialPageRoute<bool>(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => new SigninPage(),
+                  ),
+                );
+              },
+              text: 'Sign In',
+            )),
+        Text(
+          'OR',
+          style: new TextStyle(
+              color: Colors.grey,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w600),
+        ),
+        Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+            width: double.infinity,
+            child: GradientButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).push(
+                  new MaterialPageRoute<bool>(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => new SigninPage(),
+                  ),
+                );
+              },
+              text: 'Sign Up',
+            )),
+      ],
+    );
   }
 }
 

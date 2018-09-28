@@ -121,7 +121,6 @@ class SigninPage extends StatelessWidget {
                           icon: Icon(
                             FeatherIcons.mail,
                             size: 20.0,
-                            color: CommonColors.primary,
                           )),
                     ),
                   ),
