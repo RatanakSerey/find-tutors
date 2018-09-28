@@ -6,11 +6,23 @@ import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({this.onTabMenuTap});
+
   final Function onTabMenuTap;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Material(
+      child: Container(
+        height: MediaQuery.of(context).size.height - 20.0,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+            colorFilter: new ColorFilter.mode(
+                Colors.black.withOpacity(0.18), BlendMode.dstATop),
+            image: AssetImage('assets/images/Map.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -55,7 +67,8 @@ Widget header(context) => Container(
       ),
     );
 
-Widget menu(context, onTabMenuTap) => Expanded(
+Widget menu(context, onTabMenuTap) => Container(
+
       child: Column(
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
