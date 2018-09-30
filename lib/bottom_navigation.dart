@@ -104,10 +104,8 @@ class _TabNavigatorState extends State<TabNavigator>
   final String initialProfile = ScreenHelper.signin;
   List<String> profileScreens = [ScreenHelper.signin];
 
-  @override
-  void initState() {
-    super.initState();
-    _navigationViews = <NavigationIconView>[
+  List<NavigationIconView> __navigationViews() {
+    _navigationViews =  [
       NavigationIconView(
         key: homeKey,
         activeIcon: Icon(FeatherIcons.home),
@@ -133,6 +131,13 @@ class _TabNavigatorState extends State<TabNavigator>
         vsync: this,
       ),
     ];
+    return _navigationViews;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _navigationViews = __navigationViews();
 
     for (NavigationIconView view in _navigationViews)
       view.controller.addListener(_rebuild);
@@ -180,9 +185,9 @@ class _TabNavigatorState extends State<TabNavigator>
     });
   }
 
-  BottomNavigationBar get botNavBar {
+  BottomNavigationBar botNavBar() {
     return BottomNavigationBar(
-      items: _navigationViews
+      items: __navigationViews()
           .map((NavigationIconView navigationView) => navigationView.item)
           .toList(),
       currentIndex: _tab,
@@ -218,7 +223,7 @@ class _TabNavigatorState extends State<TabNavigator>
           ),
         ],
       ),
-      bottomNavigationBar: botNavBar,
+      bottomNavigationBar: botNavBar(),
     );
   }
 
