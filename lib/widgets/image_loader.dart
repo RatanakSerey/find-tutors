@@ -20,17 +20,8 @@ class ImageLoader extends StatelessWidget {
 class Placeholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: <Widget>[
-        Image.asset(
-          Images.imagePlaceholder,
-          height: 90.0,
-        ),
-        CircularProgressIndicator(
-          strokeWidth: 2.0,
-        ),
-      ],
+    return CircularProgressIndicator(
+      strokeWidth: 2.0,
     );
   }
 }

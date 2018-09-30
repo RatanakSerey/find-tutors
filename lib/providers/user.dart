@@ -30,6 +30,12 @@ class UserProvider {
       ''');
   }
 
+  Future count() async {
+    await open();
+    return await db
+        .rawQuery('''SELECT COUNT(*) AS count, $id, $userId, $username, $email, FROM $tableName''');
+  }
+
   Future getUser() async {
     await open();
     List<Map> map = await db.query(tableName);
