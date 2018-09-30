@@ -4,6 +4,8 @@ import 'package:find_tutors/widgets/app_icon.dart';
 import 'package:find_tutors/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 
+import 'package:find_tutors/screens/home/post_list.dart';
+
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({this.onTabMenuTap});
 
@@ -112,7 +114,10 @@ Widget menu(context, onTabMenuTap) => Container(
           new GestureDetector(
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, 'otherPage');
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PostListPage()),
+            );
             },
             child: new Text(
               translate.text("setting"),

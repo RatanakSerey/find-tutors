@@ -21,10 +21,89 @@ class _ProfileTwoPageState extends State<ProfileTwoPage> {
   static _showModalSheets(context) {
     CommonBottomSheet(
         context: context,
-        height: 50.0,
-        child: Center(
-          child: Text("hi"),
-        )).show();
+        // height: ,
+        child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                new ListTile(
+                  onTap: () {},
+                  leading: new Icon(
+                    FeatherIcons.edit3,
+                  ),
+                  title: new Text(
+                    "Edit Profile",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                new Divider(
+                  height: 4.0,
+                ),
+                new ListTile(
+                  leading: new Icon(
+                    FeatherIcons.users,
+                  ),
+                  title: new Text(
+                    "Follower",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                new Divider(
+                  height: 4.0,
+                ),
+                new ListTile(
+                  leading: new Icon(
+                    FeatherIcons.heart,
+                  ),
+                  title: new Text(
+                    "Likes",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                new Divider(
+                  height: 4.0,
+                ),
+                new Padding(
+                  padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      new Text(
+                        "Privacy Policy",
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      new Container(
+                        width: 25.0,
+                        child: new Icon(
+                          Icons.arrow_drop_down_circle,
+                          size: 5.0,
+                        ),
+                      ),
+                      //new Icon(
+                      //Icons.,
+                      //),
+                      new Text(
+                        "Terms of service",
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+        ).show();
   }
 
   @override
@@ -172,7 +251,7 @@ class _ProfileTwoPageState extends State<ProfileTwoPage> {
                   subtitle: new Padding(
                     padding: const EdgeInsets.only(left: 10.0),
                     child: new Text(
-                      "February 20, 2018",
+                      "10 Posts",
                       style: new TextStyle(color: Colors.grey, fontSize: 12.0),
                     ),
                   ),
@@ -360,6 +439,10 @@ class _ProfileTwoPageState extends State<ProfileTwoPage> {
         ),
       ),
     );
+  }
+
+  Widget profileOption() {
+    return Center();
   }
 }
 

@@ -9,6 +9,7 @@ import 'package:find_tutors/utils/icon_font.dart';
 import 'signup.dart';
 import 'package:find_tutors/screens/auth/reset_password.dart';
 import 'package:find_tutors/screens/tutors/profile.dart';
+import 'package:find_tutors/screens/students/profile.dart';
 
 class SignInWidget extends StatefulWidget {
   final List screens;
@@ -217,7 +218,21 @@ class SigninPage extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            new GestureDetector(
+              onTap: () {
+                Navigator.of(context, rootNavigator: true).push(
+                  new MaterialPageRoute<bool>(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => new ProfilePage(),
+                  ),
+                );
+              },
+              child: new Text(
+                "Student Profile",
+                textAlign: TextAlign.center,
+              ),
+            ),
           ],
         ),
       );
