@@ -35,27 +35,43 @@ class TextInput extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      onChanged: onChanged,
-      autofocus: autofocus,
-      enabled: enabled,
-      maxLength: maxLength,
-      onSubmitted: onSubmitted,
-      textAlign: TextAlign.left,
-      style: TextStyle(color: color, fontSize: fontSize),
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        hintText: hint,
-        labelStyle: TextStyle(color: color),
-        icon: hasIcon
-            ? Icon(
-                iconName,
-                size: iconSize,
-                color: iconColor,
-              )
-            : null,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+              color: Colors.grey, width: 0.7, style: BorderStyle.solid),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          new Expanded(
+            child: TextField(
+              keyboardType: keyboardType,
+              obscureText: obscureText,
+              onChanged: onChanged,
+              autofocus: autofocus,
+              enabled: enabled,
+              maxLength: maxLength,
+              onSubmitted: onSubmitted,
+              textAlign: TextAlign.left,
+              style: TextStyle(color: color, fontSize: fontSize),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: hint,
+                labelStyle: TextStyle(color: color),
+                icon: hasIcon
+                    ? Icon(
+                        iconName,
+                        size: iconSize,
+                        // color: iconColor,
+                      )
+                    : null,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

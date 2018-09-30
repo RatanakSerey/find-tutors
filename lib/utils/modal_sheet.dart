@@ -14,15 +14,18 @@ class CommonBottomSheet {
     showModalBottomSheet(
       context: context,
       builder: (builder) {
-        return new Material(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.only(
-              topLeft: new Radius.circular(15.0),
-              topRight: new Radius.circular(15.0),
+        return GestureDetector(
+          onTap: () => null,
+          child: new Material(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.only(
+                topLeft: new Radius.circular(15.0),
+                topRight: new Radius.circular(15.0),
+              ),
             ),
+            child: Container(height: height, child: child),
           ),
-          child: Container(height: height, child: child),
         );
       },
     );

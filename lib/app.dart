@@ -115,6 +115,7 @@ class _AppRootWidgetState extends State<AppRootWidget>
       // brightness: Brightness.dark,
       primaryColor: Color(0xFF4E54C8),
       accentColor: CommonColors.accent,
+      // canvasColor: Colors.transparent,
       fontFamily: stateContainer.currentLanguage != null
           ? stateContainer.currentLanguage.code == "en"
               ? Fonts.dinNextFont

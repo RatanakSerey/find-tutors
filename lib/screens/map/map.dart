@@ -81,6 +81,12 @@ class _MapPageState extends State<MapPage> {
             iconName: FeatherIcons.smartphone,
             onChanged: (text) => print(text),
           ),
+          TextInput(
+            hasIcon: true,
+            hint: "Username",
+            iconName: FeatherIcons.smartphone,
+            onChanged: (text) => print(text),
+          ),
           // RaisedButton(
           //   child: Text("bottomSheet"),
           //   onPressed: () {

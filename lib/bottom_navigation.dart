@@ -243,14 +243,16 @@ class _TabNavigatorState extends State<TabNavigator>
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-          IconButton(icon: Icon(FeatherIcons.x), onPressed: null, iconSize: 14.0,),
-        ],),
-
+            IconButton(
+              icon: Icon(FeatherIcons.x),
+              onPressed: () => Navigator.pop(context),
+              iconSize: 14.0,
+            ),
+          ],
+        ),
         Text(
           'You need an account to continue',
-          style: new TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w600),
+          style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
         ),
         Container(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
@@ -269,9 +271,7 @@ class _TabNavigatorState extends State<TabNavigator>
         Text(
           'OR',
           style: new TextStyle(
-              color: Colors.grey,
-              fontSize: 14.0,
-              fontWeight: FontWeight.w600),
+              color: Colors.grey, fontSize: 14.0, fontWeight: FontWeight.w600),
         ),
         Container(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
