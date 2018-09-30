@@ -9,7 +9,7 @@ class CommonBottomSheet {
   final double height;
   Widget child;
   CommonBottomSheet(
-      {@required this.context, this.height = 300.0, @required this.child});
+      {@required this.context, this.height, @required this.child});
   show() {
     showModalBottomSheet(
       context: context,

@@ -118,7 +118,7 @@ class _TabNavigatorState extends State<TabNavigator>
       ),
       NavigationIconView(
         key: profileKey,
-        activeIcon: Icon(FeatherIcons.user),
+        activeIcon: Icon(FeatherIcons.users),
         icon: Icon(FeatherIcons.user),
         title: translate.text("profile"),
         color: Colors.indigo,

@@ -42,12 +42,22 @@ class PostListPageState extends State<PostListPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+            color: Color(0xFF6c5ce7), //change your color here
+          ),
         centerTitle: true,
-        title: Text('Subject Name',
+        title: Text('ភាសាខ្មែរ',
             style: TextStyle(
-              color: Color(0xFF6c5ce7),
+              color: Color(0xFF6c5ce7), fontWeight: FontWeight.w600
             )),
         backgroundColor: Colors.white,
+        actions: <Widget>[
+          new IconButton(
+              icon: Icon(FeatherIcons.search),
+              color: Color(0xFF6c5ce7),
+              onPressed: () {},
+            )
+        ],
         bottom: new TabBar(
           isScrollable: true,
           unselectedLabelColor: Colors.grey,
@@ -86,6 +96,16 @@ class PostListPageState extends State<PostListPage>
         scrollDirection: Axis.vertical,
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('20 Posts'),
+                Text('Filter'),
+              ],
+            ),
+          ),
           shopItem(),
           shopItem(),
           shopItem(),
@@ -116,7 +136,7 @@ class PostListPageState extends State<PostListPage>
                   children: <Widget>[
                     /// Item description inside a material
                     Container(
-                      margin: EdgeInsets.only(top: 20.0),
+                      // margin: EdgeInsets.only(left: 20.0, right: 20.0),
                       child: Material(
                         elevation: 10.0,
                         borderRadius: BorderRadius.circular(10.0),
@@ -126,213 +146,128 @@ class PostListPageState extends State<PostListPage>
                           onTap: () => widget.changeScreen(
                               screen: ScreenHelper.postDetail),
                           child: Padding(
-                            padding: EdgeInsets.all(15.0),
+                            padding: EdgeInsets.all(10.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                /// Name and Price
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('ហេង យូស៊ួរ',
-                                        style: TextStyle(
-                                            color: CommonColors.primary,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 28.0)),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text('តម្លៃ:',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            )),
-                                        Text('16' + '\$',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w700,
-                                            )),
-                                      ],
+                                ListTile(
+                                  leading: new CircleAvatar(
+                                    radius: 40.0,
+                                    child: new Container(
+                                      decoration: new BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: new DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: NetworkImage(
+                                              "https://avatars2.githubusercontent.com/u/3234592?s=460&v=4"),
+                                        ),
+                                      ),
                                     ),
-                                  ],
+                                  ),
+                                  title: new Text(
+                                    "កាំង យីម៉ាន់",
+                                    style: new TextStyle(
+                                        color: Colors.blueAccent,
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  subtitle: new Text(
+                                    "តម្លៃ" + "16\$",
+                                    style: new TextStyle(
+                                      color: Colors.blueAccent,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
                                 ),
 
+                                /// Name and Price
+                                // Column(
+                                //   mainAxisAlignment:
+                                //       MainAxisAlignment.end,
+                                //   crossAxisAlignment:
+                                //       CrossAxisAlignment.start,
+                                //   children: <Widget>[
+                                //     Text('គណិតវិទ្យា',
+                                //         style: TextStyle(
+                                //             color: CommonColors.primary,
+                                //             fontWeight: FontWeight.w700,
+                                //             fontSize: 28.0)),
+                                //     Row(
+                                //       mainAxisAlignment:
+                                //           MainAxisAlignment.start,
+                                //       crossAxisAlignment:
+                                //           CrossAxisAlignment.start,
+                                //       children: <Widget>[
+                                //         Text('តម្លៃ:',
+                                //             style: TextStyle(
+                                //               color: Colors.black,
+                                //             )),
+                                //         Text('16' + '\$',
+                                //             style: TextStyle(
+                                //               color: Colors.black,
+                                //               fontWeight:
+                                //                   FontWeight.w700,
+                                //             )),
+                                //       ],
+                                //     ),
+                                //   ],
+                                // ),
+
                                 /// Infos
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('ថ្នាក់ទី:', style: TextStyle()),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Text('12',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700)),
-                                    ),
-                                    Text('ម៉ោង:', style: TextStyle()),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Text('1:00 - 2:00',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700)),
-                                    ),
-                                  ],
+                                Container(
+                                  margin: EdgeInsets.only(left: 20.0, top: 10.0 ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text('ថ្នាក់ទី:', style: TextStyle()),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: Text('12',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700)),
+                                      ),
+                                      Text('ម៉ោង:', style: TextStyle()),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: Text('1:00 - 2:00',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700)),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('ទីកន្លែង:', style: TextStyle()),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Text('Monivong High School',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700)),
-                                    ),
-                                  ],
-                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text('ទីកន្លែង:', style: TextStyle()),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: Text('Monivong High School',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700)),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                           ),
                         ),
                       ),
                     ),
-
-                    /// Item image
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        margin: EdgeInsets.only(right: 20.0),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              new BorderRadius.all(new Radius.circular(50.0)),
-                          border: new Border.all(
-                            color: CommonColors.primary,
-                            width: 3.0,
-                          ),
-                        ),
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              "https://lh4.googleusercontent.com/-pxQQZHW89b8/AAAAAAAAAAI/AAAAAAAAABk/WiqR17OEq9o/photo.jpg?sz=328"),
-                          foregroundColor: CommonColors.primary,
-                          radius: 45.0,
-                        ),
-                      ),
-                    ),
                   ],
                 )),
           ),
-
-          /// Review
-          Padding(
-            padding: EdgeInsets.only(top: 160.0, left: 30.0, right: 30.0),
-            child: Material(
-              elevation: 12.0,
-              color: Colors.transparent,
-              clipBehavior: Clip.antiAlias,
-              borderRadius: BorderRadius.circular(50.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: CommonColors.kitGradients,
-                        end: Alignment.topLeft,
-                        begin: Alignment.bottomRight)),
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Ink(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                FeatherIcons.heart,
-                                size: 16.0,
-                                color: Colors.redAccent,
-                              ),
-                              SizedBox(
-                                width: 6.0,
-                              ),
-                              Text(
-                                '10 Likes',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 18.0),
-                              ),
-                            ]),
-                      ),
-                      Container(
-                        height: 15.0,
-                        width: 1.0,
-                        color: Colors.white,
-                        // margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      ),
-                      Ink(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                FeatherIcons.clock,
-                                size: 16.0,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 6.0,
-                              ),
-                              Text(
-                                '1 Hour',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 18.0),
-                              ),
-                            ]),
-                      ),
-                      Container(
-                        height: 15.0,
-                        width: 1.0,
-                        color: Colors.white,
-                        // margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      ),
-                      Ink(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                FeatherIcons.users,
-                                size: 16.0,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 6.0,
-                              ),
-                              Text(
-                                '10 អ្នក',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 18.0),
-                              ),
-                            ]),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
