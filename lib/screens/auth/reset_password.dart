@@ -106,12 +106,13 @@ class ResetPasswordPage extends StatelessWidget {
             SizedBox(height: 20.0),
             new GestureDetector(
               onTap: () {
-                Navigator.of(context, rootNavigator: true).push(
-                  new MaterialPageRoute<bool>(
-                    fullscreenDialog: true,
-                    builder: (BuildContext context) => new SignupPage(),
-                  ),
-                );
+                // Navigator.of(context, rootNavigator: true).push(
+                //   new MaterialPageRoute<bool>(
+                //     fullscreenDialog: true,
+                //     builder: (BuildContext context) => new SignupPage(),
+                //   ),
+                // );
+                Navigator.pushNamed(context, Routes.signin);
               },
               child: new Text(
                 "Dont have account? Sign Up",

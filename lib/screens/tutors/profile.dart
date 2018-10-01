@@ -6,16 +6,16 @@ import 'package:find_tutors/widgets/profile_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProfileTwoPage extends StatefulWidget {
+class TeacherProfilePage extends StatefulWidget {
   final Function changeScreen;
 
-  ProfileTwoPage({this.changeScreen});
+  TeacherProfilePage({this.changeScreen});
 
   @override
-  _ProfileTwoPageState createState() => new _ProfileTwoPageState();
+  _TeacherProfilePageState createState() => new _TeacherProfilePageState();
 }
 
-class _ProfileTwoPageState extends State<ProfileTwoPage> {
+class _TeacherProfilePageState extends State<TeacherProfilePage> {
   var deviceSize;
 
   static _showModalSheets(context) {

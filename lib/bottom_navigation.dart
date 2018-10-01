@@ -105,7 +105,7 @@ class _TabNavigatorState extends State<TabNavigator>
   List<String> profileScreens = [ScreenHelper.signin];
 
   List<NavigationIconView> __navigationViews() {
-    _navigationViews =  [
+    _navigationViews = [
       NavigationIconView(
         key: homeKey,
         activeIcon: Icon(FeatherIcons.home),
@@ -158,31 +158,36 @@ class _TabNavigatorState extends State<TabNavigator>
   }
 
   void onNavigationIconViewTab(int index, String key) {
-    print("index = $index");
-    print("tab = $_tab");
-    print("key = $key");
-    if (index == _tab) {
-      if (key == homeKey) {
+    final stateContainer = AppStateContainer.of(_context);
+    if (stateContainer.currentUser == null) {
+      if (key == profileKey) {
+        CommonBottomSheet(
+          context: _context,
+          child: Center(
+            child: signInBottomSheet(),
+          ),
+        ).show();
+      } else {
         setState(() {
-          homeScreens = [initialHome];
+          _navigationViews[_tab].controller.reverse();
+          _tab = index;
+          _navigationViews[_tab].controller.forward();
         });
       }
+    } else {
+      if (index == _tab) {
+        if (key == homeKey) {
+          setState(() {
+            homeScreens = [initialHome];
+          });
+        }
+      }
+      setState(() {
+        _navigationViews[_tab].controller.reverse();
+        _tab = index;
+        _navigationViews[_tab].controller.forward();
+      });
     }
-
-    if (key == profileKey) {
-      CommonBottomSheet(
-        context: _context,
-        child: Center(
-          child: signInBottomSheet(),
-        ),
-      ).show();
-    }
-
-    setState(() {
-      _navigationViews[_tab].controller.reverse();
-      _tab = index;
-      _navigationViews[_tab].controller.forward();
-    });
   }
 
   BottomNavigationBar botNavBar() {
@@ -214,7 +219,7 @@ class _TabNavigatorState extends State<TabNavigator>
           ),
           Offstage(
             offstage: _tab != 1,
-            child: SignInWidget(
+            child: SubjectListWidget(
                 screens: profileScreens, changeScreen: changeScreen),
           ),
           Offstage(
@@ -264,12 +269,7 @@ class _TabNavigatorState extends State<TabNavigator>
             width: double.infinity,
             child: GradientButton(
               onPressed: () {
-                Navigator.of(context, rootNavigator: true).push(
-                  new MaterialPageRoute<bool>(
-                    fullscreenDialog: true,
-                    builder: (BuildContext context) => new SigninPage(),
-                  ),
-                );
+                Navigator.pushNamed(context, Routes.signin);
               },
               text: 'Sign In',
             )),
@@ -283,12 +283,7 @@ class _TabNavigatorState extends State<TabNavigator>
             width: double.infinity,
             child: GradientButton(
               onPressed: () {
-                Navigator.of(context, rootNavigator: true).push(
-                  new MaterialPageRoute<bool>(
-                    fullscreenDialog: true,
-                    builder: (BuildContext context) => new SigninPage(),
-                  ),
-                );
+                Navigator.pushNamed(context, Routes.signup);
               },
               text: 'Sign Up',
             )),

@@ -65,6 +65,10 @@ class _MapPageState extends State<MapPage> {
     });
   }
 
+  signInWithFacebook() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     final stateContainer = AppStateContainer.of(context);
@@ -75,18 +79,18 @@ class _MapPageState extends State<MapPage> {
             title: "stateContainer.currentUser.username",
             onPress: () => Scaffold.of(context).openDrawer(),
           ),
-          TextInput(
-            hasIcon: true,
-            hint: "Username",
-            iconName: FeatherIcons.smartphone,
-            onChanged: (text) => print(text),
-          ),
-          TextInput(
-            hasIcon: true,
-            hint: "Username",
-            iconName: FeatherIcons.smartphone,
-            onChanged: (text) => print(text),
-          ),
+          // TextInput(
+          //   hasIcon: true,
+          //   hint: "Username",
+          //   iconName: FeatherIcons.smartphone,
+          //   onChanged: (text) => print(text),
+          // ),
+          // TextInput(
+          //   hasIcon: true,
+          //   hint: "Username",
+          //   iconName: FeatherIcons.smartphone,
+          //   onChanged: (text) => print(text),
+          // ),
           // RaisedButton(
           //   child: Text("bottomSheet"),
           //   onPressed: () {
@@ -112,6 +116,10 @@ class _MapPageState extends State<MapPage> {
           //     CommonSnackBar(context: context, content: "HI").show();
           //   },
           // ),
+          RaisedButton(
+            child: Text("Sign in with facebook"),
+            onPressed: signInWithFacebook,
+          ),
           Text(translate.text("home")),
           RaisedButton(
             child: Text(stateContainer.currentLanguage.code),
@@ -172,17 +180,17 @@ class _MapPageState extends State<MapPage> {
           //     );
           //   },
           // ),
-          // RaisedButton(
-          //   child: Text("Upload image"),
-          //   onPressed: () {
-          //     Navigator.of(context, rootNavigator: true).push(
-          //       MaterialPageRoute<bool>(
-          //         fullscreenDialog: true,
-          //         builder: (BuildContext context) => UploadImg(),
-          //       ),
-          //     );
-          //   },
-          // ),
+          RaisedButton(
+            child: Text("Upload image"),
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).push(
+                MaterialPageRoute<bool>(
+                  fullscreenDialog: true,
+                  builder: (BuildContext context) => UploadImg(),
+                ),
+              );
+            },
+          ),
           // Expanded(
           //   child: OrientationBuilder(
           //     builder: (context, orientation) => _buildList(

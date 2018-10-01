@@ -19,7 +19,7 @@ class PostDetailPage extends StatelessWidget {
           Text("Post Detail"),
           RaisedButton(
             onPressed: () =>
-                Navigator.pushNamed(context, Routes.tutorsDetailRoute),
+                Navigator.pushNamed(context, Routes.tutorsDetail),
             // Navigator.push(
             //       context,
             //       MaterialPageRoute(builder: (context) => ProfileTwoPage()),

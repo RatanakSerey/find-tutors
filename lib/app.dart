@@ -5,6 +5,9 @@ import 'package:find_tutors/models/language.dart';
 import 'package:find_tutors/models/user.dart';
 import 'package:find_tutors/providers/language.dart';
 import 'package:find_tutors/providers/user.dart';
+import 'package:find_tutors/screens/auth/reset_password.dart';
+import 'package:find_tutors/screens/auth/signin.dart';
+import 'package:find_tutors/screens/auth/signup.dart';
 import 'package:find_tutors/screens/home/tutors_detail.dart';
 import 'package:find_tutors/screens/map/map.dart';
 import 'package:find_tutors/screens/not_found/not_found.dart';
@@ -35,10 +38,15 @@ class _AppRootWidgetState extends State<AppRootWidget>
   User user;
   // AppTranslationsDelegate _newLocaleDelegate;
   final routes = {
-    Routes.rootRoute: (BuildContext context) => TabNavigator(),
-    Routes.mapRoute: (BuildContext context) => MapPage(),
-    Routes.profileRoute: (BuildContext context) => ProfileTwoPage(),
-    Routes.tutorsDetailRoute: (BuildContext context) => TutorsDetailPage(),
+    Routes.root: (BuildContext context) => TabNavigator(),
+    Routes.map: (BuildContext context) => MapPage(),
+    Routes.teacherProfile: (BuildContext context) => TeacherProfilePage(),
+    Routes.signin: (BuildContext context) => SigninPage(),
+    Routes.signup: (BuildContext context) => SignupPage(),
+    Routes.studentSignup: (BuildContext context) => StudentSignupPage(),
+    Routes.teacherSignup: (BuildContext context) => TeacherSignupPage(),
+    Routes.resetPassword: (BuildContext context) => ResetPasswordPage(),
+    Routes.tutorsDetail: (BuildContext context) => TutorsDetailPage(),
   };
 
   Future initialization() async {
@@ -63,7 +71,9 @@ class _AppRootWidgetState extends State<AppRootWidget>
 
       /* getUser */
       userProvider.getUser().then((res) {
+        if(res){
         stateContainer.setUser(User.fromMap(res[0]));
+        }
         /* app is ready */
         stateContainer.setScaffoldKey(scaffoldKey);
 

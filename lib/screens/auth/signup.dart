@@ -267,14 +267,16 @@ class _SignupPageState extends State<SignupPage>
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: 25.0),
-                  alignment: Alignment.centerRight,
-                  width: 120.0,
-                  child: GradientButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Student())),
-                    text: 'Next',
-                  )),
+                margin: EdgeInsets.symmetric(horizontal: 25.0),
+                alignment: Alignment.centerRight,
+                width: 120.0,
+                child: GradientButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.studentSignup);
+                  },
+                  text: 'Next',
+                ),
+              ),
             ],
           )
         ],
@@ -332,14 +334,16 @@ class _SignupPageState extends State<SignupPage>
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: 25.0),
-                  alignment: Alignment.centerRight,
-                  width: 120.0,
-                  child: GradientButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Teacher())),
-                    text: 'Next',
-                  )),
+                margin: EdgeInsets.symmetric(horizontal: 25.0),
+                alignment: Alignment.centerRight,
+                width: 120.0,
+                child: GradientButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.studentSignup);
+                  },
+                  text: 'Next',
+                ),
+              ),
             ],
           )
         ],
@@ -576,20 +580,18 @@ class _StudentWidgetState extends State<Student> {
                           //       "https://avatars2.githubusercontent.com/u/3234592?s=460&v=4"),
                           // ),
                           border: Border.all(
-                              color: CommonColors.primary,
-                              width: 2.0,
-                            ),
-                            
+                            color: CommonColors.primary,
+                            width: 2.0,
+                          ),
                         ),
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(50.0),
-                          onTap: (){},
-                          child: Ink(
-                            child: Align(
-                              child: Text('Add Photo'),
-                            ),
-                          )
-                        ),
+                            borderRadius: BorderRadius.circular(50.0),
+                            onTap: () {},
+                            child: Ink(
+                              child: Align(
+                                child: Text('Add Photo'),
+                              ),
+                            )),
                       ),
                       Column(
                         children: <Widget>[
@@ -870,7 +872,7 @@ class _StudentWidgetState extends State<Student> {
   }
 }
 
-class Teacher extends StatelessWidget {
+class TeacherSignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
