@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:find_tutors/utils/constants.dart';
@@ -54,7 +55,8 @@ class _UploadImgState extends State<UploadImg> {
 
     // final StorageReference ref = _storage.ref().child("student_001/" + fileName);
 
-final StorageReference ref = Constants.storageRef(_storage,"teacher_001/post", "001_${fileName}");
+    final StorageReference ref =
+        Constants.storageRef(_storage, "teacher_001/post", "001_${fileName}");
 
     final StorageUploadTask task = ref.putFile(
       file,
@@ -98,8 +100,9 @@ final StorageReference ref = Constants.storageRef(_storage,"teacher_001/post", "
   }
 
   void initiateFacebookLogin() async {
-    var facebookLogin = FacebookLogin();
-    var facebookLoginResult = await facebookLogin
+    var  a = await FacebookLogin().isLoggedIn;
+    print(a);
+    var facebookLoginResult = await FacebookLogin()
         .logInWithReadPermissions(['email', 'public_profile']);
     switch (facebookLoginResult.status) {
       case FacebookLoginStatus.error:
@@ -114,8 +117,19 @@ final StorageReference ref = Constants.storageRef(_storage,"teacher_001/post", "
         print("LoggedIn");
         onLoginStatusChanged(true);
         //firebase_auth
-        print(facebookLoginResult.accessToken.token);
-        print(facebookLoginResult.accessToken.userId);
+        FacebookAccessToken accessToken = facebookLoginResult.accessToken;
+        // print(facebookLoginResult.accessToken.userId);
+        // print(facebookLoginResult.status);
+
+        var graphResponse = await http.get(
+            'https://graph.facebook.com/v2.12/me?fields=name,picture.height(200),first_name,last_name,email&access_token=${accessToken.token}');
+var profile = json.decode(graphResponse.body);
+print(profile);
+
+// print('networ picture: https://graph.facebook.com/v3.1/107353120209205/picture');
+
+//profileData['picture']['data']['url'],
+
         // _auth
         //     .signInWithFacebook(
         //         accessToken: facebookLoginResult.accessToken.token)

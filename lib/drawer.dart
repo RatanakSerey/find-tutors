@@ -83,14 +83,14 @@ Widget menu(context, onTabMenuTap) => Container(
             ),
             onTap: () {
               Navigator.pop(context);
-              onTabMenuTap(0);
+              onTabMenuTap(0, "home");
             },
           ),
           SizedBox(height: 25.0),
           new GestureDetector(
             onTap: () {
               Navigator.pop(context);
-              onTabMenuTap(2);
+              onTabMenuTap(2, "map");
             },
             child: new Text(
               translate.text("map"),
@@ -101,8 +101,8 @@ Widget menu(context, onTabMenuTap) => Container(
           SizedBox(height: 25.0),
           new GestureDetector(
             onTap: () {
-              onTabMenuTap(1);
               Navigator.pop(context);
+              onTabMenuTap(1, "profile");
             },
             child: new Text(
               translate.text("profile"),
@@ -114,9 +114,9 @@ Widget menu(context, onTabMenuTap) => Container(
           new GestureDetector(
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostListPage()),
+              // Navigator.push(
+              // context,
+              // MaterialPageRoute(builder: (context) => PostListPage()),
             );
             },
             child: new Text(

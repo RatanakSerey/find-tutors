@@ -5,18 +5,24 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
-  static const String rootRoute = "/root";
-  static const String homeRoute = "/home";
-  static const String mapRoute = "/map";
-  static const String signinRoute = "/signin";
-  static const String notFoundRoute = "/notFound";
-  static const String profileRoute = "/profile";
-  static const String tutorsDetailRoute = "/tutorsDetail";
+  static const String root = "/root";
+  static const String home = "/home";
+  static const String map = "/map";
+  static const String signin = "/signin";
+  static const String signup = "/signup";
+  static const String resetPassword = "/reset_password";
+  static const String notFound = "/not_found";
+  static const String studentProfile = "/student_profile";
+  static const String teacherProfile = "/teacher_profile";
+  static const String tutorsDetail = "/tutors_detail";
+  static const String studentSignup = "/student_signup";
+  static const String teacherSignup = "/teacher_signup";
 }
 
 class ScreenHelper {
   static const String signin = "Signin";
-  static const String profile = "Profile";
+  static const String teacherProfile = "Teacher Profile";
+  static const String studentProfile = "Student Profile";
   static const String subjectList = "Subject";
   static const String subjectDetail = "Subject Detail";
   static const String postList = "Post";
@@ -80,7 +86,7 @@ class CommonColors {
 }
 
 class MethodNames{
-  static const String serverUrl= "http://192.168.43.3:3000";
+  static const String serverUrl= "http://192.168.1.106:3000";
   static String findSubject = "$serverUrl/find_subject/";
 }
 
