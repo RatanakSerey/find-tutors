@@ -75,8 +75,7 @@ class _SubjectListPageState extends State<SubjectListPage>
 
   Future getSubject(String params) async {
     String url = MethodNames.findSubject + params;
-
-    return http.Client().get(url).then((response) {
+    return http.get(url).then((response) {
       var result = json.decode(response.body);
       _subjects.clear();
       if (result["result"].length != 0) {
@@ -98,6 +97,7 @@ class _SubjectListPageState extends State<SubjectListPage>
         });
       }
     }).catchError((err) {
+      print(err);
       CommonSnackBar(
         context: _context,
         type: "danger",

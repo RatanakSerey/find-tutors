@@ -1,4 +1,5 @@
 //packages
+import 'package:find_tutors/screens/auth/student_sigup.dart';
 import 'package:find_tutors/utils/constants.dart';
 import 'package:find_tutors/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
@@ -430,12 +431,12 @@ class TabIndicationPainter extends CustomPainter {
   bool shouldRepaint(TabIndicationPainter oldDelegate) => true;
 }
 
-class Student extends StatefulWidget {
+class TeacherSignupPage extends StatefulWidget {
   @override
-  _StudentWidgetState createState() => new _StudentWidgetState();
+  _TeacherSignupPageState createState() => new _TeacherSignupPageState();
 }
 
-class _StudentWidgetState extends State<Student> {
+class _TeacherSignupPageState extends State<TeacherSignupPage> {
   String gender = 'male';
   handleGenderChange(String val) {
     setState(() {
@@ -858,8 +859,10 @@ class _StudentWidgetState extends State<Student> {
                       alignment: Alignment.centerRight,
                       width: 160.0,
                       child: GradientButton(
-                        onPressed: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Student())),
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => StudentSignupPage())),
                         text: 'Create Account',
                       )),
                 ],
@@ -872,11 +875,3 @@ class _StudentWidgetState extends State<Student> {
   }
 }
 
-class TeacherSignupPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Teacher Sign Up'),
-    );
-  }
-}

@@ -117,7 +117,7 @@ Widget menu(context, onTabMenuTap) => Container(
               // Navigator.push(
               // context,
               // MaterialPageRoute(builder: (context) => PostListPage()),
-            );
+            // );
             },
             child: new Text(
               translate.text("setting"),
