@@ -85,14 +85,32 @@ class CommonColors {
   }
 }
 
-class MethodNames{
-  static const String serverUrl= "http://192.168.1.106:3000";
+class MethodNames {
+  // static const String serverUrl= "http://192.168.43.3:3000";
+  static const String serverUrl = "http://192.168.1.105:3000";
+  //subject
   static String findSubject = "$serverUrl/find_subject/";
+  //user
+  static String insertUser = "$serverUrl/insert_user/";
+  //student
+  static String insertStudent = "$serverUrl/insert_student/";
+
 }
 
+//
+// 403: forbidden
+// 404: not found
+// 200: ok
+// 201: created
+// 304: not modified
 class Constants {
   static const String appName = "Find Tutors";
   static const String version = "0.0.1";
+  static const String FORBIDDEN = "403";
+  static const String NOT_FOUND = "404";
+  static const String OK = "200";
+  static const String CREATED = "201";
+  static const String NOT_MODIFIED = "304";
   //login
   // static const String enter_code_label = "Phone Number";
   // static const String enter_code_hint = "10 Digit Phone Number";
@@ -111,7 +129,7 @@ class Constants {
   // static const String something_went_wrong = "Something went wrong";
   static const String coming_soon = "Coming Soon";
 
-  static storageRef(FirebaseStorage storage, String path, String filename){
+  static storageRef(FirebaseStorage storage, String path, String filename) {
     return storage.ref().child(path).child(filename);
   }
 }

@@ -8,6 +8,7 @@ import 'package:find_tutors/providers/user.dart';
 import 'package:find_tutors/screens/auth/reset_password.dart';
 import 'package:find_tutors/screens/auth/signin.dart';
 import 'package:find_tutors/screens/auth/signup.dart';
+import 'package:find_tutors/screens/auth/student_sigup.dart';
 import 'package:find_tutors/screens/home/tutors_detail.dart';
 import 'package:find_tutors/screens/map/map.dart';
 import 'package:find_tutors/screens/not_found/not_found.dart';
@@ -70,15 +71,15 @@ class _AppRootWidgetState extends State<AppRootWidget>
       appReady();
 
       /* getUser */
-      userProvider.getUser().then((res) {
-        if(res){
-        stateContainer.setUser(User.fromMap(res[0]));
-        }
-        /* app is ready */
-        stateContainer.setScaffoldKey(scaffoldKey);
+      // userProvider.getUser().then((res) {
+      //   if(res){
+      //   stateContainer.setUser(User.fromMap(res[0]));
+      //   }
+      //   /* app is ready */
+      //   stateContainer.setScaffoldKey(scaffoldKey);
 
-        appReady();
-      }).catchError((err) => print(err));
+      //   appReady();
+      // }).catchError((err) => print(err));
       //-------------------------------------------------------------------------
       /* insert user */
       // userProvider
