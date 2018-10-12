@@ -162,7 +162,7 @@ class _TabNavigatorState extends State<TabNavigator>
     if (stateContainer.currentUser == null) {
       if (key == profileKey) {
         CommonBottomSheet(
-          context: _context,
+          context: _context, height: 280.0,
           child: Center(
             child: signInBottomSheet(),
           ),
