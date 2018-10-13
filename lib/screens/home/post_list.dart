@@ -21,9 +21,9 @@ class PostListPage extends StatefulWidget {
 class PostListPageState extends State<PostListPage>
     with SingleTickerProviderStateMixin {
   final List<Widget> tabs = [
-    new CustomTab(text: "Featured", ref: "featured",),
-    new CustomTab(text: "Popular", ref: "popular",),
-    new CustomTab(text: "Latest", ref: "latest",),
+    new CustomTab(text: "ពិសេស", ref: "featured",),
+    new CustomTab(text: "ពេញនិយម", ref: "popular",),
+    new CustomTab(text: "ថ្មីបំផុត", ref: "latest",),
   ];
   final List _fakeData = [
     new FakeData(
@@ -121,7 +121,9 @@ class PostListPageState extends State<PostListPage>
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[Text('២០ ដាក់ប្រកាស់'), Text('ច្រោះ')],
+              children: <Widget>[
+                Text('២០ ដាក់ប្រកាស់'), Text("ច្រោះ")
+                ],
             ),
           ),
           Expanded(

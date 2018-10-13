@@ -87,7 +87,7 @@ class CommonColors {
 
 class MethodNames {
   // static const String serverUrl= "http://192.168.43.3:3000";
-  static const String serverUrl = "http://192.168.1.105:3000";
+  static const String serverUrl = "http://192.168.1.100:3000";
   //subject
   static String findSubject = "$serverUrl/find_subject/";
   //user
